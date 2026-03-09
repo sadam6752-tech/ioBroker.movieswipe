@@ -9,7 +9,6 @@
         "ru": "Первый релиз с веб-сервером и управлением синхронизацией"
       }
     },
-    "title": "MovieSwipe PWA",
     "titleLang": {
       "en": "MovieSwipe PWA",
       "de": "MovieSwipe PWA",
@@ -50,10 +49,14 @@
     },
     "dependencies": [
       {
-        "js-controller": ">=5.0.0"
+        "js-controller": ">=6.0.11"
       }
     ],
-    "globalDependencies": [],
+    "globalDependencies": [
+      {
+        "admin": ">=7.6.17"
+      }
+    ],
     "tier": 3
   },
   "native": {

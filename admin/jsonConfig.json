@@ -17,9 +17,11 @@
           "max": 65535,
           "default": 3000,
           "help": "Port for the web server (PWA application)",
+          "xs": 12,
           "sm": 12,
           "md": 6,
-          "lg": 4
+          "lg": 4,
+          "xl": 4
         },
         "_apiKeys": {
           "type": "header",
@@ -31,9 +33,11 @@
           "label": "API Keys",
           "help": "Kinopoisk API keys (one or more). The adapter will use them in rotation.",
           "delimiter": ",",
+          "xs": 12,
           "sm": 12,
           "md": 12,
-          "lg": 12
+          "lg": 12,
+          "xl": 12
         },
         "_info": {
           "type": "staticText",
@@ -43,7 +47,11 @@
             "fontStyle": "italic",
             "color": "#888"
           },
-          "sm": 12
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         }
       }
     },
@@ -65,9 +73,11 @@
           "default": 5.0,
           "unit": "★",
           "help": "Minimum Kinopoisk rating for movies",
+          "xs": 12,
           "sm": 12,
           "md": 6,
-          "lg": 6
+          "lg": 6,
+          "xl": 6
         },
         "minVotes": {
           "type": "number",
@@ -77,9 +87,11 @@
           "step": 100,
           "default": 500,
           "help": "Minimum number of votes (popularity filter)",
+          "xs": 12,
           "sm": 12,
           "md": 6,
-          "lg": 6
+          "lg": 6,
+          "xl": 6
         },
         "_yearRange": {
           "type": "header",
