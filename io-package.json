@@ -6,18 +6,39 @@
       "0.1.0": {
         "en": "Initial release with web server and sync management",
         "de": "Erstveröffentlichung mit Webserver und Synchronisationsverwaltung",
-        "ru": "Первый релиз с веб-сервером и управлением синхронизацией"
+        "ru": "Первый релиз с веб-сервером и управлением синхронизацией",
+        "fr": "Version initiale avec serveur web et gestion de synchronisation",
+        "it": "Rilascio iniziale con server web e gestione sincronizzazione",
+        "es": "Lanzamiento inicial con servidor web y gestión de sincronización",
+        "pl": "Pierwsze wydanie z serwerem WWW i zarządzaniem synchronizacją",
+        "pt": "Lançamento inicial com servidor web e gerenciamento de sincronização",
+        "nl": "Eerste release met webserver en synchronisatiebeheer",
+        "zh-cn": "初始版本，包含Web服务器和同步管理"
       }
     },
     "titleLang": {
       "en": "MovieSwipe PWA",
       "de": "MovieSwipe PWA",
-      "ru": "MovieSwipe PWA"
+      "ru": "MovieSwipe PWA",
+      "fr": "MovieSwipe PWA",
+      "it": "MovieSwipe PWA",
+      "es": "MovieSwipe PWA",
+      "pl": "MovieSwipe PWA",
+      "pt": "MovieSwipe PWA",
+      "nl": "MovieSwipe PWA",
+      "zh-cn": "MovieSwipe PWA"
     },
     "desc": {
       "en": "Movie discovery PWA with Kinopoisk API integration",
       "de": "Film-Entdeckungs-PWA mit Kinopoisk-API-Integration",
-      "ru": "PWA для поиска фильмов с интеграцией Kinopoisk API"
+      "ru": "PWA для поиска фильмов с интеграцией Kinopoisk API",
+      "fr": "PWA de découverte de films avec intégration de l'API Kinopoisk",
+      "it": "PWA per la scoperta di film con integrazione API Kinopoisk",
+      "es": "PWA de descubrimiento de películas con integración de API Kinopoisk",
+      "pl": "PWA do odkrywania filmów z integracją API Kinopoisk",
+      "pt": "PWA de descoberta de filmes com integração da API Kinopoisk",
+      "nl": "PWA voor filmontdekking met Kinopoisk API-integratie",
+      "zh-cn": "电影发现PWA与Kinopoisk API集成"
     },
     "authors": [
       "sadam6752-tech <sadam6752@gmail.com>"
