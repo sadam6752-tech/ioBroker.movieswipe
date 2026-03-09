@@ -29,7 +29,6 @@
   },
   "devDependencies": {
     "@iobroker/adapter-dev": "^1.5.0",
-    "@iobroker/repochecker": "^5.2.3",
     "@iobroker/testing": "^5.2.2",
     "@types/node": "^22.10.2",
     "eslint": "^9.17.0"
