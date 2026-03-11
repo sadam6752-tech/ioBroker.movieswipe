@@ -482,6 +482,8 @@ async function sync(apiKey, maxRequests = null) {
   let totalNewMovies = 0;
 
   try {
+    let totalFoundInSession = 0; // Общее количество найденных в текущей сессии
+    
     while (requestCount < requestsLimit) {
       // Проверяем флаг остановки
       if (shouldStop) {
@@ -494,7 +496,11 @@ async function sync(apiKey, maxRequests = null) {
       requestCount++;
       progress.requestsToday++;
 
-      console.log(`Получено ${result.movies.length} фильмов`);
+      const foundCount = result.movies.length;
+      totalFoundInSession += foundCount;
+
+      console.log(`Получено ${foundCount} фильмов`);
+      console.log(`Всего найдено в сессии: ${totalFoundInSession}`);
       console.log(`Прогресс: ${requestCount}/${requestsLimit} запросов, всего: ${progress.totalMovies} фильмов`);
 
       // Конвертируем и сохраняем
@@ -622,8 +628,24 @@ if (require.main === module) {
 
   const apiKey = args[apiKeyIndex + 1];
   
+  // Парсим опциональные параметры
   const maxRequestsIndex = args.indexOf('--max-requests');
   const maxRequests = maxRequestsIndex !== -1 ? parseInt(args[maxRequestsIndex + 1]) : null;
+
+  const minRatingIndex = args.indexOf('--min-rating');
+  if (minRatingIndex !== -1 && args[minRatingIndex + 1]) {
+    CONFIG.MIN_RATING = parseFloat(args[minRatingIndex + 1]);
+  }
+
+  const minVotesIndex = args.indexOf('--min-votes');
+  if (minVotesIndex !== -1 && args[minVotesIndex + 1]) {
+    CONFIG.MIN_VOTES = parseInt(args[minVotesIndex + 1]);
+  }
+
+  const yearStartIndex = args.indexOf('--year-start');
+  if (yearStartIndex !== -1 && args[yearStartIndex + 1]) {
+    CONFIG.INITIAL_YEARS = new Date().getFullYear() - parseInt(args[yearStartIndex + 1]);
+  }
 
   sync(apiKey, maxRequests).catch(error => {
     console.error('❌ Критическая ошибка:', error);

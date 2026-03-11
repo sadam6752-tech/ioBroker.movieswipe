@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "news": {
+      "1.0.5": {
+        "en": "Pass config parameters to sync script - minRating, minVotes now respected",
+        "de": "Konfigurationsparameter an Synchronisierungsskript übergeben - minRating, minVotes werden jetzt berücksichtigt",
+        "ru": "Параметры конфигурации передаются в скрипт синхронизации - minRating, minVotes теперь учитываются",
+        "fr": "Paramètres de configuration transmis au script de synchronisation - minRating, minVotes sont maintenant respectés",
+        "it": "Parametri di configurazione passati allo script di sincronizzazione - minRating, minVotes sono ora rispettati",
+        "es": "Parámetros de configuración pasados al script de sincronización - minRating, minVotes ahora se respetan",
+        "pl": "Parametry konfiguracji przekazane do skryptu synchronizacji - minRating, minVotes są teraz respektowane",
+        "pt": "Parâmetros de configuração passados para script de sincronização - minRating, minVotes agora são respeitados",
+        "nl": "Configuratieparameters doorgegeven aan synchronisatiescript - minRating, minVotes worden nu gerespecteerd",
+        "zh-cn": "配置参数传递给同步脚本 - minRating、minVotes 现在被考虑"
+      },
       "1.0.4": {
         "en": "Add graceful shutdown handling for sync script - data saved on manual stop",
         "de": "Ordnungsgemäße Abschaltungsbehandlung für Synchronisierungsskript hinzugefügt - Daten bei manuellem Stopp gespeichert",
