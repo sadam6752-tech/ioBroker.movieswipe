@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.11",
+    "version": "1.0.12",
     "news": {
+      "1.0.12": {
+        "en": "Add words.js for proper multilingual support in admin UI",
+        "de": "Füge words.js für ordnungsgemäße mehrsprachige Unterstützung in der Admin-UI hinzu",
+        "ru": "Добавлен words.js для правильной мультиязычной поддержки в админке",
+        "fr": "Ajouter words.js pour un support multilingue approprié dans l'interface d'administration",
+        "it": "Aggiungi words.js per il corretto supporto multilingue nell'interfaccia di amministrazione",
+        "es": "Agregar words.js para soporte multilingüe adecuado en la interfaz de administración",
+        "pl": "Dodaj words.js dla prawidłowej obsługi wielojęzycznej w interfejsie administracyjnym",
+        "pt": "Adicionar words.js para suporte multilíngue adequado na interface de administração",
+        "nl": "Voeg words.js toe voor juiste meertalige ondersteuning in de admin-interface",
+        "zh-cn": "添加words.js以在管理员UI中提供适当的多语言支持"
+      },
       "1.0.11": {
         "en": "Fix multilingual admin UI - use proper translations.json format",
         "de": "Mehrsprachige Admin-UI korrigiert - verwende korrektes translations.json-Format",
