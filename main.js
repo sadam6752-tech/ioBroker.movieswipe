@@ -43,19 +43,28 @@ class MovieSwipe extends utils.Adapter {
     } catch (error) {
       this.log.error(`Failed to start web server: ${error.message}`);
       await this.setStateAsync('server.running', false, true);
+      // Продолжить работу адаптера даже если веб-сервер не запустился
     }
 
     // Инициализировать sync manager
-    this.syncManager = new SyncManager(this);
+    try {
+      this.syncManager = new SyncManager(this);
+    } catch (error) {
+      this.log.error(`Failed to initialize sync manager: ${error.message}`);
+    }
 
     // Подписаться на изменения состояний
     this.subscribeStates('sync.start');
     this.subscribeStates('sync.stop');
 
     // Запустить автосинхронизацию если включена
-    if (this.config.autoSync) {
-      this.log.info('Auto sync is enabled, starting scheduler...');
-      this.syncManager.startAutoSync(this.config);
+    if (this.config.autoSync && this.syncManager) {
+      try {
+        this.log.info('Auto sync is enabled, starting scheduler...');
+        this.syncManager.startAutoSync(this.config);
+      } catch (error) {
+        this.log.error(`Failed to start auto sync: ${error.message}`);
+      }
     }
 
     this.log.info('MovieSwipe adapter ready');
@@ -69,6 +78,13 @@ class MovieSwipe extends utils.Adapter {
 
     try {
       if (stateName === 'start' && state.val === true) {
+        if (!this.syncManager) {
+          this.log.error('Sync manager not initialized');
+          await this.setStateAsync('sync.status', 'error', true);
+          await this.setStateAsync('sync.error', 'Sync manager not initialized', true);
+          return;
+        }
+
         this.log.info('Starting synchronization...');
         
         // Проверить наличие API ключей
@@ -89,6 +105,11 @@ class MovieSwipe extends utils.Adapter {
         // Сбросить триггер
         await this.setStateAsync('sync.start', false, true);
       } else if (stateName === 'stop' && state.val === true) {
+        if (!this.syncManager) {
+          this.log.error('Sync manager not initialized');
+          return;
+        }
+
         this.log.info('Stopping synchronization...');
         
         await this.syncManager.stop();
