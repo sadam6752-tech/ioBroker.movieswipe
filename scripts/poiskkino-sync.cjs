@@ -16,6 +16,20 @@
 const fs = require('fs');
 const path = require('path');
 
+// Флаг для остановки синхронизации
+let shouldStop = false;
+
+// Обработчики сигналов для корректного завершения
+process.on('SIGTERM', () => {
+  console.log('\n⚠️  Получен сигнал остановки (SIGTERM)');
+  shouldStop = true;
+});
+
+process.on('SIGINT', () => {
+  console.log('\n⚠️  Получен сигнал остановки (SIGINT)');
+  shouldStop = true;
+});
+
 // Конфигурация
 const CONFIG = {
   API_BASE_URL: 'https://api.kinopoisk.dev',
@@ -469,6 +483,12 @@ async function sync(apiKey, maxRequests = null) {
 
   try {
     while (requestCount < requestsLimit) {
+      // Проверяем флаг остановки
+      if (shouldStop) {
+        console.log('\n⏹️  Синхронизация остановлена пользователем');
+        break;
+      }
+
       // Загружаем порцию фильмов
       const result = await fetchMovies(apiKey, progress);
       requestCount++;
@@ -523,13 +543,22 @@ async function sync(apiKey, maxRequests = null) {
     });
 
     console.log('\n================================');
-    console.log(`✓ Синхронизация завершена`);
+    if (shouldStop) {
+      console.log(`⏹️  Синхронизация остановлена пользователем`);
+    } else {
+      console.log(`✓ Синхронизация завершена`);
+    }
     console.log(`  Дата и время: ${endTimeStr}`);
     console.log(`  Новых фильмов: ${totalNewMovies}`);
     console.log(`  Всего фильмов: ${progress.totalMovies}`);
     console.log(`  Использовано запросов: ${requestCount}`);
     console.log(`  Осталось запросов сегодня: ${CONFIG.MAX_REQUESTS_PER_DAY - progress.requestsToday}`);
     console.log('================================\n');
+
+    // Сохраняем прогресс при остановке
+    if (shouldStop) {
+      saveProgress(progress);
+    }
 
   } catch (error) {
     console.error('\n❌ Ошибка синхронизации:', error.message);

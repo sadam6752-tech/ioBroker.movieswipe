@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "news": {
+      "1.0.4": {
+        "en": "Add graceful shutdown handling for sync script - data saved on manual stop",
+        "de": "Ordnungsgemäße Abschaltungsbehandlung für Synchronisierungsskript hinzugefügt - Daten bei manuellem Stopp gespeichert",
+        "ru": "Добавлена корректная обработка остановки скрипта синхронизации - данные сохраняются при ручной остановке",
+        "fr": "Ajout de la gestion de l'arrêt gracieux pour le script de synchronisation - données sauvegardées à l'arrêt manuel",
+        "it": "Aggiunto il trattamento dell'arresto corretto per lo script di sincronizzazione - dati salvati all'arresto manuale",
+        "es": "Agregado manejo de apagado elegante para script de sincronización - datos guardados en parada manual",
+        "pl": "Dodano obsługę wdzięcznego zamknięcia dla skryptu synchronizacji - dane zapisane przy ręcznym zatrzymaniu",
+        "pt": "Adicionado tratamento de encerramento elegante para script de sincronização - dados salvos na parada manual",
+        "nl": "Graceful shutdown-verwerking toegevoegd voor synchronisatiescript - gegevens opgeslagen bij handmatig stoppen",
+        "zh-cn": "为同步脚本添加了优雅关闭处理 - 手动停止时保存数据"
+      },
       "1.0.3": {
         "en": "Improve sync progress tracking and output parsing",
         "de": "Verbessertes Tracking des Synchronisierungsfortschritts und Ausgabeverarbeitung",
