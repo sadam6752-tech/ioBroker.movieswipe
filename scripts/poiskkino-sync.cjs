@@ -21,7 +21,7 @@ const CONFIG = {
   API_BASE_URL: 'https://api.kinopoisk.dev',
   API_VERSION: 'v1.5',
   PROGRESS_FILE: path.join(__dirname, '.sync-progress.json'),
-  OUTPUT_DIR: path.join(__dirname, '../public/data'),
+  OUTPUT_DIR: path.join(__dirname, '../www/data'),
   MOVIES_PER_REQUEST: 250, // Максимум для API
   MAX_REQUESTS_PER_DAY: 200,
   MIN_RATING: 5.0,
