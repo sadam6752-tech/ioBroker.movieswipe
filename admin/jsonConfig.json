@@ -187,7 +187,7 @@
         },
         "_serverInfo": {
           "type": "staticText",
-          "text": "Server URL: <a href='http://localhost:3000' target='_blank'>http://localhost:3000</a>",
+          "text": "Server URL: <a href='http://localhost:3000' target='_blank'>http://localhost:3000</a> (Check 'server.url' state for actual URL)",
           "xs": 12,
           "sm": 12,
           "md": 12,
@@ -198,6 +198,15 @@
           "type": "header",
           "text": "Synchronization Status",
           "size": 3
+        },
+        "_totalMovies": {
+          "type": "staticText",
+          "text": "Total movies in database: Check 'sync.totalMovies' state",
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         },
         "_syncInfo": {
           "type": "staticText",
