@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.16",
+    "version": "1.0.17",
     "news": {
+      "1.0.17": {
+        "en": "Clean up news section - keep only last 7 versions per ioBroker standards",
+        "de": "Bereinigung des News-Bereichs - behalte nur die letzten 7 Versionen gemäß ioBroker-Standards",
+        "ru": "Очистка раздела новостей - сохранены только последние 7 версий согласно стандартам ioBroker",
+        "fr": "Nettoyage de la section des actualités - conservez uniquement les 7 dernières versions selon les normes ioBroker",
+        "it": "Pulizia della sezione notizie - mantieni solo le ultime 7 versioni secondo gli standard ioBroker",
+        "es": "Limpieza de la sección de noticias - mantener solo las últimas 7 versiones según los estándares de ioBroker",
+        "pl": "Czyszczenie sekcji wiadomości - zachowaj tylko ostatnie 7 wersji zgodnie ze standardami ioBroker",
+        "pt": "Limpeza da seção de notícias - mantenha apenas as últimas 7 versões de acordo com os padrões ioBroker",
+        "nl": "Opschoning van het nieuwsgedeelte - behoud alleen de laatste 7 versies volgens ioBroker-standaarden",
+        "zh-cn": "清理新闻部分 - 仅保留最后7个版本，符合ioBroker标准"
+      },
       "1.0.16": {
         "en": "Add eslint.config.js for ESLint 9 compatibility, fix linting warnings",
         "de": "Füge eslint.config.js für ESLint 9 Kompatibilität hinzu, behebe Linting-Warnungen",
