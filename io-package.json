@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "news": {
+      "1.0.2": {
+        "en": "Add app reload signal and improve sync documentation",
+        "de": "App-Neuladen-Signal hinzugefügt und Synchronisierungsdokumentation verbessert",
+        "ru": "Добавлен сигнал перезагрузки приложения и улучшена документация синхронизации",
+        "fr": "Signal de rechargement d'application ajouté et documentation de synchronisation améliorée",
+        "it": "Segnale di ricaricamento dell'app aggiunto e documentazione di sincronizzazione migliorata",
+        "es": "Señal de recarga de aplicación agregada y documentación de sincronización mejorada",
+        "pl": "Dodano sygnał przeładowania aplikacji i ulepszona dokumentacja synchronizacji",
+        "pt": "Sinal de recarga de aplicativo adicionado e documentação de sincronização melhorada",
+        "nl": "App-herlaadsignaal toegevoegd en synchronisatiedocumentatie verbeterd",
+        "zh-cn": "添加应用重新加载信号并改进同步文档"
+      },
       "1.0.1": {
         "en": "Fix sync script output directory and add newMovies tracking",
         "de": "Fehler im Synchronisierungsskript behoben und Verfolgung neuer Filme hinzugefügt",
@@ -295,6 +307,19 @@
         "read": true,
         "write": false,
         "def": ""
+      },
+      "native": {}
+    },
+    {
+      "_id": "sync.reloadApp",
+      "type": "state",
+      "common": {
+        "role": "button",
+        "name": "Reload app cache",
+        "type": "boolean",
+        "read": true,
+        "write": true,
+        "def": false
       },
       "native": {}
     },

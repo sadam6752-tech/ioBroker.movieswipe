@@ -1,6 +1,6 @@
 {
   "name": "iobroker.movieswipe",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "ioBroker adapter for MovieSwipe PWA - Movie discovery application with Kinopoisk API integration",
   "author": {
     "name": "sadam6752-tech",

@@ -93,11 +93,25 @@ After installation and configuration:
 
 Set the `sync.start` state to `true` in the Objects tab to start synchronization.
 
+### Updating the Application After Sync
+
+After synchronization completes:
+
+1. The `sync.reloadApp` state will be set to `true`
+2. Open the MovieSwipe application in your browser
+3. Press **F5** (or Ctrl+R) to refresh and clear the cache
+4. Click "Update Catalog" button to reload movies from the database
+
+**Important:** The application caches data in IndexedDB. You must refresh the page to see newly synchronized movies.
+
 ### Monitoring Progress
 
 Monitor synchronization progress through the following states:
-- `sync.status` - Current status
-- `sync.progress` - Progress percentage
+- `sync.status` - Current status (idle, running, completed, error)
+- `sync.progress` - Progress percentage (0-100%)
+- `sync.foundMovies` - Number of movies found in current sync
+- `sync.newMovies` - Number of new movies added to database
+- `sync.totalMovies` - Total movies in database
 - `sync.totalMovies` - Total movies in database
 - `sync.newMovies` - New movies added
 
