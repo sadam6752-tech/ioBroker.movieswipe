@@ -156,12 +156,17 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 
 ## Changelog
 
-### 0.1.0 (2026-03-09)
-- Initial release
+### 1.0.0 (2026-03-11)
+- First stable release
 - Web server for PWA hosting
-- Synchronization management
-- Multi-language support (DE, EN, RU)
+- Synchronization management with Kinopoisk API
+- Multi-language support (DE, EN, RU, FR, IT, ES, PL, PT, NL, ZH-CN)
 - Real-time progress monitoring
+- Multiple API key support with rotation
+- Configurable filters (rating, votes, year range)
+
+### 0.1.0 (2026-03-09)
+- Initial development release
 
 ## License
 

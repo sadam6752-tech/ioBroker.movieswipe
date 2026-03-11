@@ -181,7 +181,11 @@
         "_serverInfo": {
           "type": "staticText",
           "text": "Server URL: <a href='http://localhost:3000' target='_blank'>http://localhost:3000</a>",
-          "sm": 12
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         },
         "_syncStatus": {
           "type": "header",
@@ -191,7 +195,11 @@
         "_syncInfo": {
           "type": "staticText",
           "text": "Use the 'sync.start' state to trigger synchronization, or check the current status in the Objects tab.",
-          "sm": 12
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         },
         "_help": {
           "type": "header",
@@ -201,7 +209,11 @@
         "_helpText": {
           "type": "staticText",
           "text": "For more information, visit the <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>GitHub repository</a>.",
-          "sm": 12
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         }
       }
     }
