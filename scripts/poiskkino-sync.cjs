@@ -34,7 +34,7 @@ process.on('SIGINT', () => {
 const CONFIG = {
   API_BASE_URL: 'https://api.kinopoisk.dev',
   API_VERSION: 'v1.5',
-  PROGRESS_FILE: path.join(__dirname, '.sync-progress.json'),
+  PROGRESS_FILE: path.join(__dirname, '../www/data/.sync-progress.json'),
   OUTPUT_DIR: path.join(__dirname, '../www/data'),
   MOVIES_PER_REQUEST: 250, // Максимум для API
   MAX_REQUESTS_PER_DAY: 200,
@@ -392,6 +392,15 @@ async function fetchMovies(apiKey, progress) {
 
   if (!response.ok) {
     const errorText = await response.text();
+    
+    // Проверяем на ошибку лимита запросов (HTTP 429)
+    if (response.status === 429) {
+      console.error('\n❌ Достигнут лимит запросов API (HTTP 429)');
+      console.error('   Попробуйте позже или используйте другой API ключ');
+      shouldStop = true;
+      throw new Error(`API Rate Limit Exceeded: ${errorText}`);
+    }
+    
     throw new Error(`HTTP ${response.status}: ${errorText}`);
   }
 
@@ -492,7 +501,18 @@ async function sync(apiKey, maxRequests = null) {
       }
 
       // Загружаем порцию фильмов
-      const result = await fetchMovies(apiKey, progress);
+      let result;
+      try {
+        result = await fetchMovies(apiKey, progress);
+      } catch (error) {
+        // Если это ошибка лимита, останавливаем синхронизацию
+        if (error.message.includes('Rate Limit')) {
+          console.log('\n⏹️  Синхронизация остановлена из-за лимита API');
+          break;
+        }
+        throw error;
+      }
+      
       requestCount++;
       progress.requestsToday++;
 

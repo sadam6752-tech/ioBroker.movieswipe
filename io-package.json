@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "news": {
+      "1.0.6": {
+        "en": "Add API rate limit detection and graceful handling - progress file persists across reinstalls",
+        "de": "API-Ratenlimit-Erkennung und ordnungsgemäße Behandlung hinzugefügt - Fortschrittsdatei bleibt über Neuinstallationen erhalten",
+        "ru": "Добавлено обнаружение лимита API и корректная обработка - файл прогресса сохраняется при переустановке",
+        "fr": "Détection du limite de débit API et gestion gracieuse ajoutées - fichier de progression persiste lors des réinstallations",
+        "it": "Aggiunto rilevamento limite di velocità API e gestione corretta - file di progresso persiste tra le reinstallazioni",
+        "es": "Detección de límite de velocidad de API y manejo elegante agregados - archivo de progreso persiste entre reinstalaciones",
+        "pl": "Dodano wykrywanie limitu szybkości API i obsługę wdzięczną - plik postępu utrzymuje się między ponowną instalacją",
+        "pt": "Detecção de limite de taxa de API e tratamento elegante adicionados - arquivo de progresso persiste entre reinstalações",
+        "nl": "API-snelheidslimietdetectie en graceful handling toegevoegd - voortgangsbestand blijft behouden bij herinstallatie",
+        "zh-cn": "添加了API速率限制检测和优雅处理 - 进度文件在重新安装时保持"
+      },
       "1.0.5": {
         "en": "Pass config parameters to sync script - minRating, minVotes now respected",
         "de": "Konfigurationsparameter an Synchronisierungsskript übergeben - minRating, minVotes werden jetzt berücksichtigt",
