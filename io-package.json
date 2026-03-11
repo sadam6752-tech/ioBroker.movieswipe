@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.12",
+    "version": "1.0.13",
     "news": {
+      "1.0.13": {
+        "en": "Fix multilingual admin UI - use i18n keys in jsonConfig.json instead of hardcoded strings",
+        "de": "Mehrsprachige Admin-UI korrigiert - verwende i18n-Schlüssel in jsonConfig.json statt hartcodierter Strings",
+        "ru": "Исправлена мультиязычная админка - используются i18n ключи в jsonConfig.json вместо жестко закодированных строк",
+        "fr": "Interface d'administration multilingue corrigée - utilise les clés i18n dans jsonConfig.json au lieu de chaînes codées en dur",
+        "it": "Interfaccia amministrativa multilingue corretta - utilizza le chiavi i18n in jsonConfig.json invece di stringhe hardcoded",
+        "es": "Interfaz de administración multilingue corregida - utiliza claves i18n en jsonConfig.json en lugar de cadenas codificadas",
+        "pl": "Naprawiony wielojęzyczny interfejs administracyjny - używa kluczy i18n w jsonConfig.json zamiast ciągów zakodowanych",
+        "pt": "Interface de administração multilíngue corrigida - usa chaves i18n em jsonConfig.json em vez de strings codificadas",
+        "nl": "Meertalige admin-interface gecorrigeerd - gebruikt i18n-sleutels in jsonConfig.json in plaats van hardcoded strings",
+        "zh-cn": "修复多语言管理员UI - 在jsonConfig.json中使用i18n键而不是硬编码字符串"
+      },
       "1.0.12": {
         "en": "Add words.js for proper multilingual support in admin UI",
         "de": "Füge words.js für ordnungsgemäße mehrsprachige Unterstützung in der Admin-UI hinzu",

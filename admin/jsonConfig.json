@@ -3,20 +3,20 @@
   "items": {
     "general": {
       "type": "panel",
-      "label": "General Settings",
+      "label": "label_general_settings",
       "items": {
         "_port": {
           "type": "header",
-          "text": "Web Server",
+          "text": "label_web_server",
           "size": 3
         },
         "port": {
           "type": "number",
-          "label": "Port",
+          "label": "label_port",
           "min": 1024,
           "max": 65535,
           "default": 3000,
-          "help": "Port for the web server (PWA application)",
+          "help": "label_port_help",
           "xs": 12,
           "sm": 12,
           "md": 6,
@@ -25,17 +25,17 @@
         },
         "_apiKeys": {
           "type": "header",
-          "text": "API Configuration",
+          "text": "label_api_configuration",
           "size": 3
         },
         "apiKeys": {
           "type": "table",
-          "label": "API Keys",
-          "help": "Kinopoisk API keys (one or more). The adapter will use them in rotation. Press '+' to add a new key.",
+          "label": "label_api_keys",
+          "help": "label_api_keys_help",
           "items": [
             {
               "type": "text",
-              "title": "API Key",
+              "title": "label_api_key",
               "attr": "key",
               "width": "100%"
             }
@@ -48,7 +48,7 @@
         },
         "_info": {
           "type": "staticText",
-          "text": "Get your API key at: https://api.kinopoisk.dev/",
+          "text": "label_get_api_key",
           "style": {
             "fontSize": "12px",
             "fontStyle": "italic",
@@ -64,22 +64,22 @@
     },
     "sync": {
       "type": "panel",
-      "label": "Synchronization",
+      "label": "label_synchronization",
       "items": {
         "_filters": {
           "type": "header",
-          "text": "Content Filters",
+          "text": "label_content_filters",
           "size": 3
         },
         "minRating": {
           "type": "slider",
-          "label": "Minimum Rating",
+          "label": "label_minimum_rating",
           "min": 0,
           "max": 10,
           "step": 0.1,
           "default": 5.0,
           "unit": "★",
-          "help": "Minimum Kinopoisk rating for movies",
+          "help": "label_minimum_rating_help",
           "xs": 12,
           "sm": 12,
           "md": 6,
@@ -88,13 +88,13 @@
         },
         "maxRating": {
           "type": "slider",
-          "label": "Maximum Rating",
+          "label": "label_maximum_rating",
           "min": 0,
           "max": 10,
           "step": 0.1,
           "default": 10.0,
           "unit": "★",
-          "help": "Maximum Kinopoisk rating for movies",
+          "help": "label_maximum_rating_help",
           "xs": 12,
           "sm": 12,
           "md": 6,
@@ -103,12 +103,12 @@
         },
         "minVotes": {
           "type": "number",
-          "label": "Minimum Votes",
+          "label": "label_minimum_votes",
           "min": 0,
           "max": 100000,
           "step": 100,
           "default": 500,
-          "help": "Minimum number of votes (popularity filter)",
+          "help": "label_minimum_votes_help",
           "xs": 12,
           "sm": 12,
           "md": 6,
@@ -117,16 +117,16 @@
         },
         "_yearRange": {
           "type": "header",
-          "text": "Year Range",
+          "text": "label_year_range",
           "size": 3
         },
         "yearRangeStart": {
           "type": "number",
-          "label": "Start Year",
+          "label": "label_start_year",
           "min": 1900,
           "max": 2030,
           "default": 2020,
-          "help": "Starting year for movie search",
+          "help": "label_start_year_help",
           "xs": 12,
           "sm": 12,
           "md": 6,
@@ -135,11 +135,11 @@
         },
         "yearRangeEnd": {
           "type": "number",
-          "label": "End Year",
+          "label": "label_end_year",
           "min": 1900,
           "max": 2030,
           "default": 2026,
-          "help": "Ending year for movie search",
+          "help": "label_end_year_help",
           "xs": 12,
           "sm": 12,
           "md": 6,
@@ -148,16 +148,16 @@
         },
         "_advanced": {
           "type": "header",
-          "text": "Advanced Settings",
+          "text": "label_advanced_settings",
           "size": 3
         },
         "maxRequestsPerRun": {
           "type": "number",
-          "label": "Max Requests per Run",
+          "label": "label_max_requests_per_run",
           "min": 1,
           "max": 1000,
           "default": 250,
-          "help": "Maximum API requests per synchronization run (default: 250 for free tier, up to 1000 for premium)",
+          "help": "label_max_requests_per_run_help",
           "xs": 12,
           "sm": 12,
           "md": 6,
@@ -166,11 +166,11 @@
         },
         "dailyRequestLimit": {
           "type": "number",
-          "label": "Daily Request Limit",
+          "label": "label_daily_request_limit",
           "min": 1,
           "max": 10000,
           "default": 200,
-          "help": "Total API requests allowed per day (default: 200 for free tier, higher for premium keys)",
+          "help": "label_daily_request_limit_help",
           "xs": 12,
           "sm": 12,
           "md": 6,
@@ -179,8 +179,8 @@
         },
         "autoSync": {
           "type": "checkbox",
-          "label": "Auto Sync",
-          "help": "Automatically synchronize on adapter start",
+          "label": "label_auto_sync",
+          "help": "label_auto_sync_help",
           "default": false,
           "xs": 12,
           "sm": 12,
@@ -190,12 +190,12 @@
         },
         "syncInterval": {
           "type": "number",
-          "label": "Sync Interval",
+          "label": "label_sync_interval",
           "min": 1,
           "max": 168,
           "default": 24,
           "unit": "hours",
-          "help": "Interval between automatic synchronizations (if Auto Sync is enabled)",
+          "help": "label_sync_interval_help",
           "hidden": "!data.autoSync",
           "xs": 12,
           "sm": 12,
@@ -207,16 +207,16 @@
     },
     "status": {
       "type": "panel",
-      "label": "Status",
+      "label": "label_status",
       "items": {
         "_serverStatus": {
           "type": "header",
-          "text": "Web Server Status",
+          "text": "label_web_server_status",
           "size": 3
         },
         "_serverInfo": {
           "type": "staticText",
-          "text": "Server URL: <a href='http://localhost:3000' target='_blank'>http://localhost:3000</a> (Check 'server.url' state for actual URL)",
+          "text": "label_server_url",
           "xs": 12,
           "sm": 12,
           "md": 12,
@@ -225,12 +225,12 @@
         },
         "_syncStatus": {
           "type": "header",
-          "text": "Synchronization Status",
+          "text": "label_synchronization_status",
           "size": 3
         },
         "_totalMovies": {
           "type": "staticText",
-          "text": "Total movies in database: Check 'sync.totalMovies' state",
+          "text": "label_total_movies",
           "xs": 12,
           "sm": 12,
           "md": 12,
@@ -239,7 +239,7 @@
         },
         "_syncInfo": {
           "type": "staticText",
-          "text": "Use the 'sync.start' state to trigger synchronization. After sync completes, refresh the app (F5) to see new movies.",
+          "text": "label_sync_info",
           "xs": 12,
           "sm": 12,
           "md": 12,
@@ -248,12 +248,12 @@
         },
         "_help": {
           "type": "header",
-          "text": "Help",
+          "text": "label_help",
           "size": 3
         },
         "_helpText": {
           "type": "staticText",
-          "text": "For more information, visit the <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>GitHub repository</a>.",
+          "text": "label_help_text",
           "xs": 12,
           "sm": 12,
           "md": 12,
