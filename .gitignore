@@ -34,3 +34,5 @@ build/
 # Temporary
 tmp/
 temp/
+# Kiro steering files (local only)
+.kiro/steering/
