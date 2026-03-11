@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "news": {
+      "1.0.7": {
+        "en": "Implement auto sync with smart API key rotation and cooldown tracking",
+        "de": "Automatische Synchronisierung mit intelligenter API-Schlüssel-Rotation und Cooldown-Verfolgung implementiert",
+        "ru": "Реализована автосинхронизация с умной ротацией API ключей и отслеживанием кулдауна",
+        "fr": "Synchronisation automatique implémentée avec rotation intelligente des clés API et suivi du refroidissement",
+        "it": "Sincronizzazione automatica implementata con rotazione intelligente delle chiavi API e tracciamento del raffreddamento",
+        "es": "Sincronización automática implementada con rotación inteligente de claves API y seguimiento de enfriamiento",
+        "pl": "Zaimplementowana automatyczna synchronizacja z inteligentną rotacją kluczy API i śledzeniem chłodzenia",
+        "pt": "Sincronização automática implementada com rotação inteligente de chaves API e rastreamento de resfriamento",
+        "nl": "Automatische synchronisatie geïmplementeerd met intelligente API-sleutelrotatie en cooldown-tracking",
+        "zh-cn": "实现了自动同步，具有智能API密钥轮换和冷却时间跟踪"
+      },
       "1.0.6": {
         "en": "Add API rate limit detection and graceful handling - progress file persists across reinstalls",
         "de": "API-Ratenlimit-Erkennung und ordnungsgemäße Behandlung hinzugefügt - Fortschrittsdatei bleibt über Neuinstallationen erhalten",
@@ -160,7 +172,9 @@
     "yearRangeStart": 2020,
     "yearRangeEnd": 2026,
     "autoSync": false,
-    "syncInterval": 24
+    "syncInterval": 24,
+    "maxRequestsPerRun": 250,
+    "dailyRequestLimit": 250
   },
   "objects": [],
   "instanceObjects": [

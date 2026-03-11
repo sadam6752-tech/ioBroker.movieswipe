@@ -136,12 +136,26 @@
           "text": "Advanced Settings",
           "size": 3
         },
-        "maxRequests": {
+        "maxRequestsPerRun": {
           "type": "number",
           "label": "Max Requests per Run",
           "min": 1,
-          "max": 200,
-          "help": "Maximum API requests per synchronization run (leave empty for unlimited)",
+          "max": 1000,
+          "default": 250,
+          "help": "Maximum API requests per synchronization run (default: 250 for free tier, up to 1000 for premium)",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 6,
+          "xl": 6
+        },
+        "dailyRequestLimit": {
+          "type": "number",
+          "label": "Daily Request Limit",
+          "min": 1,
+          "max": 10000,
+          "default": 250,
+          "help": "Total API requests allowed per day (default: 250 for free tier, higher for premium keys)",
           "xs": 12,
           "sm": 12,
           "md": 6,

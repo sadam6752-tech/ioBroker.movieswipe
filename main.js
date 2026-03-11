@@ -52,6 +52,12 @@ class MovieSwipe extends utils.Adapter {
     this.subscribeStates('sync.start');
     this.subscribeStates('sync.stop');
 
+    // Запустить автосинхронизацию если включена
+    if (this.config.autoSync) {
+      this.log.info('Auto sync is enabled, starting scheduler...');
+      this.syncManager.startAutoSync(this.config);
+    }
+
     this.log.info('MovieSwipe adapter ready');
   }
 
@@ -98,6 +104,11 @@ class MovieSwipe extends utils.Adapter {
   async onUnload(callback) {
     try {
       this.log.info('Cleaning up...');
+
+      // Остановить автосинхронизацию
+      if (this.syncManager) {
+        this.syncManager.stopAutoSync();
+      }
 
       // Остановить синхронизацию
       if (this.syncManager) {

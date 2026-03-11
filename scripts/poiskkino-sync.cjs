@@ -37,7 +37,7 @@ const CONFIG = {
   PROGRESS_FILE: path.join(__dirname, '../www/data/.sync-progress.json'),
   OUTPUT_DIR: path.join(__dirname, '../www/data'),
   MOVIES_PER_REQUEST: 250, // Максимум для API
-  MAX_REQUESTS_PER_DAY: 200,
+  MAX_REQUESTS_PER_DAY: 250, // По умолчанию для бесплатного тарифа
   MIN_RATING: 5.0,
   MIN_VOTES: 500, // Минимум голосов для популярности
   INITIAL_YEARS: 5, // Начинаем с последних 5 лет
@@ -195,7 +195,7 @@ function saveProgress(progress) {
 /**
  * Проверить лимит запросов
  */
-function checkRateLimit(progress) {
+function checkRateLimit(progress, dailyLimit) {
   const today = new Date().toISOString().split('T')[0];
   
   if (progress.lastRequestDate !== today) {
@@ -204,7 +204,7 @@ function checkRateLimit(progress) {
     progress.lastRequestDate = today;
   }
 
-  return progress.requestsToday < CONFIG.MAX_REQUESTS_PER_DAY;
+  return progress.requestsToday < dailyLimit;
 }
 
 /**
@@ -457,16 +457,19 @@ function saveMovies(movies, progress) {
 /**
  * Главная функция синхронизации
  */
-async function sync(apiKey, maxRequests = null) {
+async function sync(apiKey, maxRequests = null, dailyLimit = null) {
   console.log('🎬 ПоискКино Incremental Sync');
   console.log('================================\n');
+
+  // Использовать переданный лимит или значение по умолчанию
+  const effectiveDailyLimit = dailyLimit || CONFIG.MAX_REQUESTS_PER_DAY;
 
   // Загружаем прогресс с учетом API ключа
   const progress = loadProgress(apiKey);
   
   console.log(`Прогресс:`);
   console.log(`  Всего загружено: ${progress.totalMovies} фильмов`);
-  console.log(`  Запросов сегодня: ${progress.requestsToday}/${CONFIG.MAX_REQUESTS_PER_DAY}`);
+  console.log(`  Запросов сегодня: ${progress.requestsToday}/${effectiveDailyLimit}`);
   console.log(`  Период: ${progress.yearRange.start}-${progress.yearRange.end}`);
   console.log(`  Статус: ${progress.completed ? 'Завершено' : 'В процессе'}\n`);
 
@@ -477,14 +480,14 @@ async function sync(apiKey, maxRequests = null) {
   }
 
   // Проверяем лимит
-  if (!checkRateLimit(progress)) {
-    console.log('⚠️  Достигнут дневной лимит запросов (200) для текущего API ключа');
+  if (!checkRateLimit(progress, effectiveDailyLimit)) {
+    console.log(`⚠️  Достигнут дневной лимит запросов (${effectiveDailyLimit}) для текущего API ключа`);
     console.log('💡 Вы можете продолжить с другим API ключом:');
     console.log('   node poiskkino-sync.cjs YOUR_OTHER_API_KEY\n');
     return;
   }
 
-  const requestsLimit = maxRequests || (CONFIG.MAX_REQUESTS_PER_DAY - progress.requestsToday);
+  const requestsLimit = maxRequests || (effectiveDailyLimit - progress.requestsToday);
   console.log(`Будет выполнено до ${requestsLimit} запросов\n`);
 
   let requestCount = 0;
@@ -578,7 +581,7 @@ async function sync(apiKey, maxRequests = null) {
     console.log(`  Новых фильмов: ${totalNewMovies}`);
     console.log(`  Всего фильмов: ${progress.totalMovies}`);
     console.log(`  Использовано запросов: ${requestCount}`);
-    console.log(`  Осталось запросов сегодня: ${CONFIG.MAX_REQUESTS_PER_DAY - progress.requestsToday}`);
+    console.log(`  Осталось запросов сегодня: ${effectiveDailyLimit - progress.requestsToday}`);
     console.log('================================\n');
 
     // Сохраняем прогресс при остановке
@@ -603,15 +606,17 @@ if (require.main === module) {
 Использование: node poiskkino-sync.cjs [опции]
 
 Опции:
-  --api-key <key>     API ключ ПоискКино (обязательно)
-  --max-requests <n>  Максимум запросов за один запуск (по умолчанию: до лимита)
-  --reset             Сбросить прогресс и начать заново
-  --status            Показать текущий статус
-  -h, --help          Показать эту справку
+  --api-key <key>       API ключ ПоискКино (обязательно)
+  --max-requests <n>    Максимум запросов за один запуск (по умолчанию: до лимита)
+  --daily-limit <n>     Дневной лимит запросов (по умолчанию: 250)
+  --reset               Сбросить прогресс и начать заново
+  --status              Показать текущий статус
+  -h, --help            Показать эту справку
 
 Примеры:
   node poiskkino-sync.cjs --api-key YOUR_KEY
   node poiskkino-sync.cjs --api-key YOUR_KEY --max-requests 10
+  node poiskkino-sync.cjs --api-key YOUR_KEY --daily-limit 500
   node poiskkino-sync.cjs --status
   node poiskkino-sync.cjs --reset
 `);
@@ -652,6 +657,9 @@ if (require.main === module) {
   const maxRequestsIndex = args.indexOf('--max-requests');
   const maxRequests = maxRequestsIndex !== -1 ? parseInt(args[maxRequestsIndex + 1]) : null;
 
+  const dailyLimitIndex = args.indexOf('--daily-limit');
+  const dailyLimit = dailyLimitIndex !== -1 ? parseInt(args[dailyLimitIndex + 1]) : null;
+
   const minRatingIndex = args.indexOf('--min-rating');
   if (minRatingIndex !== -1 && args[minRatingIndex + 1]) {
     CONFIG.MIN_RATING = parseFloat(args[minRatingIndex + 1]);
@@ -667,7 +675,7 @@ if (require.main === module) {
     CONFIG.INITIAL_YEARS = new Date().getFullYear() - parseInt(args[yearStartIndex + 1]);
   }
 
-  sync(apiKey, maxRequests).catch(error => {
+  sync(apiKey, maxRequests, dailyLimit).catch(error => {
     console.error('❌ Критическая ошибка:', error);
     process.exit(1);
   });
