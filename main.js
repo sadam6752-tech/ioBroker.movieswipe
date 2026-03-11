@@ -66,15 +66,19 @@ class MovieSwipe extends utils.Adapter {
         this.log.info('Starting synchronization...');
         
         // Проверить наличие API ключей
-        if (!this.config.apiKeys || this.config.apiKeys.length === 0) {
+        const apiKeys = this.config.apiKeys || [];
+        const validKeys = apiKeys.filter(item => item && item.key && item.key.trim()).map(item => item.key.trim());
+        
+        if (validKeys.length === 0) {
           this.log.error('No API keys configured');
           await this.setStateAsync('sync.status', 'error', true);
           await this.setStateAsync('sync.error', 'No API keys configured', true);
           return;
         }
 
-        // Запустить синхронизацию
-        await this.syncManager.start(this.config);
+        // Запустить синхронизацию с преобразованными ключами
+        const configWithKeys = { ...this.config, apiKeys: validKeys };
+        await this.syncManager.start(configWithKeys);
         
         // Сбросить триггер
         await this.setStateAsync('sync.start', false, true);

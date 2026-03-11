@@ -29,10 +29,17 @@
           "size": 3
         },
         "apiKeys": {
-          "type": "chips",
+          "type": "table",
           "label": "API Keys",
-          "help": "Kinopoisk API keys (one or more). The adapter will use them in rotation.",
-          "delimiter": ",",
+          "help": "Kinopoisk API keys (one or more). The adapter will use them in rotation. Press '+' to add a new key.",
+          "items": [
+            {
+              "type": "text",
+              "title": "API Key",
+              "attr": "key",
+              "width": "100%"
+            }
+          ],
           "xs": 12,
           "sm": 12,
           "md": 12,
