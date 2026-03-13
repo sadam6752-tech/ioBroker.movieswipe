@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.23",
+    "version": "1.0.24",
     "news": {
+      "1.0.24": {
+        "en": "Improve rate limit handling and country mappings. Better detection of API daily limit errors. Add more South Korea name variants. Save database on rate limit reached.",
+        "de": "Verbesserte Ratenlimit-Behandlung und Länderzuordnungen. Bessere Erkennung von API-Tageslimit-Fehlern. Weitere Südkorea-Namensvarianten hinzugefügt. Datenbank bei Erreichen des Ratenlimits speichern.",
+        "ru": "Улучшена обработка лимитов и маппинг стран. Лучшее определение ошибок дневного лимита API. Добавлены варианты названия Южной Кореи. Сохранение базы при достижении лимита.",
+        "fr": "Amélioration de la gestion des limites de taux et des mappages de pays. Meilleure détection des erreurs de limite quotidienne de l'API. Ajout de variantes de noms pour la Corée du Sud. Sauvegarde de la base de données lorsque la limite de taux est atteinte.",
+        "it": "Migliorata gestione limiti di velocità e mappature paesi. Migliore rilevamento errori limite giornaliero API. Aggiunte varianti nome Corea del Sud. Salvataggio database al raggiungimento limite.",
+        "es": "Mejora del manejo de límites de velocidad y mapeos de países. Mejor detección de errores de límite diario de API. Agregar variantes de nombre de Corea del Sur. Guardar base de datos al alcanzar el límite de velocidad.",
+        "pl": "Ulepszona obsługa limitów szybkości i mapowań krajów. Lepsza detekcja błędów dziennego limitu API. Dodano warianty nazw Korei Południowej. Zapisywanie bazy danych po osiągnięciu limitu.",
+        "pt": "Melhor tratamento de limites de taxa e mapeamentos de países. Melhor detecção de erros de limite diário da API. Adicionar variantes de nome da Coreia do Sul. Salvar banco de dados ao atingir o limite de taxa.",
+        "nl": "Verbeterde afhandeling van snelheidslimieten en landmappings. Betere detectie van API dagelijkse limietfouten. Meer Zuid-Korea naamvarianten toegevoegd. Database opslaan bij bereiken snelheidslimiet.",
+        "zh-cn": "改进速率限制处理和国家映射。更好地检测API每日限制错误。添加更多韩国名称变体。达到速率限制时保存数据库。"
+      },
       "1.0.23": {
         "en": "Fix sync script mappings and update database. Remove duplicate GENRE_MAP entries. Remove invalid tv-show content type. Add concert genre support. New clean database with all fixes applied.",
         "de": "Sync-Skript-Zuordnungen korrigiert und Datenbank aktualisiert. Doppelte GENRE_MAP-Einträge entfernt. Ungültigen tv-show-Inhaltstyp entfernt. Konzertgenre-Unterstützung hinzugefügt. Neue saubere Datenbank mit allen Korrekturen.",
@@ -74,18 +86,6 @@
         "pt": "Atualização de banco de dados com correções de contentType - remover tv-show e concert dos tipos de conteúdo, adicionar concert aos gêneros. Atualizar script de sincronização para lidar com tipos de conteúdo inválidos",
         "nl": "Database-update met contentType-fixes - verwijder tv-show en concert uit inhoudstypen, voeg concert toe aan genres. Update synchronisatiescript om ongeldige inhoudstypen af te handelen",
         "zh-cn": "数据库更新，修复contentType - 从内容类型中删除tv-show和concert，将concert添加到流派。更新同步脚本以处理无效的内容类型"
-      },
-      "1.0.17": {
-        "en": "Clean up news section - keep only last 7 versions per ioBroker standards",
-        "de": "Bereinigung des News-Bereichs - behalte nur die letzten 7 Versionen gemäß ioBroker-Standards",
-        "ru": "Очистка раздела новостей - сохранены только последние 7 версий согласно стандартам ioBroker",
-        "fr": "Nettoyage de la section des actualités - conservez uniquement les 7 dernières versions selon les normes ioBroker",
-        "it": "Pulizia della sezione notizie - mantieni solo le ultime 7 versioni secondo gli standard ioBroker",
-        "es": "Limpieza de la sección de noticias - mantener solo las últimas 7 versiones según los estándares de ioBroker",
-        "pl": "Czyszczenie sekcji wiadomości - zachowaj tylko ostatnie 7 wersji zgodnie ze standardami ioBroker",
-        "pt": "Limpeza da seção de notícias - mantenha apenas as últimas 7 versões de acordo com os padrões ioBroker",
-        "nl": "Opschoning van het nieuwsgedeelte - behoud alleen de laatste 7 versies volgens ioBroker-standaarden",
-        "zh-cn": "清理新闻部分 - 仅保留最后7个版本，符合ioBroker标准"
       }
     },
     "titleLang": {
