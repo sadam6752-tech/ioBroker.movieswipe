@@ -83,8 +83,7 @@ const TYPE_MAP = {
   'tv-series': 'tv-series',
   'cartoon': 'cartoon',
   'anime': 'anime',
-  'animated-series': 'animated-series',
-  'tv-show': 'tv-show'
+  'animated-series': 'animated-series'
 };
 
 // Маппинг жанров -> настроения
@@ -313,6 +312,11 @@ function convertMovie(kpMovie) {
     contentType = 'anime';
   } else if (kpMovie.isSeries) {
     contentType = 'tv-series';
+  }
+  
+  // Убеждаемся что contentType валидный (не tv-show или concert)
+  if (contentType === 'tv-show' || contentType === 'concert') {
+    contentType = 'movie';
   }
 
   return {
