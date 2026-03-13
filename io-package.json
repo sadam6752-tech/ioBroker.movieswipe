@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.24",
+    "version": "1.0.25",
     "news": {
+      "1.0.25": {
+        "en": "Fix rate limit handling in sync script. Script now exits with code 0 (success) when daily limit reached instead of code 1 (error). No more false error messages in logs.",
+        "de": "Ratenlimit-Behandlung im Sync-Skript korrigiert. Skript beendet sich jetzt mit Code 0 (Erfolg) wenn Tageslimit erreicht wird statt Code 1 (Fehler). Keine falschen Fehlermeldungen mehr in Logs.",
+        "ru": "Исправлена обработка лимита в скрипте синхронизации. Скрипт теперь завершается с кодом 0 (успех) при достижении дневного лимита вместо кода 1 (ошибка). Больше нет ложных сообщений об ошибках в логах.",
+        "fr": "Correction de la gestion des limites de taux dans le script de synchronisation. Le script se termine maintenant avec le code 0 (succès) lorsque la limite quotidienne est atteinte au lieu du code 1 (erreur). Plus de faux messages d'erreur dans les journaux.",
+        "it": "Correzione gestione limiti nel script di sincronizzazione. Lo script ora esce con codice 0 (successo) quando viene raggiunto il limite giornaliero invece del codice 1 (errore). Niente più falsi messaggi di errore nei log.",
+        "es": "Corrección del manejo de límites en el script de sincronización. El script ahora sale con código 0 (éxito) cuando se alcanza el límite diario en lugar del código 1 (error). No más mensajes de error falsos en los registros.",
+        "pl": "Naprawiono obsługę limitów w skrypcie synchronizacji. Skrypt kończy się teraz kodem 0 (sukces) po osiągnięciu dziennego limitu zamiast kodu 1 (błąd). Koniec fałszywych komunikatów o błędach w logach.",
+        "pt": "Correção do tratamento de limites no script de sincronização. O script agora sai com código 0 (sucesso) quando o limite diário é atingido em vez do código 1 (erro). Chega de mensagens de erro falsas nos logs.",
+        "nl": "Correctie van snelheidslimietafhandeling in synchronisatiescript. Script eindigt nu met code 0 (succes) wanneer dagelijkse limiet is bereikt in plaats van code 1 (fout). Geen valse foutmeldingen meer in logs.",
+        "zh-cn": "修复同步脚本中的速率限制处理。脚本现在在达到每日限制时以代码0（成功）退出，而不是代码1（错误）。日志中不再有虚假错误消息。"
+      },
       "1.0.24": {
         "en": "Improve rate limit handling and country mappings. Better detection of API daily limit errors. Add more South Korea name variants. Save database on rate limit reached.",
         "de": "Verbesserte Ratenlimit-Behandlung und Länderzuordnungen. Bessere Erkennung von API-Tageslimit-Fehlern. Weitere Südkorea-Namensvarianten hinzugefügt. Datenbank bei Erreichen des Ratenlimits speichern.",
@@ -74,18 +86,6 @@
         "pt": "Otimizar o tamanho do banco de dados de 92 MB para 38 MB (redução de 58,5%). Remover campos desnecessários, encurtar descrições, limitar elenco. O banco de dados agora está em conformidade com os limites de tamanho do GitHub",
         "nl": "Database-update met contentType-fixes - verwijder tv-show en concert uit inhoudstypen, voeg concert toe aan genres. Update synchronisatiescript om ongeldige inhoudstypen af te handelen",
         "zh-cn": "将数据库大小从92 MB优化到38 MB（减少58.5%）。删除不必要的字段，缩短描述，限制演员。数据库现在符合GitHub大小限制"
-      },
-      "1.0.18": {
-        "en": "Update database with contentType fixes - remove tv-show and concert from content types, add concert to genres. Update sync script to handle invalid content types",
-        "de": "Datenbankaktualisierung mit contentType-Fixes - entferne tv-show und concert aus Inhaltstypen, füge concert zu Genres hinzu. Aktualisiere Sync-Skript zur Behandlung ungültiger Inhaltstypen",
-        "ru": "Обновление базы данных с исправлениями contentType - удалены tv-show и concert из типов контента, добавлен concert в жанры. Обновлен скрипт синхронизации для обработки невалидных типов контента",
-        "fr": "Mise à jour de la base de données avec corrections contentType - supprimer tv-show et concert des types de contenu, ajouter concert aux genres. Mettre à jour le script de synchronisation pour gérer les types de contenu invalides",
-        "it": "Aggiornamento del database con correzioni contentType - rimuovi tv-show e concert dai tipi di contenuto, aggiungi concert ai generi. Aggiorna lo script di sincronizzazione per gestire i tipi di contenuto non validi",
-        "es": "Actualización de base de datos con correcciones de contentType - eliminar tv-show y concert de tipos de contenido, agregar concert a géneros. Actualizar script de sincronización para manejar tipos de contenido inválidos",
-        "pl": "Aktualizacja bazy danych z poprawkami contentType - usuń tv-show i concert z typów zawartości, dodaj concert do gatunków. Zaktualizuj skrypt synchronizacji do obsługi nieprawidłowych typów zawartości",
-        "pt": "Atualização de banco de dados com correções de contentType - remover tv-show e concert dos tipos de conteúdo, adicionar concert aos gêneros. Atualizar script de sincronização para lidar com tipos de conteúdo inválidos",
-        "nl": "Database-update met contentType-fixes - verwijder tv-show en concert uit inhoudstypen, voeg concert toe aan genres. Update synchronisatiescript om ongeldige inhoudstypen af te handelen",
-        "zh-cn": "数据库更新，修复contentType - 从内容类型中删除tv-show和concert，将concert添加到流派。更新同步脚本以处理无效的内容类型"
       }
     },
     "titleLang": {

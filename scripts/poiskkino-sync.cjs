@@ -541,10 +541,25 @@ async function sync(apiKey, maxRequests = null) {
     console.log('================================\n');
 
   } catch (error) {
-    console.error('\n❌ Ошибка синхронизации:', error.message);
-    console.error('Прогресс сохранен. Запустите скрипт снова для продолжения.\n');
-    saveProgress(progress);
-    process.exit(1);
+    const errorMessage = error.message || '';
+    
+    // Проверяем является ли это ошибкой лимита
+    const isRateLimit = errorMessage.includes('403') || 
+                       errorMessage.includes('суточный лимит') ||
+                       errorMessage.includes('лимит по запросам') ||
+                       errorMessage.includes('Forbidden');
+    
+    if (isRateLimit) {
+      console.log('\n⚠️  Достигнут дневной лимит API');
+      console.log('Прогресс сохранен. Синхронизация продолжится автоматически завтра или с другим API ключом.\n');
+      saveProgress(progress);
+      process.exit(0); // Выход с кодом 0 (успех)
+    } else {
+      console.error('\n❌ Ошибка синхронизации:', error.message);
+      console.error('Прогресс сохранен. Запустите скрипт снова для продолжения.\n');
+      saveProgress(progress);
+      process.exit(1); // Выход с кодом 1 (ошибка)
+    }
   }
 }
 
