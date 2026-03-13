@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.20",
+    "version": "1.0.21",
     "news": {
+      "1.0.21": {
+        "en": "Add database preservation and sync progress options. Preserve user database on adapter update. Continue sync from last position or start fresh.",
+        "de": "Datenbankerhaltung und Sync-Fortschrittsoptionen hinzugefügt. Benutzerdatenbank bei Adapter-Update beibehalten. Sync von letzter Position fortsetzen oder neu starten.",
+        "ru": "Добавлены опции сохранения базы данных и прогресса синхронизации. Сохранение пользовательской базы при обновлении адаптера. Продолжение синхронизации с последней позиции или начало заново.",
+        "fr": "Ajout d'options de préservation de base de données et de progression de synchronisation. Préserver la base de données utilisateur lors de la mise à jour de l'adaptateur. Continuer la synchronisation depuis la dernière position ou recommencer.",
+        "it": "Aggiunte opzioni di conservazione del database e avanzamento della sincronizzazione. Conservare il database utente durante l'aggiornamento dell'adattatore. Continuare la sincronizzazione dall'ultima posizione o ricominciare.",
+        "es": "Agregar opciones de preservación de base de datos y progreso de sincronización. Preservar la base de datos del usuario en la actualización del adaptador. Continuar la sincronización desde la última posición o comenzar de nuevo.",
+        "pl": "Dodano opcje zachowania bazy danych i postępu synchronizacji. Zachowaj bazę danych użytkownika podczas aktualizacji adaptera. Kontynuuj synchronizację od ostatniej pozycji lub zacznij od nowa.",
+        "pt": "Adicionar opções de preservação de banco de dados e progresso de sincronização. Preservar o banco de dados do usuário na atualização do adaptador. Continuar a sincronização da última posição ou começar do zero.",
+        "nl": "Database-behoud en synchronisatievoortgangsopties toegevoegd. Gebruikersdatabase behouden bij adapter-update. Synchronisatie voortzetten vanaf laatste positie of opnieuw beginnen.",
+        "zh-cn": "添加数据库保留和同步进度选项。在适配器更新时保留用户数据库。从上次位置继续同步或重新开始。"
+      },
       "1.0.20": {
         "en": "Optimize database to 47 MB with built-in optimization. Update sync script to create optimized database directly. Update PWA with contentType fixes (remove tv-show/concert, add concert to genres). Update compiled assets",
         "de": "Datenbank auf 47 MB mit integrierter Optimierung optimiert. Aktualisieren Sie das Sync-Skript, um die optimierte Datenbank direkt zu erstellen. Aktualisieren Sie PWA mit contentType-Fixes. Aktualisieren Sie kompilierte Assets",
@@ -74,42 +86,6 @@
         "pt": "Suporte multilíngue corrigido - usa arquivos i18n JSON em vez de chaves de rótulo, remove words.js",
         "nl": "Meertalige ondersteuning gecorrigeerd - gebruikt i18n JSON-bestanden in plaats van labelsleutels, verwijdert words.js",
         "zh-cn": "修复多语言支持 - 使用i18n JSON文件而不是标签键，删除words.js"
-      },
-      "1.0.14": {
-        "en": "Add i18n flag to jsonConfig.json - critical for multilingual support to work",
-        "de": "Füge i18n-Flag zu jsonConfig.json hinzu - kritisch für die Funktionalität der mehrsprachigen Unterstützung",
-        "ru": "Добавлен флаг i18n в jsonConfig.json - критично для работы мультиязычной поддержки",
-        "fr": "Ajouter le drapeau i18n à jsonConfig.json - critique pour que le support multilingue fonctionne",
-        "it": "Aggiungi il flag i18n a jsonConfig.json - critico per il funzionamento del supporto multilingue",
-        "es": "Agregar bandera i18n a jsonConfig.json - crítico para que funcione el soporte multilingüe",
-        "pl": "Dodaj flagę i18n do jsonConfig.json - krytyczne dla działania obsługi wielojęzycznej",
-        "pt": "Adicionar sinalizador i18n a jsonConfig.json - crítico para que o suporte multilíngue funcione",
-        "nl": "Voeg i18n-vlag toe aan jsonConfig.json - kritiek voor het werken van meertalige ondersteuning",
-        "zh-cn": "将i18n标志添加到jsonConfig.json - 对多语言支持的工作至关重要"
-      },
-      "1.0.13": {
-        "en": "Fix multilingual admin UI - use i18n keys in jsonConfig.json instead of hardcoded strings",
-        "de": "Mehrsprachige Admin-UI korrigiert - verwende i18n-Schlüssel in jsonConfig.json statt hartcodierter Strings",
-        "ru": "Исправлена мультиязычная админка - используются i18n ключи в jsonConfig.json вместо жестко закодированных строк",
-        "fr": "Interface d'administration multilingue corrigée - utilise les clés i18n dans jsonConfig.json au lieu de chaînes codées en dur",
-        "it": "Interfaccia amministrativa multilingue corretta - utilizza le chiavi i18n in jsonConfig.json invece di stringhe hardcoded",
-        "es": "Interfaz de administración multilingue corregida - utiliza claves i18n en jsonConfig.json en lugar de cadenas codificadas",
-        "pl": "Naprawiony wielojęzyczny interfejs administracyjny - używa kluczy i18n w jsonConfig.json zamiast ciągów zakodowanych",
-        "pt": "Interface de administração multilíngue corrigida - usa chaves i18n em jsonConfig.json em vez de strings codificadas",
-        "nl": "Meertalige admin-interface gecorrigeerd - gebruikt i18n-sleutels in jsonConfig.json in plaats van hardcoded strings",
-        "zh-cn": "修复多语言管理员UI - 在jsonConfig.json中使用i18n键而不是硬编码字符串"
-      },
-      "1.0.12": {
-        "en": "Add words.js for proper multilingual support in admin UI",
-        "de": "Füge words.js für ordnungsgemäße mehrsprachige Unterstützung in der Admin-UI hinzu",
-        "ru": "Добавлен words.js для правильной мультиязычной поддержки в админке",
-        "fr": "Ajouter words.js pour un support multilingue approprié dans l'interface d'administration",
-        "it": "Aggiungi words.js per il corretto supporto multilingue nell'interfaccia di amministrazione",
-        "es": "Agregar words.js para soporte multilingüe adecuado en la interfaz de administración",
-        "pl": "Dodaj words.js dla prawidłowej obsługi wielojęzycznej w interfejsie administracyjnym",
-        "pt": "Adicionar words.js para suporte multilíngue adequado na interface de administração",
-        "nl": "Voeg words.js toe voor juiste meertalige ondersteuning in de admin-interface",
-        "zh-cn": "添加words.js以在管理员UI中提供适当的多语言支持"
       }
     },
     "titleLang": {
@@ -187,7 +163,9 @@
     "autoSync": false,
     "syncInterval": 24,
     "maxRequestsPerRun": 250,
-    "dailyRequestLimit": 200
+    "dailyRequestLimit": 200,
+    "preserveSyncProgress": true,
+    "preserveDatabase": true
   },
   "objects": [],
   "instanceObjects": [

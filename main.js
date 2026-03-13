@@ -19,11 +19,60 @@ class MovieSwipe extends utils.Adapter {
     this.on('unload', this.onUnload.bind(this));
   }
 
+  async handleDatabasePreservation() {
+    const fs = require('fs');
+    const path = require('path');
+
+    const dbPath = path.join(__dirname, 'www/data/movies-poiskkino.json');
+    const userDbPath = path.join(this.namespace, 'movies-poiskkino.json');
+    const backupDbPath = path.join(__dirname, 'www/data/movies-poiskkino.backup.json');
+
+    try {
+      // Если preserveDatabase включен (по умолчанию true)
+      if (this.config.preserveDatabase !== false) {
+        this.log.info('Database preservation is enabled');
+
+        // Проверить есть ли пользовательская база в data directory
+        const userDataDir = path.dirname(userDbPath);
+        
+        // Создать директорию если не существует
+        if (!fs.existsSync(userDataDir)) {
+          fs.mkdirSync(userDataDir, { recursive: true });
+        }
+
+        // Если есть пользовательская база, восстановить её
+        if (fs.existsSync(userDbPath)) {
+          this.log.info('Restoring user database from data directory');
+          fs.copyFileSync(userDbPath, dbPath);
+          this.log.info('User database restored successfully');
+        } else if (fs.existsSync(dbPath)) {
+          // Если это первый запуск с preserveDatabase, сохранить текущую базу
+          this.log.info('Saving current database to data directory');
+          fs.copyFileSync(dbPath, userDbPath);
+          this.log.info('Database saved to data directory');
+        }
+      } else {
+        this.log.info('Database preservation is disabled - using default database');
+        
+        // Если preserveDatabase выключен, удалить пользовательскую базу
+        if (fs.existsSync(userDbPath)) {
+          this.log.info('Removing user database (preservation disabled)');
+          fs.unlinkSync(userDbPath);
+        }
+      }
+    } catch (error) {
+      this.log.error(`Error handling database preservation: ${error.message}`);
+    }
+  }
+
   async onReady() {
     this.log.info('MovieSwipe adapter starting...');
 
     // Установить connection в false при старте
     await this.setStateAsync('info.connection', false, true);
+
+    // Проверить и сохранить пользовательскую базу данных если нужно
+    await this.handleDatabasePreservation();
 
     // Инициализировать веб-сервер
     try {

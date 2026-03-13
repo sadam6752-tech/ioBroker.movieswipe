@@ -203,6 +203,28 @@
           "md": 6,
           "lg": 6,
           "xl": 6
+        },
+        "preserveSyncProgress": {
+          "type": "checkbox",
+          "label": "Continue sync from last position",
+          "help": "If enabled, sync will continue from where it stopped. If disabled, sync will always start from the beginning.",
+          "default": true,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 6,
+          "xl": 6
+        },
+        "preserveDatabase": {
+          "type": "checkbox",
+          "label": "Preserve existing database on update",
+          "help": "If enabled, your custom database will not be overwritten when updating the adapter. Disable to reset to default database.",
+          "default": true,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 6,
+          "xl": 6
         }
       }
     },
