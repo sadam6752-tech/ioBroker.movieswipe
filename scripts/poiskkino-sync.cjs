@@ -68,10 +68,6 @@ const GENRE_MAP = {
   'военный': 'war',
   'вестерн': 'western'
 };
-  'триллер': 'thriller',
-  'военный': 'war',
-  'вестерн': 'western'
-};
 
 // Маппинг типов ПоискКино -> наши типы контента
 const TYPE_MAP = {
@@ -79,8 +75,8 @@ const TYPE_MAP = {
   'tv-series': 'tv-series',
   'cartoon': 'cartoon',
   'anime': 'anime',
-  'animated-series': 'animated-series',
-  'tv-show': 'tv-show'
+  'animated-series': 'animated-series'
+  // 'tv-show' удален - не используется в PWA
 };
 
 // Маппинг жанров -> настроения
