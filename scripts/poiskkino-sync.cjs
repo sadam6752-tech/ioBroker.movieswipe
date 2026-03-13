@@ -41,6 +41,7 @@ const GENRE_MAP = {
   'приключения': 'adventure',
   'биография': 'biography',
   'комедия': 'comedy',
+  'концерт': 'concert',
   'криминал': 'crime',
   'детектив': 'detective',
   'детский': 'kids',
@@ -63,6 +64,10 @@ const GENRE_MAP = {
   'короткометражка': 'short',
   'спорт': 'sport',
   'ток-шоу': 'talk-show',
+  'триллер': 'thriller',
+  'военный': 'war',
+  'вестерн': 'western'
+};
   'триллер': 'thriller',
   'военный': 'war',
   'вестерн': 'western'

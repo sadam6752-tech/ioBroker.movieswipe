@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.21",
+    "version": "1.0.22",
     "news": {
+      "1.0.22": {
+        "en": "Add API key rotation for multiple keys. Display actual movie count in admin UI. Fix concert genre mapping in sync script.",
+        "de": "API-Schlüsselrotation für mehrere Schlüssel hinzugefügt. Tatsächliche Filmanzahl in Admin-UI anzeigen. Konzertgenre-Zuordnung im Sync-Skript korrigiert.",
+        "ru": "Добавлена ротация API ключей для нескольких ключей. Отображение актуального количества фильмов в админке. Исправлен маппинг жанра концерт в скрипте синхронизации.",
+        "fr": "Ajout de la rotation des clés API pour plusieurs clés. Afficher le nombre réel de films dans l'interface d'administration. Correction du mappage du genre concert dans le script de synchronisation.",
+        "it": "Aggiunta rotazione chiavi API per più chiavi. Visualizzare il conteggio effettivo dei film nell'interfaccia di amministrazione. Correzione mappatura genere concerto nello script di sincronizzazione.",
+        "es": "Agregar rotación de claves API para múltiples claves. Mostrar el recuento real de películas en la interfaz de administración. Corregir mapeo de género de concierto en script de sincronización.",
+        "pl": "Dodano rotację kluczy API dla wielu kluczy. Wyświetlanie rzeczywistej liczby filmów w interfejsie administratora. Naprawiono mapowanie gatunku koncertowego w skrypcie synchronizacji.",
+        "pt": "Adicionar rotação de chaves API para várias chaves. Exibir contagem real de filmes na interface de administração. Corrigir mapeamento de gênero de concerto no script de sincronização.",
+        "nl": "API-sleutelrotatie voor meerdere sleutels toegevoegd. Werkelijk aantal films weergeven in beheerinterface. Concertgenre-mapping in synchronisatiescript gecorrigeerd.",
+        "zh-cn": "为多个密钥添加API密钥轮换。在管理界面中显示实际电影数量。修复同步脚本中的音乐会类型映射。"
+      },
       "1.0.21": {
         "en": "Add database preservation and sync progress options. Preserve user database on adapter update. Continue sync from last position or start fresh.",
         "de": "Datenbankerhaltung und Sync-Fortschrittsoptionen hinzugefügt. Benutzerdatenbank bei Adapter-Update beibehalten. Sync von letzter Position fortsetzen oder neu starten.",
@@ -74,18 +86,6 @@
         "pt": "Adicionar eslint.config.js para compatibilidade ESLint 9, corrigir avisos de linting",
         "nl": "Voeg eslint.config.js toe voor ESLint 9 compatibiliteit, corrigeer linting-waarschuwingen",
         "zh-cn": "添加eslint.config.js以实现ESLint 9兼容性，修复linting警告"
-      },
-      "1.0.15": {
-        "en": "Fix multilingual support - use i18n JSON files instead of label keys, remove words.js",
-        "de": "Mehrsprachige Unterstützung korrigiert - verwende i18n JSON-Dateien statt Label-Schlüssel, entferne words.js",
-        "ru": "Исправлена мультиязычная поддержка - используются i18n JSON файлы вместо label ключей, удален words.js",
-        "fr": "Support multilingue corrigé - utilise les fichiers i18n JSON au lieu des clés de label, supprime words.js",
-        "it": "Supporto multilingue corretto - utilizza i file i18n JSON invece delle chiavi di etichetta, rimuove words.js",
-        "es": "Soporte multilingüe corregido - utiliza archivos i18n JSON en lugar de claves de etiqueta, elimina words.js",
-        "pl": "Naprawiona obsługa wielojęzyczna - używa plików i18n JSON zamiast kluczy etykiet, usuwa words.js",
-        "pt": "Suporte multilíngue corrigido - usa arquivos i18n JSON em vez de chaves de rótulo, remove words.js",
-        "nl": "Meertalige ondersteuning gecorrigeerd - gebruikt i18n JSON-bestanden in plaats van labelsleutels, verwijdert words.js",
-        "zh-cn": "修复多语言支持 - 使用i18n JSON文件而不是标签键，删除words.js"
       }
     },
     "titleLang": {

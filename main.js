@@ -1,6 +1,8 @@
 'use strict';
 
 const utils = require('@iobroker/adapter-core');
+const path = require('path');
+const fs = require('fs');
 const WebServer = require('./lib/web-server');
 const SyncManager = require('./lib/sync-manager');
 
@@ -117,6 +119,33 @@ class MovieSwipe extends utils.Adapter {
     }
 
     this.log.info('MovieSwipe adapter ready');
+    
+    // Обновить количество фильмов в базе
+    this.updateMovieCount();
+  }
+
+  /**
+   * Обновить количество фильмов в базе данных
+   */
+  async updateMovieCount() {
+    try {
+      const dbPath = path.join(__dirname, 'www/data/movies-poiskkino.json');
+      
+      if (fs.existsSync(dbPath)) {
+        const data = fs.readFileSync(dbPath, 'utf8');
+        const json = JSON.parse(data);
+        const movieCount = json.movies ? json.movies.length : 0;
+        
+        await this.setStateAsync('sync.totalMovies', movieCount, true);
+        this.log.info(`Database contains ${movieCount} movies`);
+      } else {
+        await this.setStateAsync('sync.totalMovies', 0, true);
+        this.log.warn('Database file not found');
+      }
+    } catch (error) {
+      this.log.error(`Error reading database: ${error.message}`);
+      await this.setStateAsync('sync.totalMovies', 0, true);
+    }
   }
 
   async onStateChange(id, state) {
@@ -149,7 +178,20 @@ class MovieSwipe extends utils.Adapter {
 
         // Запустить синхронизацию с преобразованными ключами
         const configWithKeys = { ...this.config, apiKeys: validKeys };
-        await this.syncManager.start(configWithKeys);
+        
+        // Найти доступный API ключ (с учетом кулдауна)
+        const syncIntervalHours = this.config.syncInterval || 24;
+        const availableKey = this.syncManager.findAvailableApiKey(validKeys, syncIntervalHours);
+        
+        if (!availableKey) {
+          this.log.warn('All API keys are on cooldown. Please wait or add more keys.');
+          await this.setStateAsync('sync.status', 'error', true);
+          await this.setStateAsync('sync.error', 'All API keys are on cooldown', true);
+          return;
+        }
+        
+        this.log.info(`Using API key ${availableKey.index + 1}/${validKeys.length}`);
+        await this.syncManager.start(configWithKeys, availableKey.index);
         
         // Сбросить триггер
         await this.setStateAsync('sync.start', false, true);

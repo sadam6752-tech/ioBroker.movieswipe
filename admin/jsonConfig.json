@@ -253,7 +253,7 @@
         },
         "_totalMovies": {
           "type": "staticText",
-          "text": "Total movies in database: Check 'sync.totalMovies' state",
+          "text": "Total movies in database: {data._alive.sync.totalMovies}",
           "xs": 12,
           "sm": 12,
           "md": 12,

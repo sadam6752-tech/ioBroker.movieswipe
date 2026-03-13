@@ -1,7 +1,7 @@
 {
   "name": "iobroker.movieswipe",
-  "version": "1.0.21",
-  "description": "ioBroker adapter for MovieSwipe PWA - Movie discovery application with Kinopoisk API integration. Optimized database (47 MB) with database preservation and sync progress options",
+  "version": "1.0.22",
+  "description": "ioBroker adapter for MovieSwipe PWA - Movie discovery application with Kinopoisk API integration. Optimized database (47 MB) with API key rotation and live movie count display",
   "author": {
     "name": "sadam6752-tech",
     "email": "sadam6752@gmail.com"
