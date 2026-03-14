@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.29",
+    "version": "1.0.30",
     "news": {
+      "1.0.30": {
+        "en": "Fix SyntaxError in web-server.js (missing closing brace in _setupDatabaseApi). Adapter now starts correctly.",
+        "de": "SyntaxError in web-server.js behoben (fehlende schließende Klammer in _setupDatabaseApi). Adapter startet jetzt korrekt.",
+        "ru": "Исправлена синтаксическая ошибка в web-server.js (пропущена закрывающая скобка в _setupDatabaseApi). Адаптер теперь запускается корректно.",
+        "fr": "Correction SyntaxError dans web-server.js. L'adaptateur démarre maintenant correctement.",
+        "it": "Correzione SyntaxError in web-server.js. L'adattatore ora si avvia correttamente.",
+        "es": "Corrección SyntaxError en web-server.js. El adaptador ahora inicia correctamente.",
+        "pl": "Naprawiono SyntaxError w web-server.js. Adapter teraz uruchamia się poprawnie.",
+        "pt": "Correção SyntaxError em web-server.js. O adaptador agora inicia corretamente.",
+        "nl": "SyntaxError in web-server.js gecorrigeerd. Adapter start nu correct.",
+        "zh-cn": "修复web-server.js中的SyntaxError。适配器现在可以正确启动。"
+      },
       "1.0.29": {
         "en": "Fix database reset on adapter update. Backup stored in iobroker-data (survives updates). Add database backup manager: download/restore via browser at http://HOST:PORT/backup.html",
         "de": "Datenbank-Reset bei Adapter-Update behoben. Backup in iobroker-data gespeichert (überlebt Updates). Datenbank-Backup-Manager hinzugefügt: Download/Wiederherstellung über Browser unter http://HOST:PORT/backup.html",
@@ -50,18 +62,6 @@
         "pt": "Correção do script de sincronização que salvava filmes no diretório errado. Os filmes encontrados durante a sincronização agora são adicionados corretamente ao banco de dados.",
         "nl": "Synchronisatiescript gecorrigeerd dat films in de verkeerde map opsloeg. Films gevonden tijdens synchronisatie worden nu correct toegevoegd aan de database.",
         "zh-cn": "修复同步脚本将电影保存到错误目录的问题。同步期间找到的电影现在正确添加到数据库中。"
-      },
-      "1.0.25": {
-        "en": "Fix rate limit handling in sync script. Script now exits with code 0 (success) when daily limit reached instead of code 1 (error). No more false error messages in logs.",
-        "de": "Ratenlimit-Behandlung im Sync-Skript korrigiert. Skript beendet sich jetzt mit Code 0 (Erfolg) wenn Tageslimit erreicht wird statt Code 1 (Fehler). Keine falschen Fehlermeldungen mehr in Logs.",
-        "ru": "Исправлена обработка лимита в скрипте синхронизации. Скрипт теперь завершается с кодом 0 (успех) при достижении дневного лимита вместо кода 1 (ошибка). Больше нет ложных сообщений об ошибках в логах.",
-        "fr": "Correction de la gestion des limites de taux dans le script de synchronisation. Le script se termine maintenant avec le code 0 (succès) lorsque la limite quotidienne est atteinte au lieu du code 1 (erreur). Plus de faux messages d'erreur dans les journaux.",
-        "it": "Correzione gestione limiti nel script di sincronizzazione. Lo script ora esce con codice 0 (successo) quando viene raggiunto il limite giornaliero invece del codice 1 (errore). Niente più falsi messaggi di errore nei log.",
-        "es": "Corrección del manejo de límites en el script de sincronización. El script ahora sale con código 0 (éxito) cuando se alcanza el límite diario en lugar del código 1 (error). No más mensajes de error falsos en los registros.",
-        "pl": "Naprawiono obsługę limitów w skrypcie synchronizacji. Skrypt kończy się teraz kodem 0 (sukces) po osiągnięciu dziennego limitu zamiast kodu 1 (błąd). Koniec fałszywych komunikatów o błędach w logach.",
-        "pt": "Correção do tratamento de limites no script de sincronização. O script agora sai com código 0 (sucesso) quando o limite diário é atingido em vez do código 1 (erro). Chega de mensagens de erro falsas nos logs.",
-        "nl": "Correctie van snelheidslimietafhandeling in synchronisatiescript. Script eindigt nu met code 0 (succes) wanneer dagelijkse limiet is bereikt in plaats van code 1 (fout). Geen valse foutmeldingen meer in logs.",
-        "zh-cn": "修复同步脚本中的速率限制处理。脚本现在在达到每日限制时以代码0（成功）退出，而不是代码1（错误）。日志中不再有虚假错误消息。"
       },
       "1.0.24": {
         "en": "Improve rate limit handling and country mappings. Better detection of API daily limit errors. Add more South Korea name variants. Save database on rate limit reached.",
