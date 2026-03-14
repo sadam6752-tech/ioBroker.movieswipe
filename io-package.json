@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.27",
+    "version": "1.0.28",
     "news": {
+      "1.0.28": {
+        "en": "Fix API key rotation: automatically switch to next key when daily limit is reached. No manual re-trigger needed - adapter continues sync with next available key automatically.",
+        "de": "API-Schlüsselrotation korrigiert: automatischer Wechsel zum nächsten Schlüssel bei Erreichen des Tageslimits. Kein manuelles Neu-Triggern nötig - Adapter setzt Sync mit nächstem verfügbaren Schlüssel fort.",
+        "ru": "Исправлена ротация API ключей: автоматическое переключение на следующий ключ при достижении дневного лимита. Не нужно запускать синхронизацию вручную — адаптер продолжает с следующим доступным ключом.",
+        "fr": "Correction de la rotation des clés API: passage automatique à la clé suivante lorsque la limite quotidienne est atteinte.",
+        "it": "Correzione rotazione chiavi API: passaggio automatico alla chiave successiva al raggiungimento del limite giornaliero.",
+        "es": "Corrección de rotación de claves API: cambio automático a la siguiente clave al alcanzar el límite diario.",
+        "pl": "Naprawiono rotację kluczy API: automatyczne przełączenie na następny klucz po osiągnięciu dziennego limitu.",
+        "pt": "Correção da rotação de chaves API: troca automática para a próxima chave ao atingir o limite diário.",
+        "nl": "API-sleutelrotatie gecorrigeerd: automatisch overschakelen naar volgende sleutel bij bereiken dagelijks limiet.",
+        "zh-cn": "修复API密钥轮换：达到每日限制时自动切换到下一个密钥。"
+      },
       "1.0.27": {
         "en": "Fix database reset on adapter restart. Database is now backed up to movies-poiskkino.backup.json after each sync and restored on startup. No more data loss when restarting the adapter.",
         "de": "Datenbank-Reset beim Neustart des Adapters behoben. Datenbank wird nach jeder Synchronisierung in movies-poiskkino.backup.json gesichert und beim Start wiederhergestellt. Kein Datenverlust mehr beim Neustart.",
