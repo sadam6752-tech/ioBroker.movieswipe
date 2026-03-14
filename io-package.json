@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.26",
+    "version": "1.0.27",
     "news": {
+      "1.0.27": {
+        "en": "Fix database reset on adapter restart. Database is now backed up to movies-poiskkino.backup.json after each sync and restored on startup. No more data loss when restarting the adapter.",
+        "de": "Datenbank-Reset beim Neustart des Adapters behoben. Datenbank wird nach jeder Synchronisierung in movies-poiskkino.backup.json gesichert und beim Start wiederhergestellt. Kein Datenverlust mehr beim Neustart.",
+        "ru": "Исправлен сброс базы данных при перезапуске адаптера. База теперь сохраняется в movies-poiskkino.backup.json после каждой синхронизации и восстанавливается при запуске. Больше нет потери данных при перезапуске.",
+        "fr": "Correction de la réinitialisation de la base de données au redémarrage de l'adaptateur. La base de données est maintenant sauvegardée après chaque synchronisation et restaurée au démarrage.",
+        "it": "Correzione del ripristino del database al riavvio dell'adattatore. Il database viene ora salvato dopo ogni sincronizzazione e ripristinato all'avvio.",
+        "es": "Corrección del restablecimiento de la base de datos al reiniciar el adaptador. La base de datos ahora se guarda después de cada sincronización y se restaura al inicio.",
+        "pl": "Naprawiono resetowanie bazy danych przy ponownym uruchomieniu adaptera. Baza danych jest teraz zapisywana po każdej synchronizacji i przywracana przy uruchomieniu.",
+        "pt": "Correção da redefinição do banco de dados ao reiniciar o adaptador. O banco de dados agora é salvo após cada sincronização e restaurado na inicialização.",
+        "nl": "Databasereset bij herstart van adapter gecorrigeerd. Database wordt nu na elke synchronisatie opgeslagen en bij het opstarten hersteld.",
+        "zh-cn": "修复适配器重启时数据库重置的问题。数据库现在在每次同步后备份，并在启动时恢复。"
+      },
       "1.0.26": {
         "en": "Fix sync script saving movies to wrong directory. Movies found during sync are now correctly added to the database (www/data instead of public/data). Also added support for --min-rating, --min-votes, --year-start, --year-end, --daily-limit CLI arguments.",
         "de": "Sync-Skript speichert Filme jetzt im richtigen Verzeichnis. Gefundene Filme werden korrekt zur Datenbank hinzugefügt (www/data statt public/data). Unterstützung für --min-rating, --min-votes, --year-start, --year-end, --daily-limit CLI-Argumente hinzugefügt.",

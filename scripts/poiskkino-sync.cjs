@@ -437,6 +437,14 @@ function saveMovies(movies, progress) {
   );
 
   console.log(`✓ Сохранено ${newMovies.length} новых фильмов (всего: ${allMovies.length})`);
+
+  // Сразу создаём резервную копию чтобы не потерять прогресс при перезапуске адаптера
+  try {
+    const backupFile = path.join(CONFIG.OUTPUT_DIR, 'movies-poiskkino.backup.json');
+    fs.copyFileSync(outputFile, backupFile);
+  } catch (e) {
+    // Не критично если бэкап не создался
+  }
   
   return newMovies.length;
 }

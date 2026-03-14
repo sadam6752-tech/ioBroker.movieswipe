@@ -22,44 +22,32 @@ class MovieSwipe extends utils.Adapter {
   }
 
   async handleDatabasePreservation() {
-    const fs = require('fs');
-    const path = require('path');
-
     const dbPath = path.join(__dirname, 'www/data/movies-poiskkino.json');
-    const userDbPath = path.join(this.namespace, 'movies-poiskkino.json');
-    const backupDbPath = path.join(__dirname, 'www/data/movies-poiskkino.backup.json');
+    const backupPath = path.join(__dirname, 'www/data/movies-poiskkino.backup.json');
 
     try {
-      // Если preserveDatabase включен (по умолчанию true)
       if (this.config.preserveDatabase !== false) {
-        this.log.info('Database preservation is enabled');
+        // Если есть резервная копия — восстановить если она новее/больше текущей базы
+        if (fs.existsSync(backupPath)) {
+          const backupStat = fs.statSync(backupPath);
+          const dbStat = fs.existsSync(dbPath) ? fs.statSync(dbPath) : null;
 
-        // Проверить есть ли пользовательская база в data directory
-        const userDataDir = path.dirname(userDbPath);
-        
-        // Создать директорию если не существует
-        if (!fs.existsSync(userDataDir)) {
-          fs.mkdirSync(userDataDir, { recursive: true });
-        }
-
-        // Если есть пользовательская база, восстановить её
-        if (fs.existsSync(userDbPath)) {
-          this.log.info('Restoring user database from data directory');
-          fs.copyFileSync(userDbPath, dbPath);
-          this.log.info('User database restored successfully');
-        } else if (fs.existsSync(dbPath)) {
-          // Если это первый запуск с preserveDatabase, сохранить текущую базу
-          this.log.info('Saving current database to data directory');
-          fs.copyFileSync(dbPath, userDbPath);
-          this.log.info('Database saved to data directory');
+          // Восстанавливаем если резервная копия новее или больше текущей базы
+          if (!dbStat || backupStat.size > dbStat.size || backupStat.mtimeMs > dbStat.mtimeMs) {
+            this.log.info(`Restoring database from backup (backup: ${Math.round(backupStat.size / 1024 / 1024)}MB)`);
+            fs.copyFileSync(backupPath, dbPath);
+            this.log.info('Database restored from backup successfully');
+          } else {
+            this.log.info('Current database is up to date, backup not needed');
+          }
+        } else {
+          this.log.info('No backup found, will create one after first sync');
         }
       } else {
-        this.log.info('Database preservation is disabled - using default database');
-        
-        // Если preserveDatabase выключен, удалить пользовательскую базу
-        if (fs.existsSync(userDbPath)) {
-          this.log.info('Removing user database (preservation disabled)');
-          fs.unlinkSync(userDbPath);
+        this.log.info('Database preservation is disabled');
+        // Удалить резервную копию если preservation выключен
+        if (fs.existsSync(backupPath)) {
+          fs.unlinkSync(backupPath);
         }
       }
     } catch (error) {
