@@ -27,7 +27,7 @@ const CONFIG = {
   API_BASE_URL: 'https://api.kinopoisk.dev',
   API_VERSION: 'v1.5',
   PROGRESS_FILE: path.join(__dirname, '.sync-progress.json'),
-  OUTPUT_DIR: path.join(__dirname, '../public/data'),
+  OUTPUT_DIR: path.join(__dirname, '../www/data'),
   MOVIES_PER_REQUEST: 250, // Максимум для API
   MAX_REQUESTS_PER_DAY: 200,
   MIN_RATING: 5.0,
@@ -444,12 +444,16 @@ function saveMovies(movies, progress) {
 /**
  * Главная функция синхронизации
  */
-async function sync(apiKey, maxRequests = null) {
+async function sync(apiKey, maxRequests = null, yearOverride = {}) {
   console.log('🎬 ПоискКино Incremental Sync');
   console.log('================================\n');
 
   // Загружаем прогресс с учетом API ключа
   const progress = loadProgress(apiKey);
+
+  // Применяем переопределение диапазона лет если указано
+  if (yearOverride.start !== undefined) progress.yearRange.start = yearOverride.start;
+  if (yearOverride.end !== undefined) progress.yearRange.end = yearOverride.end;
   
   console.log(`Прогресс:`);
   console.log(`  Всего загружено: ${progress.totalMovies} фильмов`);
@@ -566,17 +570,22 @@ async function sync(apiKey, maxRequests = null) {
 // CLI
 if (require.main === module) {
   const args = process.argv.slice(2);
-  
+
   if (args.includes('--help') || args.includes('-h')) {
     console.log(`
 Использование: node poiskkino-sync.cjs [опции]
 
 Опции:
-  --api-key <key>     API ключ ПоискКино (обязательно)
-  --max-requests <n>  Максимум запросов за один запуск (по умолчанию: до лимита)
-  --reset             Сбросить прогресс и начать заново
-  --status            Показать текущий статус
-  -h, --help          Показать эту справку
+  --api-key <key>       API ключ ПоискКино (обязательно)
+  --max-requests <n>    Максимум запросов за один запуск (по умолчанию: до лимита)
+  --daily-limit <n>     Дневной лимит запросов (по умолчанию: 200)
+  --min-rating <n>      Минимальный рейтинг (по умолчанию: 5.0)
+  --min-votes <n>       Минимальное количество голосов (по умолчанию: 1000)
+  --year-start <n>      Начальный год диапазона
+  --year-end <n>        Конечный год диапазона
+  --reset               Сбросить прогресс и начать заново
+  --status              Показать текущий статус
+  -h, --help            Показать эту справку
 
 Примеры:
   node poiskkino-sync.cjs --api-key YOUR_KEY
@@ -588,7 +597,7 @@ if (require.main === module) {
   }
 
   if (args.includes('--status')) {
-    const progress = loadProgress();
+    const progress = loadProgress('');
     console.log('\n📊 Статус синхронизации:');
     console.log(`  Всего загружено: ${progress.totalMovies} фильмов`);
     console.log(`  Запросов сегодня: ${progress.requestsToday}/${CONFIG.MAX_REQUESTS_PER_DAY}`);
@@ -616,11 +625,24 @@ if (require.main === module) {
   }
 
   const apiKey = args[apiKeyIndex + 1];
-  
-  const maxRequestsIndex = args.indexOf('--max-requests');
-  const maxRequests = maxRequestsIndex !== -1 ? parseInt(args[maxRequestsIndex + 1]) : null;
 
-  sync(apiKey, maxRequests).catch(error => {
+  // Применяем параметры из аргументов командной строки в CONFIG
+  const getArg = (name) => {
+    const i = args.indexOf(name);
+    return i !== -1 && args[i + 1] ? args[i + 1] : null;
+  };
+
+  if (getArg('--daily-limit'))  CONFIG.MAX_REQUESTS_PER_DAY = parseInt(getArg('--daily-limit'));
+  if (getArg('--min-rating'))   CONFIG.MIN_RATING = parseFloat(getArg('--min-rating'));
+  if (getArg('--min-votes'))    CONFIG.MIN_VOTES = parseInt(getArg('--min-votes'));
+
+  const maxRequests = getArg('--max-requests') ? parseInt(getArg('--max-requests')) : null;
+
+  const yearOverride = {};
+  if (getArg('--year-start')) yearOverride.start = parseInt(getArg('--year-start'));
+  if (getArg('--year-end'))   yearOverride.end   = parseInt(getArg('--year-end'));
+
+  sync(apiKey, maxRequests, yearOverride).catch(error => {
     console.error('❌ Критическая ошибка:', error);
     process.exit(1);
   });

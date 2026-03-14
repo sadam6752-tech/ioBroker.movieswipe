@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.25",
+    "version": "1.0.26",
     "news": {
+      "1.0.26": {
+        "en": "Fix sync script saving movies to wrong directory. Movies found during sync are now correctly added to the database (www/data instead of public/data). Also added support for --min-rating, --min-votes, --year-start, --year-end, --daily-limit CLI arguments.",
+        "de": "Sync-Skript speichert Filme jetzt im richtigen Verzeichnis. Gefundene Filme werden korrekt zur Datenbank hinzugefügt (www/data statt public/data). Unterstützung für --min-rating, --min-votes, --year-start, --year-end, --daily-limit CLI-Argumente hinzugefügt.",
+        "ru": "Исправлено сохранение фильмов в неправильную директорию. Найденные при синхронизации фильмы теперь корректно добавляются в базу (www/data вместо public/data). Добавлена поддержка аргументов --min-rating, --min-votes, --year-start, --year-end, --daily-limit.",
+        "fr": "Correction du script de synchronisation qui sauvegardait les films dans le mauvais répertoire. Les films trouvés lors de la synchronisation sont maintenant correctement ajoutés à la base de données.",
+        "it": "Correzione dello script di sincronizzazione che salvava i film nella directory sbagliata. I film trovati durante la sincronizzazione vengono ora aggiunti correttamente al database.",
+        "es": "Corrección del script de sincronización que guardaba películas en el directorio incorrecto. Las películas encontradas durante la sincronización ahora se agregan correctamente a la base de datos.",
+        "pl": "Naprawiono skrypt synchronizacji zapisujący filmy w złym katalogu. Filmy znalezione podczas synchronizacji są teraz poprawnie dodawane do bazy danych.",
+        "pt": "Correção do script de sincronização que salvava filmes no diretório errado. Os filmes encontrados durante a sincronização agora são adicionados corretamente ao banco de dados.",
+        "nl": "Synchronisatiescript gecorrigeerd dat films in de verkeerde map opsloeg. Films gevonden tijdens synchronisatie worden nu correct toegevoegd aan de database.",
+        "zh-cn": "修复同步脚本将电影保存到错误目录的问题。同步期间找到的电影现在正确添加到数据库中。"
+      },
       "1.0.25": {
         "en": "Fix rate limit handling in sync script. Script now exits with code 0 (success) when daily limit reached instead of code 1 (error). No more false error messages in logs.",
         "de": "Ratenlimit-Behandlung im Sync-Skript korrigiert. Skript beendet sich jetzt mit Code 0 (Erfolg) wenn Tageslimit erreicht wird statt Code 1 (Fehler). Keine falschen Fehlermeldungen mehr in Logs.",
