@@ -336,7 +336,7 @@ function convertMovie(kpMovie) {
 }
 
 /**
- * Загрузить фильмы из ПоискКино API
+ * Загрузить фильмы из ПоискКино API с retry при сетевых ошибках
  */
 async function fetchMovies(apiKey, progress) {
   const url = new URL(`${CONFIG.API_BASE_URL}/${CONFIG.API_VERSION}/movie`);
@@ -379,26 +379,69 @@ async function fetchMovies(apiKey, progress) {
 
   console.log(`\nЗапрос: ${url.pathname}${url.search.substring(0, 100)}...`);
 
-  const response = await fetch(url.toString(), {
-    headers: {
-      'X-API-KEY': apiKey,
-      'Accept': 'application/json'
+  // Retry при сетевых ошибках
+  const MAX_RETRIES = 3;
+  const RETRY_DELAYS = [5000, 15000, 30000]; // 5с, 15с, 30с
+
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 30000); // 30с timeout
+
+      let response;
+      try {
+        response = await fetch(url.toString(), {
+          headers: {
+            'X-API-KEY': apiKey,
+            'Accept': 'application/json'
+          },
+          signal: controller.signal
+        });
+      } finally {
+        clearTimeout(timeout);
+      }
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`HTTP ${response.status}: ${errorText}`);
+      }
+
+      const data = await response.json();
+      return {
+        movies: data.docs || [],
+        nextCursor: data.next || null,
+        hasNext: data.hasNext || false,
+        total: data.total || 0
+      };
+
+    } catch (error) {
+      const isNetworkError = error.name === 'AbortError' ||
+        error.message.includes('fetch failed') ||
+        error.message.includes('ECONNRESET') ||
+        error.message.includes('ETIMEDOUT') ||
+        error.message.includes('ENOTFOUND') ||
+        error.message.includes('network') ||
+        error.message.includes('socket');
+
+      const isRateLimit = error.message.includes('403') ||
+        error.message.includes('429') ||
+        error.message.includes('Forbidden');
+
+      // Rate limit — не ретраим, пробрасываем сразу
+      if (isRateLimit) throw error;
+
+      if (isNetworkError && attempt < MAX_RETRIES) {
+        const delay = RETRY_DELAYS[attempt];
+        console.log(`⚠️  Сетевая ошибка (попытка ${attempt + 1}/${MAX_RETRIES}): ${error.message}`);
+        console.log(`   Повтор через ${delay / 1000}с...`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+        continue;
+      }
+
+      // Исчерпали попытки или не сетевая ошибка
+      throw error;
     }
-  });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`HTTP ${response.status}: ${errorText}`);
   }
-
-  const data = await response.json();
-  
-  return {
-    movies: data.docs || [],
-    nextCursor: data.next || null,
-    hasNext: data.hasNext || false,
-    total: data.total || 0
-  };
 }
 
 /**
@@ -560,17 +603,31 @@ async function sync(apiKey, maxRequests = null, yearOverride = {}) {
                        errorMessage.includes('суточный лимит') ||
                        errorMessage.includes('лимит по запросам') ||
                        errorMessage.includes('Forbidden');
+
+    // Проверяем является ли это сетевой ошибкой
+    const isNetworkError = error.name === 'AbortError' ||
+                       errorMessage.includes('fetch failed') ||
+                       errorMessage.includes('ECONNRESET') ||
+                       errorMessage.includes('ETIMEDOUT') ||
+                       errorMessage.includes('ENOTFOUND') ||
+                       errorMessage.includes('network') ||
+                       errorMessage.includes('socket');
     
     if (isRateLimit) {
       console.log('\n⚠️  Достигнут дневной лимит API');
       console.log('Прогресс сохранен. Синхронизация продолжится автоматически завтра или с другим API ключом.\n');
       saveProgress(progress);
       process.exit(0); // Выход с кодом 0 (успех)
+    } else if (isNetworkError) {
+      console.error('\n⚠️  Сетевая ошибка после всех попыток:', error.message);
+      console.error('Прогресс сохранен. Синхронизация продолжится при следующем запуске.\n');
+      saveProgress(progress);
+      process.exit(0); // Код 0 — не ошибка адаптера, просто временный сбой сети
     } else {
       console.error('\n❌ Ошибка синхронизации:', error.message);
       console.error('Прогресс сохранен. Запустите скрипт снова для продолжения.\n');
       saveProgress(progress);
-      process.exit(1); // Выход с кодом 1 (ошибка)
+      process.exit(1);
     }
   }
 }

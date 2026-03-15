@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.30",
+    "version": "1.0.31",
     "news": {
+      "1.0.31": {
+        "en": "Fix sync script crashing on network errors. Added retry logic (3 attempts: 5s, 15s, 30s) and 30s timeout per request. Network errors now exit with code 0 so adapter does not report false failures.",
+        "de": "Sync-Skript stürzt bei Netzwerkfehlern nicht mehr ab. Retry-Logik hinzugefügt (3 Versuche: 5s, 15s, 30s) und 30s Timeout pro Anfrage. Netzwerkfehler beenden mit Code 0.",
+        "ru": "Исправлено падение скрипта синхронизации при сетевых ошибках. Добавлен retry (3 попытки: 5с, 15с, 30с) и timeout 30с на запрос. Сетевые ошибки завершаются с кодом 0 — адаптер не сообщает о ложных сбоях.",
+        "fr": "Correction du crash du script de synchronisation sur les erreurs réseau. Logique de retry ajoutée (3 tentatives: 5s, 15s, 30s) et timeout 30s par requête.",
+        "it": "Correzione crash script sync su errori di rete. Aggiunta logica retry (3 tentativi: 5s, 15s, 30s) e timeout 30s per richiesta.",
+        "es": "Corrección de caída del script de sincronización en errores de red. Lógica de reintento añadida (3 intentos: 5s, 15s, 30s) y timeout 30s por solicitud.",
+        "pl": "Naprawiono crash skryptu sync przy błędach sieciowych. Dodano logikę retry (3 próby: 5s, 15s, 30s) i timeout 30s na żądanie.",
+        "pt": "Correção de crash do script de sincronização em erros de rede. Lógica de retry adicionada (3 tentativas: 5s, 15s, 30s) e timeout 30s por requisição.",
+        "nl": "Crash van synchronisatiescript bij netwerkfouten gecorrigeerd. Retry-logica toegevoegd (3 pogingen: 5s, 15s, 30s) en 30s timeout per verzoek.",
+        "zh-cn": "修复同步脚本在网络错误时崩溃的问题。添加重试逻辑（3次尝试：5s、15s、30s）和每个请求30s超时。"
+      },
       "1.0.30": {
         "en": "Fix SyntaxError in web-server.js (missing closing brace in _setupDatabaseApi). Adapter now starts correctly.",
         "de": "SyntaxError in web-server.js behoben (fehlende schließende Klammer in _setupDatabaseApi). Adapter startet jetzt korrekt.",
@@ -62,18 +74,6 @@
         "pt": "Correção do script de sincronização que salvava filmes no diretório errado. Os filmes encontrados durante a sincronização agora são adicionados corretamente ao banco de dados.",
         "nl": "Synchronisatiescript gecorrigeerd dat films in de verkeerde map opsloeg. Films gevonden tijdens synchronisatie worden nu correct toegevoegd aan de database.",
         "zh-cn": "修复同步脚本将电影保存到错误目录的问题。同步期间找到的电影现在正确添加到数据库中。"
-      },
-      "1.0.24": {
-        "en": "Improve rate limit handling and country mappings. Better detection of API daily limit errors. Add more South Korea name variants. Save database on rate limit reached.",
-        "de": "Verbesserte Ratenlimit-Behandlung und Länderzuordnungen. Bessere Erkennung von API-Tageslimit-Fehlern. Weitere Südkorea-Namensvarianten hinzugefügt. Datenbank bei Erreichen des Ratenlimits speichern.",
-        "ru": "Улучшена обработка лимитов и маппинг стран. Лучшее определение ошибок дневного лимита API. Добавлены варианты названия Южной Кореи. Сохранение базы при достижении лимита.",
-        "fr": "Amélioration de la gestion des limites de taux et des mappages de pays. Meilleure détection des erreurs de limite quotidienne de l'API. Ajout de variantes de noms pour la Corée du Sud. Sauvegarde de la base de données lorsque la limite de taux est atteinte.",
-        "it": "Migliorata gestione limiti di velocità e mappature paesi. Migliore rilevamento errori limite giornaliero API. Aggiunte varianti nome Corea del Sud. Salvataggio database al raggiungimento limite.",
-        "es": "Mejora del manejo de límites de velocidad y mapeos de países. Mejor detección de errores de límite diario de API. Agregar variantes de nombre de Corea del Sur. Guardar base de datos al alcanzar el límite de velocidad.",
-        "pl": "Ulepszona obsługa limitów szybkości i mapowań krajów. Lepsza detekcja błędów dziennego limitu API. Dodano warianty nazw Korei Południowej. Zapisywanie bazy danych po osiągnięciu limitu.",
-        "pt": "Melhor tratamento de limites de taxa e mapeamentos de países. Melhor detecção de erros de limite diário da API. Adicionar variantes de nome da Coreia do Sul. Salvar banco de dados ao atingir o limite de taxa.",
-        "nl": "Verbeterde afhandeling van snelheidslimieten en landmappings. Betere detectie van API dagelijkse limietfouten. Meer Zuid-Korea naamvarianten toegevoegd. Database opslaan bij bereiken snelheidslimiet.",
-        "zh-cn": "改进速率限制处理和国家映射。更好地检测API每日限制错误。添加更多韩国名称变体。达到速率限制时保存数据库。"
       },
       "1.0.23": {
         "en": "Fix sync script mappings and update database. Remove duplicate GENRE_MAP entries. Remove invalid tv-show content type. Add concert genre support. New clean database with all fixes applied.",
