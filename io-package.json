@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.34",
+    "version": "1.0.35",
     "news": {
+      "1.0.35": {
+        "en": "Fix web server failing to start when network interface name (e.g. ovs_eth0) is selected instead of IP. Interface name is now resolved to IP before binding.",
+        "de": "Fehler behoben: Webserver startet nicht wenn Schnittstellenname (z.B. ovs_eth0) statt IP ausgewaehlt ist. Schnittstellenname wird jetzt vor dem Binden in IP aufgeloest.",
+        "ru": "Исправлен запуск веб-сервера при выборе имени интерфейса (например ovs_eth0) вместо IP. Имя интерфейса теперь резолвится в IP перед биндингом.",
+        "fr": "Correction demarrage serveur web quand nom d'interface (ex: ovs_eth0) selectionne au lieu d'IP. Le nom est maintenant resolu en IP avant le binding.",
+        "it": "Correzione avvio server web quando nome interfaccia (es. ovs_eth0) selezionato invece di IP. Il nome viene ora risolto in IP prima del binding.",
+        "es": "Correccion inicio servidor web cuando nombre de interfaz (ej. ovs_eth0) seleccionado en lugar de IP. El nombre se resuelve ahora en IP antes del binding.",
+        "pl": "Naprawiono uruchamianie serwera web gdy wybrana nazwa interfejsu (np. ovs_eth0) zamiast IP. Nazwa jest teraz rozwiazywana do IP przed bindingiem.",
+        "pt": "Correcao inicio servidor web quando nome de interface (ex. ovs_eth0) selecionado em vez de IP. O nome e agora resolvido para IP antes do binding.",
+        "nl": "Webserver start nu correct wanneer interfacenaam (bijv. ovs_eth0) geselecteerd is in plaats van IP. Naam wordt nu omgezet naar IP voor binding.",
+        "zh-cn": "修复选择网络接口名称（如ovs_eth0）而非IP时Web服务器无法启动的问题。绑定前接口名称现在会被解析为IP。"
+      },
       "1.0.34": {
         "en": "Fix Status tab URLs: server.url and backup URLs now show real resolved IP instead of interface name.",
         "de": "Status-Tab URLs korrigiert: server.url und Backup-URLs zeigen jetzt die echte aufgelöste IP statt des Schnittstellennamens.",
@@ -74,18 +86,6 @@
         "pt": "Correcao reset banco na atualizacao. Backup em iobroker-data. Gerenciador de backup adicionado: download/restauracao via navegador.",
         "nl": "Databasereset bij update gecorrigeerd. Backup in iobroker-data. Backup-manager toegevoegd: download/herstel via browser.",
         "zh-cn": "修复适配器更新时数据库重置。备份存储在iobroker-data中。添加备份管理器：通过浏览器下载/恢复。"
-      },
-      "1.0.28": {
-        "en": "Fix API key rotation: automatically switch to next key when daily limit is reached. No manual re-trigger needed.",
-        "de": "API-Schlusselrotation korrigiert: automatischer Wechsel zum nachsten Schlussel bei Erreichen des Tageslimits.",
-        "ru": "Исправлена ротация API ключей: автоматическое переключение на следующий ключ при достижении дневного лимита.",
-        "fr": "Correction de la rotation des cles API: passage automatique a la cle suivante lorsque la limite quotidienne est atteinte.",
-        "it": "Correzione rotazione chiavi API: passaggio automatico alla chiave successiva al raggiungimento del limite giornaliero.",
-        "es": "Correccion de rotacion de claves API: cambio automatico a la siguiente clave al alcanzar el limite diario.",
-        "pl": "Naprawiono rotacje kluczy API: automatyczne przelaczenie na nastepny klucz po osiagnieciu dziennego limitu.",
-        "pt": "Correcao da rotacao de chaves API: troca automatica para a proxima chave ao atingir o limite diario.",
-        "nl": "API-sleutelrotatie gecorrigeerd: automatisch overschakelen naar volgende sleutel bij bereiken dagelijks limiet.",
-        "zh-cn": "修复API密钥轮换：达到每日限制时自动切换到下一个密钥。"
       }
     },
     "titleLang": {
@@ -173,7 +173,9 @@
     {
       "_id": "info",
       "type": "channel",
-      "common": { "name": "Information" },
+      "common": {
+        "name": "Information"
+      },
       "native": {}
     },
     {
@@ -192,7 +194,9 @@
     {
       "_id": "sync",
       "type": "channel",
-      "common": { "name": "Synchronization" },
+      "common": {
+        "name": "Synchronization"
+      },
       "native": {}
     },
     {
@@ -231,7 +235,12 @@
         "read": true,
         "write": false,
         "def": "idle",
-        "states": { "idle": "Idle", "running": "Running", "error": "Error", "completed": "Completed" }
+        "states": {
+          "idle": "Idle",
+          "running": "Running",
+          "error": "Error",
+          "completed": "Completed"
+        }
       },
       "native": {}
     },
@@ -254,85 +263,178 @@
     {
       "_id": "sync.currentStep",
       "type": "state",
-      "common": { "role": "text", "name": "Current step", "type": "string", "read": true, "write": false, "def": "" },
+      "common": {
+        "role": "text",
+        "name": "Current step",
+        "type": "string",
+        "read": true,
+        "write": false,
+        "def": ""
+      },
       "native": {}
     },
     {
       "_id": "sync.totalMovies",
       "type": "state",
-      "common": { "role": "value", "name": "Total movies in database", "type": "number", "read": true, "write": false, "def": 0 },
+      "common": {
+        "role": "value",
+        "name": "Total movies in database",
+        "type": "number",
+        "read": true,
+        "write": false,
+        "def": 0
+      },
       "native": {}
     },
     {
       "_id": "sync.newMovies",
       "type": "state",
-      "common": { "role": "value", "name": "New movies added", "type": "number", "read": true, "write": false, "def": 0 },
+      "common": {
+        "role": "value",
+        "name": "New movies added",
+        "type": "number",
+        "read": true,
+        "write": false,
+        "def": 0
+      },
       "native": {}
     },
     {
       "_id": "sync.foundMovies",
       "type": "state",
-      "common": { "role": "value", "name": "Movies found in current sync", "type": "number", "read": true, "write": false, "def": 0 },
+      "common": {
+        "role": "value",
+        "name": "Movies found in current sync",
+        "type": "number",
+        "read": true,
+        "write": false,
+        "def": 0
+      },
       "native": {}
     },
     {
       "_id": "sync.requestsUsed",
       "type": "state",
-      "common": { "role": "value", "name": "API requests used", "type": "number", "read": true, "write": false, "def": 0 },
+      "common": {
+        "role": "value",
+        "name": "API requests used",
+        "type": "number",
+        "read": true,
+        "write": false,
+        "def": 0
+      },
       "native": {}
     },
     {
       "_id": "sync.requestsRemaining",
       "type": "state",
-      "common": { "role": "value", "name": "API requests remaining", "type": "number", "read": true, "write": false, "def": 0 },
+      "common": {
+        "role": "value",
+        "name": "API requests remaining",
+        "type": "number",
+        "read": true,
+        "write": false,
+        "def": 0
+      },
       "native": {}
     },
     {
       "_id": "sync.lastSync",
       "type": "state",
-      "common": { "role": "date", "name": "Last synchronization", "type": "string", "read": true, "write": false, "def": "" },
+      "common": {
+        "role": "date",
+        "name": "Last synchronization",
+        "type": "string",
+        "read": true,
+        "write": false,
+        "def": ""
+      },
       "native": {}
     },
     {
       "_id": "sync.error",
       "type": "state",
-      "common": { "role": "text", "name": "Error message", "type": "string", "read": true, "write": false, "def": "" },
+      "common": {
+        "role": "text",
+        "name": "Error message",
+        "type": "string",
+        "read": true,
+        "write": false,
+        "def": ""
+      },
       "native": {}
     },
     {
       "_id": "sync.reloadApp",
       "type": "state",
-      "common": { "role": "button", "name": "Reload app cache", "type": "boolean", "read": true, "write": true, "def": false },
+      "common": {
+        "role": "button",
+        "name": "Reload app cache",
+        "type": "boolean",
+        "read": true,
+        "write": true,
+        "def": false
+      },
       "native": {}
     },
     {
       "_id": "server",
       "type": "channel",
-      "common": { "name": "Web Server" },
+      "common": {
+        "name": "Web Server"
+      },
       "native": {}
     },
     {
       "_id": "server.url",
       "type": "state",
-      "common": { "role": "text.url", "name": "Application URL", "type": "string", "read": true, "write": false, "def": "" },
+      "common": {
+        "role": "text.url",
+        "name": "Application URL",
+        "type": "string",
+        "read": true,
+        "write": false,
+        "def": ""
+      },
       "native": {}
     },
     {
       "_id": "server.ip",
       "type": "state",
-      "common": { "role": "text", "name": "Resolved server IP address", "type": "string", "read": true, "write": false, "def": "" },
+      "common": {
+        "role": "text",
+        "name": "Resolved server IP address",
+        "type": "string",
+        "read": true,
+        "write": false,
+        "def": ""
+      },
       "native": {}
     },
     {
       "_id": "server.port",
       "type": "state",
-      "common": { "role": "value", "name": "Server port", "type": "number", "read": true, "write": false, "def": 3000 },
+      "common": {
+        "role": "value",
+        "name": "Server port",
+        "type": "number",
+        "read": true,
+        "write": false,
+        "def": 3000
+      },
       "native": {}
     },
     {
       "_id": "server.running",
       "type": "state",
-      "common": { "role": "indicator.reachable", "name": "Server running", "type": "boolean", "read": true, "write": false, "def": false },
+      "common": {
+        "role": "indicator.reachable",
+        "name": "Server running",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
       "native": {}
     }
   ]
