@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.36",
+    "version": "1.0.37",
     "news": {
+      "1.0.37": {
+        "en": "Status tab: replaced non-working sendTo buttons with simple port display and instructions to find full URL in Objects tab (server.url state).",
+        "de": "Status-Tab: nicht funktionierende sendTo-Schaltflaechen durch einfache Port-Anzeige und Anweisung ersetzt, die vollstaendige URL im Objects-Tab zu finden (server.url State).",
+        "ru": "Вкладка Статус: заменены нерабочие кнопки sendTo на простое отображение порта и инструкцию найти полный URL во вкладке Objects (state server.url).",
+        "fr": "Onglet Statut: boutons sendTo non fonctionnels remplaces par affichage simple du port et instructions pour trouver l'URL complete dans l'onglet Objects.",
+        "it": "Scheda Stato: pulsanti sendTo non funzionanti sostituiti con visualizzazione semplice della porta e istruzioni per trovare l'URL completo nella scheda Objects.",
+        "es": "Pestana Estado: botones sendTo no funcionales reemplazados por visualizacion simple del puerto e instrucciones para encontrar la URL completa en la pestana Objects.",
+        "pl": "Zakladka Status: niedzialajaace przyciski sendTo zastapione prostym wyswietlaniem portu i instrukcja znalezienia pelnego URL w zakladce Objects.",
+        "pt": "Aba Status: botoes sendTo nao funcionais substituidos por exibicao simples da porta e instrucoes para encontrar a URL completa na aba Objects.",
+        "nl": "Status-tabblad: niet-werkende sendTo-knoppen vervangen door eenvoudige poortweergave en instructies om volledige URL te vinden in Objects-tabblad.",
+        "zh-cn": "状态选项卡：将不工作的sendTo按钮替换为简单的端口显示和在Objects选项卡中查找完整URL的说明。"
+      },
       "1.0.36": {
         "en": "Status tab now shows real server URL via sendTo. Added onMessage handler for getServerUrl command.",
         "de": "Status-Tab zeigt jetzt echte Server-URL via sendTo. onMessage-Handler fuer getServerUrl-Befehl hinzugefuegt.",
@@ -74,18 +86,6 @@
         "pt": "Correcao de crash do script de sincronizacao em erros de rede. Logica de retry adicionada (3 tentativas: 5s, 15s, 30s) e timeout 30s por requisicao.",
         "nl": "Crash van synchronisatiescript bij netwerkfouten gecorrigeerd. Retry-logica toegevoegd (3 pogingen: 5s, 15s, 30s) en 30s timeout per verzoek.",
         "zh-cn": "修复同步脚本在网络错误时崩溃的问题。添加重试逻辑（3次尝试：5s、15s、30s）和每个请求30s超时。"
-      },
-      "1.0.30": {
-        "en": "Fix SyntaxError in web-server.js (missing closing brace in _setupDatabaseApi). Adapter now starts correctly.",
-        "de": "SyntaxError in web-server.js behoben (fehlende schliessende Klammer in _setupDatabaseApi). Adapter startet jetzt korrekt.",
-        "ru": "Исправлена синтаксическая ошибка в web-server.js (пропущена закрывающая скобка в _setupDatabaseApi). Адаптер теперь запускается корректно.",
-        "fr": "Correction SyntaxError dans web-server.js. L'adaptateur demarre maintenant correctement.",
-        "it": "Correzione SyntaxError in web-server.js. L'adattatore ora si avvia correttamente.",
-        "es": "Correccion SyntaxError en web-server.js. El adaptador ahora inicia correctamente.",
-        "pl": "Naprawiono SyntaxError w web-server.js. Adapter teraz uruchamia sie poprawnie.",
-        "pt": "Correcao SyntaxError em web-server.js. O adaptador agora inicia corretamente.",
-        "nl": "SyntaxError in web-server.js gecorrigeerd. Adapter start nu correct.",
-        "zh-cn": "修复web-server.js中的SyntaxError。适配器现在可以正确启动。"
       }
     },
     "titleLang": {
