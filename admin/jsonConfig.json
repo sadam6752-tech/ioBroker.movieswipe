@@ -251,19 +251,12 @@
         },
         "_serverInfo": {
           "type": "staticText",
-          "text": "Application URL (based on current settings):",
+          "text": "Application URL: http://[YOUR-HOST-IP]:${data.port}",
           "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
-        },
-        "_serverUrlPort": {
-          "type": "text",
-          "label": "Server port",
-          "attr": "port",
-          "disabled": true,
-          "xs": 12, "sm": 12, "md": 4, "lg": 4, "xl": 4
         },
         "_serverNote": {
           "type": "staticText",
-          "text": "Full URL with IP is available in Objects tab: movieswipe.0 → server → url",
+          "text": "Replace [YOUR-HOST-IP] with your server IP. Full URL also available in Objects tab: movieswipe.0 → server → url",
           "style": { "fontSize": "12px", "fontStyle": "italic", "color": "#888" },
           "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
         },
@@ -274,19 +267,12 @@
         },
         "_dbDownloadInfo": {
           "type": "staticText",
-          "text": "Backup Manager: open http://[HOST]:[PORT]/backup.html in your browser",
+          "text": "Backup Manager: http://[YOUR-HOST-IP]:${data.port}/backup.html",
           "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
-        },
-        "_dbPortInfo": {
-          "type": "text",
-          "label": "Backup Manager port",
-          "attr": "port",
-          "disabled": true,
-          "xs": 12, "sm": 12, "md": 4, "lg": 4, "xl": 4
         },
         "_dbDownloadInfo2": {
           "type": "staticText",
-          "text": "Replace [HOST] with your server IP (see server.url state in Objects tab)",
+          "text": "Replace [YOUR-HOST-IP] with your server IP (see server.url state in Objects tab)",
           "style": { "fontSize": "12px", "fontStyle": "italic", "color": "#888" },
           "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
         },

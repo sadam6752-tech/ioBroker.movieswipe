@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.37",
+    "version": "1.0.38",
     "news": {
+      "1.0.38": {
+        "en": "Status tab: show port from config in URL hints using staticText with data interpolation.",
+        "de": "Status-Tab: Port aus Konfiguration in URL-Hinweisen anzeigen mit staticText und Daten-Interpolation.",
+        "ru": "Вкладка Статус: отображение порта из конфига в подсказках URL через staticText с интерполяцией данных.",
+        "fr": "Onglet Statut: affichage du port de la config dans les indications URL via staticText avec interpolation.",
+        "it": "Scheda Stato: mostra porta dalla config negli hint URL tramite staticText con interpolazione dati.",
+        "es": "Pestana Estado: muestra puerto de config en hints URL usando staticText con interpolacion de datos.",
+        "pl": "Zakladka Status: wyswietlanie portu z konfiguracji w podpowiedziach URL przez staticText z interpolacja.",
+        "pt": "Aba Status: exibe porta da config nas dicas de URL via staticText com interpolacao de dados.",
+        "nl": "Status-tabblad: poort uit config tonen in URL-hints via staticText met data-interpolatie.",
+        "zh-cn": "状态选项卡：使用staticText数据插值在URL提示中显示配置中的端口。"
+      },
       "1.0.37": {
         "en": "Status tab: replaced non-working sendTo buttons with simple port display and instructions to find full URL in Objects tab (server.url state).",
         "de": "Status-Tab: nicht funktionierende sendTo-Schaltflaechen durch einfache Port-Anzeige und Anweisung ersetzt, die vollstaendige URL im Objects-Tab zu finden (server.url State).",
@@ -74,18 +86,6 @@
         "pt": "Adicionada configuracao de endereco IP de ligacao. Selecione a interface de rede para o servidor web nas configuracoes do adaptador.",
         "nl": "Bind IP-adresinstelling toegevoegd. Selecteer netwerkinterface voor de webserver in de adapterinstellingen.",
         "zh-cn": "添加绑定IP地址设置。在适配器设置中选择Web服务器的网络接口。"
-      },
-      "1.0.31": {
-        "en": "Fix sync script crashing on network errors. Added retry logic (3 attempts: 5s, 15s, 30s) and 30s timeout per request. Network errors now exit with code 0 so adapter does not report false failures.",
-        "de": "Sync-Skript sturzt bei Netzwerkfehlern nicht mehr ab. Retry-Logik hinzugefugt (3 Versuche: 5s, 15s, 30s) und 30s Timeout pro Anfrage. Netzwerkfehler beenden mit Code 0.",
-        "ru": "Исправлено падение скрипта синхронизации при сетевых ошибках. Добавлен retry (3 попытки: 5с, 15с, 30с) и timeout 30с на запрос. Сетевые ошибки завершаются с кодом 0.",
-        "fr": "Correction du crash du script de synchronisation sur les erreurs reseau. Logique de retry ajoutee (3 tentatives: 5s, 15s, 30s) et timeout 30s par requete.",
-        "it": "Correzione crash script sync su errori di rete. Aggiunta logica retry (3 tentativi: 5s, 15s, 30s) e timeout 30s per richiesta.",
-        "es": "Correccion de caida del script de sincronizacion en errores de red. Logica de reintento anadida (3 intentos: 5s, 15s, 30s) y timeout 30s por solicitud.",
-        "pl": "Naprawiono crash skryptu sync przy bledach sieciowych. Dodano logike retry (3 proby: 5s, 15s, 30s) i timeout 30s na zadanie.",
-        "pt": "Correcao de crash do script de sincronizacao em erros de rede. Logica de retry adicionada (3 tentativas: 5s, 15s, 30s) e timeout 30s por requisicao.",
-        "nl": "Crash van synchronisatiescript bij netwerkfouten gecorrigeerd. Retry-logica toegevoegd (3 pogingen: 5s, 15s, 30s) en 30s timeout per verzoek.",
-        "zh-cn": "修复同步脚本在网络错误时崩溃的问题。添加重试逻辑（3次尝试：5s、15s、30s）和每个请求30s超时。"
       }
     },
     "titleLang": {
