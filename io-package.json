@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.39",
+    "version": "1.0.40",
     "news": {
+      "1.0.40": {
+        "en": "Bind IP field: replaced interface selector with ip type (listenOnAllPorts: true) to allow selecting 0.0.0.0 for all interfaces.",
+        "de": "Bind-IP-Feld: Schnittstellenauswahl durch ip-Typ ersetzt (listenOnAllPorts: true), um 0.0.0.0 fuer alle Schnittstellen auswaehlen zu koennen.",
+        "ru": "Поле Bind IP: заменён тип interface на ip (listenOnAllPorts: true) для возможности выбора 0.0.0.0 для всех интерфейсов.",
+        "fr": "Champ IP de liaison: selecteur d'interface remplace par le type ip (listenOnAllPorts: true) pour permettre de selectionner 0.0.0.0 pour toutes les interfaces.",
+        "it": "Campo IP di binding: selettore interfaccia sostituito con tipo ip (listenOnAllPorts: true) per consentire la selezione di 0.0.0.0 per tutte le interfacce.",
+        "es": "Campo IP de enlace: selector de interfaz reemplazado por tipo ip (listenOnAllPorts: true) para permitir seleccionar 0.0.0.0 para todas las interfaces.",
+        "pl": "Pole IP powiazania: selektor interfejsu zastapiony typem ip (listenOnAllPorts: true) umozliwiajacym wybor 0.0.0.0 dla wszystkich interfejsow.",
+        "pt": "Campo IP de ligacao: seletor de interface substituido por tipo ip (listenOnAllPorts: true) para permitir selecionar 0.0.0.0 para todas as interfaces.",
+        "nl": "Bind IP-veld: interfaceselector vervangen door ip-type (listenOnAllPorts: true) om 0.0.0.0 voor alle interfaces te kunnen selecteren.",
+        "zh-cn": "绑定IP字段：将接口选择器替换为ip类型（listenOnAllPorts: true），以允许选择0.0.0.0用于所有接口。"
+      },
       "1.0.39": {
         "en": "Status tab: clickable links for app URL and backup manager using port from config. Replace localhost with server IP if accessing remotely.",
         "de": "Status-Tab: klickbare Links fuer App-URL und Backup-Manager mit Port aus Konfiguration.",
@@ -75,19 +87,7 @@
         "nl": "Status-tabblad URL's gecorrigeerd: server.url en backup-URL's tonen nu het echte opgeloste IP in plaats van de interfacenaam.",
         "zh-cn": "修复状态选项卡URL：server.url和备份URL现在显示真实解析的IP而不是接口名称。"
       },
-      "1.0.33": {
-        "en": "Status tab now shows dynamic URLs based on configured bind IP and port settings.",
-        "de": "Status-Tab zeigt jetzt dynamische URLs basierend auf den konfigurierten Bind-IP- und Port-Einstellungen.",
-        "ru": "Вкладка Статус теперь показывает динамические URL на основе настроенных IP и порта.",
-        "fr": "L'onglet Statut affiche maintenant des URLs dynamiques basees sur l'IP et le port configures.",
-        "it": "La scheda Stato ora mostra URL dinamici basati sull'IP e la porta configurati.",
-        "es": "La pestana Estado ahora muestra URLs dinamicas basadas en la IP y el puerto configurados.",
-        "pl": "Zakladka Status teraz pokazuje dynamiczne URL na podstawie skonfigurowanego IP i portu.",
-        "pt": "A aba Status agora mostra URLs dinamicas baseadas no IP e porta configurados.",
-        "nl": "Status-tabblad toont nu dynamische URL's op basis van geconfigureerd bind-IP en poort.",
-        "zh-cn": "状态选项卡现在根据配置的绑定IP和端口显示动态URL。"
-      }
-    },
+      "1.0.34": {
     "titleLang": {
       "en": "MovieSwipe PWA",
       "de": "MovieSwipe PWA",

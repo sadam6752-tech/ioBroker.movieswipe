@@ -1,6 +1,8 @@
 {
   "General Settings": "General Settings",
   "Web Server": "Web Server",
+  "Bind IP address": "Bind IP address",
+  "Select IP address to bind the web server to.": "Select IP address to bind the web server to.",
   "Port": "Port",
   "Port for the web server (PWA application)": "Port for the web server (PWA application)",
   "API Configuration": "API Configuration",

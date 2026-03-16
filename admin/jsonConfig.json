@@ -12,11 +12,10 @@
           "size": 3
         },
         "bind": {
-          "type": "interface",
+          "type": "ip",
+          "listenOnAllPorts": true,
           "label": "Bind IP address",
-          "help": "Network interface to bind the web server to. Use 0.0.0.0 to listen on all interfaces.",
-          "ignoreLoopback": false,
-          "ignoreInternal": false,
+          "help": "Select IP address to bind the web server to.",
           "xs": 12,
           "sm": 12,
           "md": 6,

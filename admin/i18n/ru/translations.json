@@ -1,6 +1,8 @@
 {
   "General Settings": "Основные настройки",
   "Web Server": "Веб-сервер",
+  "Bind IP address": "Привязать IP адрес",
+  "Select IP address to bind the web server to.": "Выберите IP адрес для привязки веб-сервера.",
   "Port": "Порт",
   "Port for the web server (PWA application)": "Порт для веб-сервера (PWA приложение)",
   "API Configuration": "Конфигурация API",
