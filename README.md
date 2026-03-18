@@ -170,6 +170,9 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 
 ## Changelog
 
+### 1.0.42 (2026-03-18)
+- Replace log.info with log.debug for startup/shutdown details (adapter starting, ready, cleanup, database info)
+
 ### 1.0.0 (2026-03-11)
 - First stable release
 - Web server for PWA hosting

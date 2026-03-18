@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.41",
+    "version": "1.0.42",
     "news": {
+      "1.0.42": {
+        "en": "Replace log.info with log.debug for startup/shutdown details (adapter starting, ready, cleanup, database info)",
+        "de": "log.info durch log.debug fuer Start-/Stop-Details ersetzt (Adapter-Start, bereit, Cleanup, Datenbankinfo)",
+        "ru": "Заменены log.info на log.debug для деталей запуска/остановки (старт адаптера, готовность, очистка, инфо о базе)",
+        "fr": "Remplacement de log.info par log.debug pour les details de demarrage/arret (demarrage adaptateur, pret, nettoyage, info base)",
+        "it": "Sostituito log.info con log.debug per i dettagli di avvio/arresto (avvio adapter, pronto, pulizia, info database)",
+        "es": "Reemplazado log.info por log.debug para detalles de inicio/parada (inicio adaptador, listo, limpieza, info base de datos)",
+        "pl": "Zastapiono log.info przez log.debug dla szczegolów uruchamiania/zatrzymywania (start adaptera, gotowy, czyszczenie, info bazy)",
+        "pt": "Substituido log.info por log.debug para detalhes de inicio/parada (inicio adaptador, pronto, limpeza, info base de dados)",
+        "nl": "log.info vervangen door log.debug voor opstart-/stopdetails (adapter start, gereed, opruimen, database-info)",
+        "uk": "Замінено log.info на log.debug для деталей запуску/зупинки (старт адаптера, готовність, очищення, інфо про базу)",
+        "zh-cn": "将启动/停止详情的log.info替换为log.debug（适配器启动、就绪、清理、数据库信息）"
+      },
       "1.0.41": {
         "en": "Fix broken news section in io-package.json (JSON syntax error)",
         "de": "Fehlerhafte news-Sektion in io-package.json behoben (JSON-Syntaxfehler)",
@@ -74,18 +87,6 @@
         "pt": "A aba Status agora mostra a URL real do servidor via sendTo. Adicionado handler onMessage para o comando getServerUrl.",
         "nl": "Status-tabblad toont nu echte server-URL via sendTo. onMessage-handler toegevoegd voor getServerUrl-commando.",
         "zh-cn": "状态选项卡现在通过sendTo显示真实服务器URL。为getServerUrl命令添加了onMessage处理程序。"
-      },
-      "1.0.35": {
-        "en": "Fix web server failing to start when network interface name (e.g. ovs_eth0) is selected instead of IP. Interface name is now resolved to IP before binding.",
-        "de": "Fehler behoben: Webserver startet nicht wenn Schnittstellenname (z.B. ovs_eth0) statt IP ausgewaehlt ist. Schnittstellenname wird jetzt vor dem Binden in IP aufgeloest.",
-        "ru": "Исправлен запуск веб-сервера при выборе имени интерфейса (например ovs_eth0) вместо IP. Имя интерфейса теперь резолвится в IP перед биндингом.",
-        "fr": "Correction demarrage serveur web quand nom d'interface (ex: ovs_eth0) selectionne au lieu d'IP. Le nom est maintenant resolu en IP avant le binding.",
-        "it": "Correzione avvio server web quando nome interfaccia (es. ovs_eth0) selezionato invece di IP. Il nome viene ora risolto in IP prima del binding.",
-        "es": "Correccion inicio servidor web cuando nombre de interfaz (ej. ovs_eth0) seleccionado en lugar de IP. El nombre se resuelve ahora en IP antes del binding.",
-        "pl": "Naprawiono uruchamianie serwera web gdy wybrana nazwa interfejsu (np. ovs_eth0) zamiast IP. Nazwa jest teraz rozwiazywana do IP przed bindingiem.",
-        "pt": "Correcao inicio servidor web quando nome de interface (ex. ovs_eth0) selecionado em vez de IP. O nome e agora resolvido para IP antes do binding.",
-        "nl": "Webserver start nu correct wanneer interfacenaam (bijv. ovs_eth0) geselecteerd is in plaats van IP. Naam wordt nu omgezet naar IP voor binding.",
-        "zh-cn": "修复选择网络接口名称（如ovs_eth0）而非IP时Web服务器无法启动的问题。绑定前接口名称现在会被解析为IP。"
       }
     },
     "titleLang": {

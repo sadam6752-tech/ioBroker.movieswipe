@@ -42,17 +42,17 @@ class MovieSwipe extends utils.Adapter {
 
           // Восстанавливаем если резервная копия новее или больше текущей базы
           if (!dbStat || backupStat.size > dbStat.size || backupStat.mtimeMs > dbStat.mtimeMs) {
-            this.log.info(`Restoring database from backup (${Math.round(backupStat.size / 1024 / 1024)}MB) at ${backupPath}`);
+            this.log.debug(`Restoring database from backup (${Math.round(backupStat.size / 1024 / 1024)}MB) at ${backupPath}`);
             fs.copyFileSync(backupPath, dbPath);
-            this.log.info('Database restored from backup successfully');
+            this.log.debug('Database restored from backup successfully');
           } else {
-            this.log.info('Current database is up to date, backup not needed');
+            this.log.debug('Current database is up to date, backup not needed');
           }
         } else {
-          this.log.info(`No backup found at ${backupPath}, will create one after first sync`);
+          this.log.debug(`No backup found at ${backupPath}, will create one after first sync`);
         }
       } else {
-        this.log.info('Database preservation is disabled');
+        this.log.debug('Database preservation is disabled');
         // Удалить резервную копию если preservation выключен
         if (fs.existsSync(backupPath)) {
           fs.unlinkSync(backupPath);
@@ -98,7 +98,7 @@ class MovieSwipe extends utils.Adapter {
   }
 
   async onReady() {
-    this.log.info('MovieSwipe adapter starting...');
+    this.log.debug('MovieSwipe adapter starting...');
 
     // Установить connection в false при старте
     await this.setStateAsync('info.connection', false, true);
@@ -152,7 +152,7 @@ class MovieSwipe extends utils.Adapter {
       }
     }
 
-    this.log.info('MovieSwipe adapter ready');
+    this.log.debug('MovieSwipe adapter ready');
     
     // Обновить количество фильмов в базе
     this.updateMovieCount();
@@ -171,7 +171,7 @@ class MovieSwipe extends utils.Adapter {
         const movieCount = json.movies ? json.movies.length : 0;
         
         await this.setStateAsync('sync.totalMovies', movieCount, true);
-        this.log.info(`Database contains ${movieCount} movies`);
+        this.log.debug(`Database contains ${movieCount} movies`);
       } else {
         await this.setStateAsync('sync.totalMovies', 0, true);
         this.log.warn('Database file not found');
@@ -260,7 +260,7 @@ class MovieSwipe extends utils.Adapter {
 
   async onUnload(callback) {
     try {
-      this.log.info('Cleaning up...');
+      this.log.debug('Cleaning up...');
 
       // Остановить автосинхронизацию
       if (this.syncManager) {
@@ -281,7 +281,7 @@ class MovieSwipe extends utils.Adapter {
       await this.setStateAsync('info.connection', false, true);
       await this.setStateAsync('server.running', false, true);
 
-      this.log.info('Cleanup complete');
+      this.log.debug('Cleanup complete');
       callback();
     } catch (error) {
       this.log.error(`Error during cleanup: ${error.message}`);
