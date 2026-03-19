@@ -43,5 +43,7 @@
   "Total movies in database: Check 'sync.totalMovies' state": "Total movies in database: Check 'sync.totalMovies' state",
   "Use the 'sync.start' state to trigger synchronization. After sync completes, refresh the app (F5) to see new movies.": "Use the 'sync.start' state to trigger synchronization. After sync completes, refresh the app (F5) to see new movies.",
   "Help": "Help",
-  "For more information, visit the <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>GitHub repository</a>.": "For more information, visit the <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>GitHub repository</a>."
+  "For more information, visit the <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>GitHub repository</a>.": "For more information, visit the <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>GitHub repository</a>.",
+  "label_useEuServer": "EU Server (Mirror)",
+  "help_useEuServer": "Use EU mirror https://eu-api.poiskkino.dev instead of https://api.poiskkino.dev. Enable if the main server is not accessible from your location."
 }

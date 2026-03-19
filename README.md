@@ -170,6 +170,9 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 
 ## Changelog
 
+### 1.0.43 (2026-03-19)
+- Add EU server mirror option (eu-api.poiskkino.dev) for users in Europe where main API is not accessible
+
 ### 1.0.42 (2026-03-18)
 - Replace log.info with log.debug for startup/shutdown details (adapter starting, ready, cleanup, database info)
 

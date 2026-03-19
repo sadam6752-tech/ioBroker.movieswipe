@@ -71,6 +71,17 @@
           "md": 12,
           "lg": 12,
           "xl": 12
+        },
+        "useEuServer": {
+          "type": "checkbox",
+          "label": "label_useEuServer",
+          "help": "help_useEuServer",
+          "default": false,
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         }
       }
     },

@@ -24,7 +24,8 @@ const path = require('path');
 
 // Конфигурация
 const CONFIG = {
-  API_BASE_URL: 'https://api.kinopoisk.dev',
+  API_BASE_URL: 'https://api.poiskkino.dev',
+  EU_API_BASE_URL: 'https://eu-api.poiskkino.dev',
   API_VERSION: 'v1.5',
   PROGRESS_FILE: path.join(__dirname, '.sync-progress.json'),
   OUTPUT_DIR: path.join(__dirname, '../www/data'),
@@ -495,9 +496,15 @@ function saveMovies(movies, progress) {
 /**
  * Главная функция синхронизации
  */
-async function sync(apiKey, maxRequests = null, yearOverride = {}) {
+async function sync(apiKey, maxRequests = null, yearOverride = {}, useEuServer = false) {
   console.log('🎬 ПоискКино Incremental Sync');
   console.log('================================\n');
+
+  // Выбираем URL сервера
+  if (useEuServer) {
+    CONFIG.API_BASE_URL = CONFIG.EU_API_BASE_URL;
+    console.log('🌍 Используется EU-зеркало: ' + CONFIG.API_BASE_URL);
+  }
 
   // Загружаем прогресс с учетом API ключа
   const progress = loadProgress(apiKey);
@@ -707,7 +714,9 @@ if (require.main === module) {
   if (getArg('--year-start')) yearOverride.start = parseInt(getArg('--year-start'));
   if (getArg('--year-end'))   yearOverride.end   = parseInt(getArg('--year-end'));
 
-  sync(apiKey, maxRequests, yearOverride).catch(error => {
+  const useEuServer = args.includes('--eu-server');
+
+  sync(apiKey, maxRequests, yearOverride, useEuServer).catch(error => {
     console.error('❌ Критическая ошибка:', error);
     process.exit(1);
   });

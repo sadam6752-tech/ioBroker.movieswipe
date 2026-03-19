@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.42",
+    "version": "1.0.43",
     "news": {
+      "1.0.43": {
+        "en": "Add EU server mirror option (eu-api.poiskkino.dev) for users in Europe where main API is not accessible",
+        "de": "EU-Server-Spiegel-Option hinzugefuegt (eu-api.poiskkino.dev) fuer Nutzer in Europa, bei denen die Haupt-API nicht erreichbar ist",
+        "ru": "Добавлена опция EU-зеркала (eu-api.poiskkino.dev) для пользователей в Европе, где основной API недоступен",
+        "fr": "Ajout de l option miroir EU (eu-api.poiskkino.dev) pour les utilisateurs en Europe ou l API principale est inaccessible",
+        "it": "Aggiunta opzione mirror EU (eu-api.poiskkino.dev) per utenti in Europa dove l API principale non e accessibile",
+        "es": "Anadida opcion de espejo EU (eu-api.poiskkino.dev) para usuarios en Europa donde la API principal no es accesible",
+        "pl": "Dodano opcje serwera lustrzanego EU (eu-api.poiskkino.dev) dla uzytkownikow w Europie, gdzie glowne API jest niedostepne",
+        "pt": "Adicionada opcao de espelho EU (eu-api.poiskkino.dev) para utilizadores na Europa onde a API principal nao esta acessivel",
+        "nl": "EU-spiegelserveroptie toegevoegd (eu-api.poiskkino.dev) voor gebruikers in Europa waar de hoofd-API niet toegankelijk is",
+        "uk": "Додано опцію EU-дзеркала (eu-api.poiskkino.dev) для користувачів у Європі, де основний API недоступний",
+        "zh-cn": "为欧洲主API不可访问的用户添加EU镜像服务器选项（eu-api.poiskkino.dev）"
+      },
       "1.0.42": {
         "en": "Replace log.info with log.debug for startup/shutdown details (adapter starting, ready, cleanup, database info)",
         "de": "log.info durch log.debug fuer Start-/Stop-Details ersetzt (Adapter-Start, bereit, Cleanup, Datenbankinfo)",
@@ -75,18 +88,6 @@
         "pt": "Aba Status: botoes sendTo nao funcionais substituidos por exibicao simples da porta e instrucoes para encontrar a URL completa na aba Objects.",
         "nl": "Status-tabblad: niet-werkende sendTo-knoppen vervangen door eenvoudige poortweergave en instructies om volledige URL te vinden in Objects-tabblad.",
         "zh-cn": "状态选项卡：将不工作的sendTo按钮替换为简单的端口显示和在Objects选项卡中查找完整URL的说明。"
-      },
-      "1.0.36": {
-        "en": "Status tab now shows real server URL via sendTo. Added onMessage handler for getServerUrl command.",
-        "de": "Status-Tab zeigt jetzt echte Server-URL via sendTo. onMessage-Handler fuer getServerUrl-Befehl hinzugefuegt.",
-        "ru": "Вкладка Статус теперь показывает реальный URL сервера через sendTo. Добавлен обработчик onMessage для команды getServerUrl.",
-        "fr": "L'onglet Statut affiche maintenant l'URL reelle du serveur via sendTo. Gestionnaire onMessage ajoute pour la commande getServerUrl.",
-        "it": "La scheda Stato ora mostra l'URL reale del server tramite sendTo. Aggiunto gestore onMessage per il comando getServerUrl.",
-        "es": "La pestana Estado ahora muestra la URL real del servidor via sendTo. Anadido manejador onMessage para el comando getServerUrl.",
-        "pl": "Zakladka Status teraz pokazuje rzeczywisty URL serwera przez sendTo. Dodano handler onMessage dla komendy getServerUrl.",
-        "pt": "A aba Status agora mostra a URL real do servidor via sendTo. Adicionado handler onMessage para o comando getServerUrl.",
-        "nl": "Status-tabblad toont nu echte server-URL via sendTo. onMessage-handler toegevoegd voor getServerUrl-commando.",
-        "zh-cn": "状态选项卡现在通过sendTo显示真实服务器URL。为getServerUrl命令添加了onMessage处理程序。"
       }
     },
     "titleLang": {
@@ -167,7 +168,8 @@
     "maxRequestsPerRun": 250,
     "dailyRequestLimit": 200,
     "preserveSyncProgress": true,
-    "preserveDatabase": true
+    "preserveDatabase": true,
+    "useEuServer": false
   },
   "objects": [],
   "instanceObjects": [
