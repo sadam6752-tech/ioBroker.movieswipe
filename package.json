@@ -39,7 +39,7 @@
     "@iobroker/testing": "^5.2.2",
     "@types/node": "^22.10.2",
     "eslint": "^9.17.0",
-    "mocha": "^10.4.0"
+    "mocha": "^11.7.6"
   },
   "main": "main.js",
   "files": [
