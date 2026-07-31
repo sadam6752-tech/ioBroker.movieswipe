@@ -145,6 +145,7 @@ function loadProgress(apiKey) {
         progress.requestsToday = 0;
         progress.lastRequestDate = null;
         progress.lastCursor = null;
+        progress.completed = false;
         progress.apiKeyHash = currentKeyHash;
         
         // Сохраняем сразу чтобы курсор не восстановился из старого файла
@@ -558,9 +559,9 @@ async function sync(apiKey, maxRequests = null, yearOverride = {}, useEuServer =
   console.log(`  Статус: ${progress.completed ? 'Завершено' : 'В процессе'}\n`);
 
   if (progress.completed) {
-    console.log('✓ Синхронизация уже завершена!');
-    console.log('Для повторной синхронизации удалите файл .sync-progress.json\n');
-    return;
+    console.log('✓ Все фильмы для заданного диапазона уже загружены!');
+    console.log('Переключаемся на следующий API ключ...\n');
+    process.exit(0);
   }
 
   // Проверяем лимит
@@ -601,20 +602,12 @@ async function sync(apiKey, maxRequests = null, yearOverride = {}, useEuServer =
 
       // Проверяем есть ли еще данные
       if (!result.hasNext || !result.nextCursor) {
-        console.log('\n✓ Все фильмы для текущего периода загружены!');
-        
-        // Расширяем период на 5 лет назад
-        if (progress.yearRange.start > 1900) {
-          progress.yearRange.start -= 5;
-          progress.lastCursor = null;
-          console.log(`Расширяем период: ${progress.yearRange.start}-${progress.yearRange.end}`);
-          saveProgress(progress);
-        } else {
-          progress.completed = true;
-          saveProgress(progress);
-          console.log('✓ Синхронизация полностью завершена!');
-          break;
-        }
+        console.log('\n✓ Все фильмы для заданного диапазона загружены!');
+        progress.completed = true;
+        progress.lastCursor = null;
+        saveProgress(progress);
+        console.log('✓ Синхронизация для этого ключа завершена!');
+        break;
       }
 
       // Задержка между запросами (2с — чтобы не превысить rate limit 5 req/s)

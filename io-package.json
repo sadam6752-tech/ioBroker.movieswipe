@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.45",
+    "version": "1.0.46",
     "news": {
+      "1.0.46": {
+        "en": "Fix year range expansion: stop at assigned range end, switch to next key instead of expanding backwards. Reset completed flag on key change.",
+        "de": "Jahresbereich-Erweiterung behoben: stoppt am zugewiesenen Bereichsende, wechselt zum naechsten Schluessel statt rueckwaerts zu erweitern.",
+        "ru": "Исправлено расширение диапазона лет: останавливается на заданном диапазоне, переключается на следующий ключ вместо расширения назад. Сброс флага completed при смене ключа.",
+        "fr": "Correction expansion plage d'annees: s'arrete a la fin de la plage assignee, passe a la cle suivante.",
+        "it": "Corretto espansione intervallo anni: si ferma alla fine dell'intervallo assegnato, passa alla chiave successiva.",
+        "es": "Corregida expansion rango de anos: se detiene al final del rango asignado, cambia a la siguiente clave.",
+        "pl": "Poprawiono rozszerzanie zakresu lat: zatrzymuje sie na koncu przypisanego zakresu, przelacza na nastepny klucz.",
+        "pt": "Corrigida expansao do intervalo de anos: para no fim do intervalo atribuido, muda para a proxima chave.",
+        "nl": "Jaarbereik uitbreiding opgelost: stopt aan het einde van het toegewezen bereik, schakelt over naar de volgende sleutel.",
+        "uk": "Виправлено розширення діапазону років: зупиняється на заданому діапазоні, перемикається на наступний ключ.",
+        "zh-cn": "修复年份范围扩展：在分配范围结束时停止，切换到下一个密钥而不是向后扩展。"
+      },
       "1.0.45": {
         "en": "Per-key year range and filters: each API key can have its own year range, minVotes and minRating. Fixes demo tier 10-page limit by using different ranges per key.",
         "de": "Jahresbereich und Filter pro Schlüssel: Jeder API-Schlüssel kann einen eigenen Jahresbereich, minVotes und minRating haben. Behebt Demo-Tarif 10-Seiten-Limit durch verschiedene Bereiche pro Schlüssel.",
