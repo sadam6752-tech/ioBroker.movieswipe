@@ -201,7 +201,11 @@ class MovieSwipe extends utils.Adapter {
         
         // Проверить наличие API ключей
         const apiKeys = this.config.apiKeys || [];
-        const validKeys = apiKeys.filter(item => item && item.key && item.key.trim()).map(item => item.key.trim());
+        const validKeys = apiKeys.filter(item => {
+          if (!item) return false;
+          if (typeof item === 'string') return item.trim();
+          return item.key && item.key.trim();
+        });
         
         if (validKeys.length === 0) {
           this.log.error('No API keys configured');

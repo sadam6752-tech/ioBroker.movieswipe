@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.44",
+    "version": "1.0.45",
     "news": {
+      "1.0.45": {
+        "en": "Per-key year range and filters: each API key can have its own year range, minVotes and minRating. Fixes demo tier 10-page limit by using different ranges per key.",
+        "de": "Jahresbereich und Filter pro Schlüssel: Jeder API-Schlüssel kann einen eigenen Jahresbereich, minVotes und minRating haben. Behebt Demo-Tarif 10-Seiten-Limit durch verschiedene Bereiche pro Schlüssel.",
+        "ru": "Диапазон лет и фильтры на ключ: каждый API ключ может иметь свой диапазон лет, minVotes и minRating. Исправляет лимит 10 страниц демо-тарифа через разные диапазоны на ключ.",
+        "fr": "Plage d'années et filtres par clé: chaque clé API peut avoir sa propre plage d'années, minVotes et minRating.",
+        "it": "Intervallo anni e filtri per chiave: ogni chiave API può avere il proprio intervallo di anni, minVotes e minRating.",
+        "es": "Rango de años y filtros por clave: cada clave API puede tener su propio rango de años, minVotes y minRating.",
+        "pl": "Zakres lat i filtry na klucz: każdy klucz API może mieć własny zakres lat, minVotes i minRating.",
+        "pt": "Intervalo de anos e filtros por chave: cada chave API pode ter seu próprio intervalo de anos, minVotes e minRating.",
+        "nl": "Jaarbereik en filters per sleutel: elke API-sleutel kan zijn eigen jaarbereik, minVotes en minRating hebben.",
+        "uk": "Діапазон років і фільтри на ключ: кожен API ключ може мати свій діапазон років, minVotes і minRating.",
+        "zh-cn": "每个密钥的年份范围和过滤器：每个API密钥可以有自己的年份范围、minVotes和minRating。"
+      },
       "1.0.44": {
         "en": "Add CI/CD workflow, dependabot, release-script; use node: prefix for built-in modules; fix unload cleanup; fix lint warnings",
         "de": "CI/CD Workflow, Dependabot, Release-Script hinzugefuegt; node:-Praefix fuer eingebaute Module; Unload-Bereinigung verbessert; Lint-Warnungen behoben",

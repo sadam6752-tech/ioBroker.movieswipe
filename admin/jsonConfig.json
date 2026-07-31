@@ -43,13 +43,41 @@
         "apiKeys": {
           "type": "table",
           "label": "API Keys",
-          "help": "Kinopoisk API keys (one or more). The adapter will use them in rotation. Press '+' to add a new key.",
+          "help": "API keys with year ranges. Each key covers its own year range (demo tier: max 10 pages = 2500 movies per key). Press '+' to add.",
           "items": [
             {
               "type": "text",
               "title": "API Key",
               "attr": "key",
-              "width": "100%"
+              "width": "40%"
+            },
+            {
+              "type": "number",
+              "title": "Year From",
+              "attr": "yearStart",
+              "width": "15%",
+              "default": 2020
+            },
+            {
+              "type": "number",
+              "title": "Year To",
+              "attr": "yearEnd",
+              "width": "15%",
+              "default": 2026
+            },
+            {
+              "type": "number",
+              "title": "Min Votes",
+              "attr": "minVotes",
+              "width": "15%",
+              "default": 1000
+            },
+            {
+              "type": "number",
+              "title": "Min Rating",
+              "attr": "minRating",
+              "width": "15%",
+              "default": 5
             }
           ],
           "xs": 12,

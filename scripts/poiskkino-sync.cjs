@@ -135,18 +135,24 @@ function loadProgress(apiKey) {
       
       // Проверяем, изменился ли API ключ
       const currentKeyHash = hashApiKey(apiKey);
-      if (progress.apiKeyHash && progress.apiKeyHash !== currentKeyHash) {
-        console.log('🔑 Обнаружен новый API ключ!');
-        console.log('   Сбрасываем счетчик запросов для нового ключа...');
+      if (!progress.apiKeyHash || progress.apiKeyHash !== currentKeyHash) {
+        if (progress.apiKeyHash && progress.apiKeyHash !== currentKeyHash) {
+          console.log('🔑 Обнаружен новый API ключ!');
+          console.log('   Сбрасываем счетчик запросов и курсор для нового ключа...');
+        }
         
-        // Сбрасываем только счетчик запросов, но сохраняем прогресс загрузки
+        // Сбрасываем счетчик запросов И курсор пагинации — курсор привязан к API ключу
         progress.requestsToday = 0;
         progress.lastRequestDate = null;
+        progress.lastCursor = null;
         progress.apiKeyHash = currentKeyHash;
         
-        console.log('✅ Можно продолжать загрузку с нового ключа!\n');
-      } else {
-        progress.apiKeyHash = currentKeyHash;
+        // Сохраняем сразу чтобы курсор не восстановился из старого файла
+        saveProgress(progress);
+        
+        if (progress.apiKeyHash !== currentKeyHash) {
+          console.log('✅ Можно продолжать загрузку с нового ключа!\n');
+        }
       }
       
       return progress;
@@ -428,6 +434,38 @@ async function fetchMovies(apiKey, progress) {
         error.message.includes('429') ||
         error.message.includes('Forbidden');
 
+      const isPageLimit = error.message.includes('страниц') ||
+        error.message.includes('демо') ||
+        error.message.includes('тариф') ||
+        error.message.includes('pages');
+
+      const isBadCursor = error.message.includes('400') ||
+        error.message.includes('курсор') ||
+        error.message.includes('cursor');
+
+      // Лимит страниц демо-тарифа — особый флаг, обрабатывается в sync()
+      if (isPageLimit) throw Object.assign(error, { isPageLimit: true });
+
+      // Невалидный курсор — сбросить и продолжить
+      if (isBadCursor) {
+        console.log('⚠️  Некорректный курсор пагинации, сбрасываем и продолжаем...');
+        progress.lastCursor = null;
+        saveProgress(progress);
+        // Повторить запрос без курсора
+        const retryResult = await fetch(url.toString().replace(/[&?]next=[^&]+/, ''), {
+          headers: { 'X-API-KEY': apiKey, 'Accept': 'application/json' }
+        });
+        if (retryResult.ok) {
+          const data = await retryResult.json();
+          return {
+            movies: data.docs || [],
+            nextCursor: data.next || null,
+            hasNext: data.hasNext || false,
+            total: data.total || 0
+          };
+        }
+      }
+
       // Rate limit — не ретраим, пробрасываем сразу
       if (isRateLimit) throw error;
 
@@ -579,8 +617,8 @@ async function sync(apiKey, maxRequests = null, yearOverride = {}, useEuServer =
         }
       }
 
-      // Небольшая задержка между запросами
-      await new Promise(resolve => setTimeout(resolve, 500));
+      // Задержка между запросами (2с — чтобы не превысить rate limit 5 req/s)
+      await new Promise(resolve => setTimeout(resolve, 2000));
     }
 
     const endTime = new Date();
@@ -620,7 +658,25 @@ async function sync(apiKey, maxRequests = null, yearOverride = {}, useEuServer =
                        errorMessage.includes('network') ||
                        errorMessage.includes('socket');
     
-    if (isRateLimit) {
+    if (error.isPageLimit) {
+      console.log('\n⚠️  Достигнут лимит страниц демо-тарифа (10 страниц × 250 = 2500 фильмов за запуск)');
+      console.log('Сбрасываем курсор и меняем параметры для следующего запуска...\n');
+      // Сбросить курсор и немного изменить фильтры чтобы получить другую выборку
+      progress.lastCursor = null;
+      // Увеличиваем минимальное количество голосов чтобы получить другой набор
+      if (CONFIG.MIN_VOTES < 50000) {
+        CONFIG.MIN_VOTES = Math.round(CONFIG.MIN_VOTES * 1.5);
+        console.log(`Новый минимум голосов: ${CONFIG.MIN_VOTES}`);
+      } else {
+        // Расширяем период назад
+        if (progress.yearRange.start > 1900) {
+          progress.yearRange.start -= 5;
+          console.log(`Расширяем период: ${progress.yearRange.start}-${progress.yearRange.end}`);
+        }
+      }
+      saveProgress(progress);
+      process.exit(0); // Выход с кодом 0 — адаптер переключится на следующий ключ
+    } else if (isRateLimit) {
       console.log('\n⚠️  Достигнут дневной лимит API');
       console.log('Прогресс сохранен. Синхронизация продолжится автоматически завтра или с другим API ключом.\n');
       saveProgress(progress);
