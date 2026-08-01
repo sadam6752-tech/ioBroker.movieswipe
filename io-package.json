@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.46",
+    "version": "1.0.47",
     "news": {
+      "1.0.47": {
+        "en": "Fix totalMovies state: always shows real DB count, not per-key counter. Fix requestsUsed/requestsRemaining: parsed from script output per key. On key switch totalMovies read from DB file.",
+        "de": "totalMovies-Status korrigiert: zeigt immer echte DB-Anzahl. requestsUsed/requestsRemaining aus Skript-Ausgabe pro Schluessel. Bei Schluessel-Wechsel wird totalMovies aus DB-Datei gelesen.",
+        "ru": "Исправлен state totalMovies: всегда показывает реальное количество из базы, не счётчик ключа. Исправлен учёт requestsUsed/requestsRemaining из вывода скрипта. При смене ключа totalMovies читается из файла базы.",
+        "fr": "Correction totalMovies: affiche toujours le vrai compte DB. requestsUsed/requestsRemaining analyses depuis la sortie du script par cle.",
+        "it": "Corretto totalMovies: mostra sempre il conteggio reale del DB. requestsUsed/requestsRemaining analizzati dall'output dello script per chiave.",
+        "es": "Corregido totalMovies: siempre muestra el conteo real de la BD. requestsUsed/requestsRemaining analizados de la salida del script por clave.",
+        "pl": "Poprawiono totalMovies: zawsze pokazuje rzeczywista liczbe z bazy. requestsUsed/requestsRemaining parsowane z wyjscia skryptu per klucz.",
+        "pt": "Corrigido totalMovies: sempre mostra contagem real do BD. requestsUsed/requestsRemaining analisados da saida do script por chave.",
+        "nl": "totalMovies gecorrigeerd: toont altijd echte DB-telling. requestsUsed/requestsRemaining geparseerd uit scriptuitvoer per sleutel.",
+        "uk": "Виправлено totalMovies: завжди показує реальну кількість з бази. requestsUsed/requestsRemaining парситься з виводу скрипта на ключ.",
+        "zh-cn": "修复totalMovies状态：始终显示真实DB计数。requestsUsed/requestsRemaining从每个键的脚本输出解析。"
+      },
       "1.0.46": {
         "en": "Fix year range expansion: stop at assigned range end, switch to next key instead of expanding backwards. Reset completed flag on key change.",
         "de": "Jahresbereich-Erweiterung behoben: stoppt am zugewiesenen Bereichsende, wechselt zum naechsten Schluessel statt rueckwaerts zu erweitern.",

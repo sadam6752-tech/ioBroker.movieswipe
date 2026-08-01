@@ -147,6 +147,14 @@ function loadProgress(apiKey) {
         progress.lastCursor = null;
         progress.completed = false;
         progress.apiKeyHash = currentKeyHash;
+        // totalMovies НЕ сбрасываем — читаем из файла базы чтобы показывать реальное количество
+        try {
+          const dbFile = path.join(__dirname, '../www/data/movies-poiskkino.json');
+          if (fs.existsSync(dbFile)) {
+            const db = JSON.parse(fs.readFileSync(dbFile, 'utf8'));
+            progress.totalMovies = db.movies ? db.movies.length : 0;
+          }
+        } catch (e) { /* не критично */ }
         
         // Сохраняем сразу чтобы курсор не восстановился из старого файла
         saveProgress(progress);
