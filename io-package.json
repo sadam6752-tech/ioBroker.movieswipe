@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.47",
+    "version": "1.0.48",
     "news": {
+      "1.0.48": {
+        "en": "Per-key request tracking: each API key stores its own daily request counter by key hash. Same key reused multiple times always shows correct remaining requests. --status shows stats per key.",
+        "de": "Anfragen-Tracking pro Schluessel: Jeder API-Schluessel speichert seinen eigenen Tageszaehler per Hash. Derselbe Schluessel mehrfach verwendet zeigt korrekte verbleibende Anfragen.",
+        "ru": "Учёт запросов на ключ: каждый API ключ хранит свой дневной счётчик по хешу ключа. Один ключ используемый несколько раз всегда показывает правильный остаток запросов.",
+        "fr": "Suivi des requetes par cle: chaque cle API stocke son propre compteur journalier par hash. La meme cle reutilisee plusieurs fois affiche toujours les requetes restantes correctes.",
+        "it": "Tracciamento richieste per chiave: ogni chiave API memorizza il proprio contatore giornaliero per hash. La stessa chiave riutilizzata piu volte mostra sempre le richieste rimanenti corrette.",
+        "es": "Seguimiento de solicitudes por clave: cada clave API almacena su propio contador diario por hash. La misma clave reutilizada varias veces siempre muestra las solicitudes restantes correctas.",
+        "pl": "Sledzenie zapytan na klucz: kazdy klucz API przechowuje wlasny dzienny licznik po hashu. Ten sam klucz uzywany wielokrotnie zawsze pokazuje prawidlowa liczbe pozostalych zapytan.",
+        "pt": "Rastreamento de solicitacoes por chave: cada chave API armazena seu proprio contador diario por hash. A mesma chave reutilizada varias vezes sempre mostra as solicitacoes restantes corretas.",
+        "nl": "Verzoektracking per sleutel: elke API-sleutel slaat zijn eigen dagelijkse teller op per hash. Dezelfde sleutel meerdere keren hergebruikt toont altijd de juiste resterende verzoeken.",
+        "uk": "Облік запитів на ключ: кожен API ключ зберігає свій денний лічильник за хешем. Один ключ що використовується кілька разів завжди показує правильний залишок запитів.",
+        "zh-cn": "按键跟踪请求：每个API密钥通过密钥哈希存储自己的每日请求计数器。同一密钥多次重用时始终显示正确的剩余请求数。"
+      },
       "1.0.47": {
         "en": "Fix totalMovies state: always shows real DB count, not per-key counter. Fix requestsUsed/requestsRemaining: parsed from script output per key. On key switch totalMovies read from DB file.",
         "de": "totalMovies-Status korrigiert: zeigt immer echte DB-Anzahl. requestsUsed/requestsRemaining aus Skript-Ausgabe pro Schluessel. Bei Schluessel-Wechsel wird totalMovies aus DB-Datei gelesen.",

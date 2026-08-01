@@ -125,6 +125,23 @@ function hashApiKey(apiKey) {
 }
 
 /**
+ * Получить статистику запросов для конкретного ключа
+ */
+function getKeyStats(progress, keyHash) {
+  if (!progress.keyStats) progress.keyStats = {};
+  if (!progress.keyStats[keyHash]) {
+    progress.keyStats[keyHash] = { requestsToday: 0, lastRequestDate: null };
+  }
+  const stats = progress.keyStats[keyHash];
+  const today = new Date().toISOString().split('T')[0];
+  if (stats.lastRequestDate !== today) {
+    stats.requestsToday = 0;
+    stats.lastRequestDate = today;
+  }
+  return stats;
+}
+
+/**
  * Загрузить прогресс синхронизации
  */
 function loadProgress(apiKey) {
@@ -132,22 +149,33 @@ function loadProgress(apiKey) {
     if (fs.existsSync(CONFIG.PROGRESS_FILE)) {
       const data = fs.readFileSync(CONFIG.PROGRESS_FILE, 'utf8');
       const progress = JSON.parse(data);
-      
-      // Проверяем, изменился ли API ключ
+
       const currentKeyHash = hashApiKey(apiKey);
+
+      // Мигрируем старый формат (requestsToday/lastRequestDate) в keyStats
+      if (!progress.keyStats) {
+        progress.keyStats = {};
+        if (progress.apiKeyHash && progress.requestsToday > 0) {
+          progress.keyStats[progress.apiKeyHash] = {
+            requestsToday: progress.requestsToday,
+            lastRequestDate: progress.lastRequestDate
+          };
+        }
+      }
+
+      // Проверяем, изменился ли API ключ
       if (!progress.apiKeyHash || progress.apiKeyHash !== currentKeyHash) {
         if (progress.apiKeyHash && progress.apiKeyHash !== currentKeyHash) {
-          console.log('🔑 Обнаружен новый API ключ!');
-          console.log('   Сбрасываем счетчик запросов и курсор для нового ключа...');
+          const prevStats = getKeyStats(progress, progress.apiKeyHash);
+          console.log(`🔑 Обнаружен новый API ключ!`);
+          console.log(`   Предыдущий ключ использовал ${prevStats.requestsToday}/${CONFIG.MAX_REQUESTS_PER_DAY} запросов сегодня`);
         }
-        
-        // Сбрасываем счетчик запросов И курсор пагинации — курсор привязан к API ключу
-        progress.requestsToday = 0;
-        progress.lastRequestDate = null;
+
         progress.lastCursor = null;
         progress.completed = false;
         progress.apiKeyHash = currentKeyHash;
-        // totalMovies НЕ сбрасываем — читаем из файла базы чтобы показывать реальное количество
+
+        // totalMovies читаем из файла базы
         try {
           const dbFile = path.join(__dirname, '../www/data/movies-poiskkino.json');
           if (fs.existsSync(dbFile)) {
@@ -155,15 +183,13 @@ function loadProgress(apiKey) {
             progress.totalMovies = db.movies ? db.movies.length : 0;
           }
         } catch (e) { /* не критично */ }
-        
-        // Сохраняем сразу чтобы курсор не восстановился из старого файла
+
         saveProgress(progress);
-        
-        if (progress.apiKeyHash !== currentKeyHash) {
-          console.log('✅ Можно продолжать загрузку с нового ключа!\n');
-        }
+
+        const newStats = getKeyStats(progress, currentKeyHash);
+        console.log(`✅ Ключ ${currentKeyHash}: использовано ${newStats.requestsToday}/${CONFIG.MAX_REQUESTS_PER_DAY} запросов сегодня\n`);
       }
-      
+
       return progress;
     }
   } catch (error) {
@@ -175,8 +201,7 @@ function loadProgress(apiKey) {
   return {
     lastCursor: null,
     totalMovies: 0,
-    requestsToday: 0,
-    lastRequestDate: null,
+    keyStats: {},
     apiKeyHash: hashApiKey(apiKey),
     yearRange: {
       start: currentYear - CONFIG.INITIAL_YEARS,
@@ -202,18 +227,11 @@ function saveProgress(progress) {
 }
 
 /**
- * Проверить лимит запросов
+ * Проверить лимит запросов для текущего ключа
  */
-function checkRateLimit(progress) {
-  const today = new Date().toISOString().split('T')[0];
-  
-  if (progress.lastRequestDate !== today) {
-    // Новый день - сбрасываем счетчик
-    progress.requestsToday = 0;
-    progress.lastRequestDate = today;
-  }
-
-  return progress.requestsToday < CONFIG.MAX_REQUESTS_PER_DAY;
+function checkRateLimit(progress, keyHash) {
+  const stats = getKeyStats(progress, keyHash);
+  return stats.requestsToday < CONFIG.MAX_REQUESTS_PER_DAY;
 }
 
 /**
@@ -555,14 +573,17 @@ async function sync(apiKey, maxRequests = null, yearOverride = {}, useEuServer =
 
   // Загружаем прогресс с учетом API ключа
   const progress = loadProgress(apiKey);
+  const keyHash = hashApiKey(apiKey);
 
   // Применяем переопределение диапазона лет если указано
   if (yearOverride.start !== undefined) progress.yearRange.start = yearOverride.start;
   if (yearOverride.end !== undefined) progress.yearRange.end = yearOverride.end;
-  
+
+  const keyStats = getKeyStats(progress, keyHash);
+
   console.log(`Прогресс:`);
   console.log(`  Всего загружено: ${progress.totalMovies} фильмов`);
-  console.log(`  Запросов сегодня: ${progress.requestsToday}/${CONFIG.MAX_REQUESTS_PER_DAY}`);
+  console.log(`  Запросов сегодня [ключ ${keyHash}]: ${keyStats.requestsToday}/${CONFIG.MAX_REQUESTS_PER_DAY}`);
   console.log(`  Период: ${progress.yearRange.start}-${progress.yearRange.end}`);
   console.log(`  Статус: ${progress.completed ? 'Завершено' : 'В процессе'}\n`);
 
@@ -573,14 +594,13 @@ async function sync(apiKey, maxRequests = null, yearOverride = {}, useEuServer =
   }
 
   // Проверяем лимит
-  if (!checkRateLimit(progress)) {
-    console.log('⚠️  Достигнут дневной лимит запросов (200) для текущего API ключа');
-    console.log('💡 Вы можете продолжить с другим API ключом:');
-    console.log('   node poiskkino-sync.cjs YOUR_OTHER_API_KEY\n');
-    return;
+  if (!checkRateLimit(progress, keyHash)) {
+    console.log(`⚠️  Достигнут дневной лимит запросов (${CONFIG.MAX_REQUESTS_PER_DAY}) для ключа ${keyHash}`);
+    console.log('Переключаемся на следующий API ключ...\n');
+    process.exit(0); // код 0 — адаптер переключит ключ
   }
 
-  const requestsLimit = maxRequests || (CONFIG.MAX_REQUESTS_PER_DAY - progress.requestsToday);
+  const requestsLimit = maxRequests || (CONFIG.MAX_REQUESTS_PER_DAY - keyStats.requestsToday);
   console.log(`Будет выполнено до ${requestsLimit} запросов\n`);
 
   let requestCount = 0;
@@ -591,7 +611,8 @@ async function sync(apiKey, maxRequests = null, yearOverride = {}, useEuServer =
       // Загружаем порцию фильмов
       const result = await fetchMovies(apiKey, progress);
       requestCount++;
-      progress.requestsToday++;
+      keyStats.requestsToday++;
+      keyStats.lastRequestDate = new Date().toISOString().split('T')[0];
 
       console.log(`Получено ${result.movies.length} фильмов`);
 
@@ -638,7 +659,8 @@ async function sync(apiKey, maxRequests = null, yearOverride = {}, useEuServer =
     console.log(`  Новых фильмов: ${totalNewMovies}`);
     console.log(`  Всего фильмов: ${progress.totalMovies}`);
     console.log(`  Использовано запросов: ${requestCount}`);
-    console.log(`  Осталось запросов сегодня: ${CONFIG.MAX_REQUESTS_PER_DAY - progress.requestsToday}`);
+    console.log(`  Запросов сегодня [ключ ${keyHash}]: ${keyStats.requestsToday}/${CONFIG.MAX_REQUESTS_PER_DAY}`);
+    console.log(`  Осталось запросов сегодня: ${CONFIG.MAX_REQUESTS_PER_DAY - keyStats.requestsToday}`);
     console.log('================================\n');
 
   } catch (error) {
@@ -726,13 +748,20 @@ if (require.main === module) {
   }
 
   if (args.includes('--status')) {
-    const progress = loadProgress('');
+    const progress = loadProgress('status-check');
     console.log('\n📊 Статус синхронизации:');
     console.log(`  Всего загружено: ${progress.totalMovies} фильмов`);
-    console.log(`  Запросов сегодня: ${progress.requestsToday}/${CONFIG.MAX_REQUESTS_PER_DAY}`);
-    console.log(`  Последний запрос: ${progress.lastRequestDate || 'никогда'}`);
     console.log(`  Период: ${progress.yearRange.start}-${progress.yearRange.end}`);
-    console.log(`  Статус: ${progress.completed ? 'Завершено ✓' : 'В процессе...'}\n`);
+    console.log(`  Статус: ${progress.completed ? 'Завершено ✓' : 'В процессе...'}`);
+    if (progress.keyStats && Object.keys(progress.keyStats).length > 0) {
+      console.log(`\n  Статистика по ключам:`);
+      for (const [hash, stats] of Object.entries(progress.keyStats)) {
+        const today = new Date().toISOString().split('T')[0];
+        const todayCount = stats.lastRequestDate === today ? stats.requestsToday : 0;
+        console.log(`    Ключ ${hash}: ${todayCount}/${CONFIG.MAX_REQUESTS_PER_DAY} запросов сегодня (последний: ${stats.lastRequestDate || 'никогда'})`);
+      }
+    }
+    console.log('');
     process.exit(0);
   }
 
