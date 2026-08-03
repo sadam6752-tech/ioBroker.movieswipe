@@ -236,8 +236,9 @@
           "xl": 6
         },
         "syncScheduledTime": {
-          "type": "timePicker",
+          "type": "text",
           "label": "label_syncScheduledTime",
+          "help": "help_syncScheduledTime",
           "default": "03:00",
           "hidden": "!data.autoSync || !data.syncScheduled",
           "xs": 12,

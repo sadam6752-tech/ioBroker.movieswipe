@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.50",
+    "version": "1.0.51",
     "news": {
+      "1.0.51": {
+        "en": "Replace timePicker with text field for sync time (timePicker type does not support 'default'/'help' in jsonConfig schema).",
+        "de": "timePicker durch Textfeld für Synchronisierungszeit ersetzt (timePicker-Typ unterstützt 'default'/'help' im jsonConfig-Schema nicht).",
+        "ru": "timePicker заменён на текстовое поле для времени синхронизации (тип timePicker не поддерживает 'default'/'help' в схеме jsonConfig).",
+        "fr": "Remplacement timePicker par champ texte pour l'heure de sync (timePicker ne supporte pas 'default'/'help' dans le schéma jsonConfig).",
+        "it": "Sostituito timePicker con campo testo per ora sync (timePicker non supporta 'default'/'help' nello schema jsonConfig).",
+        "es": "Reemplazado timePicker por campo texto para hora sync (timePicker no soporta 'default'/'help' en esquema jsonConfig).",
+        "pl": "Zastąpiono timePicker polem tekstowym dla czasu sync (timePicker nie obsługuje 'default'/'help' w schemacie jsonConfig).",
+        "pt": "timePicker substituído por campo texto para hora sync (timePicker não suporta 'default'/'help' no esquema jsonConfig).",
+        "nl": "timePicker vervangen door tekstveld voor sync-tijd (timePicker ondersteunt 'default'/'help' niet in jsonConfig-schema).",
+        "uk": "timePicker замінено на текстове поле для часу синхронізації (тип timePicker не підтримує 'default'/'help' у схемі jsonConfig).",
+        "zh-cn": "将timePicker替换为同步时间的文本字段（timePicker类型在jsonConfig模式中不支持'default'/'help'）。"
+      },
       "1.0.50": {
         "en": "Fix auto sync: per-key parameters (yearStart/yearEnd/minVotes/minRating) now correctly passed when using scheduled sync. Fix timePicker validation warning (removed unsupported 'help' property).",
         "de": "Auto-Sync-Fix: Schlüssel-Parameter (yearStart/yearEnd/minVotes/minRating) werden bei geplanter Synchronisierung jetzt korrekt übergeben. timePicker-Validierungswarnung behoben (nicht unterstützte 'help'-Eigenschaft entfernt).",
