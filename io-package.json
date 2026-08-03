@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.53",
+    "version": "1.0.54",
     "news": {
+      "1.0.54": {
+        "en": "Add dependabot cooldown (E8915) and auto-merge.yml (S8914). Ignore major @types/node bumps. Restrict auto-merge: dev dependencies to minor, runtime dependencies to patch.",
+        "de": "Dependabot-Cooldown (E8915) und auto-merge.yml (S8914) hinzugefuegt. Major-Updates von @types/node ignoriert. Auto-Merge eingeschraenkt: Dev-Abhaengigkeiten bis minor, Laufzeit-Abhaengigkeiten nur patch.",
+        "ru": "Добавлен cooldown для dependabot (E8915) и auto-merge.yml (S8914). Мажорные обновления @types/node игнорируются. Автомерж ограничен: dev-зависимости до minor, runtime-зависимости только patch.",
+        "fr": "Ajout du cooldown dependabot (E8915) et de auto-merge.yml (S8914). Les majeures de @types/node sont ignorees. Auto-merge restreint: dependances de dev jusqu'a minor, dependances runtime en patch uniquement.",
+        "it": "Aggiunto cooldown dependabot (E8915) e auto-merge.yml (S8914). Ignorati aggiornamenti major di @types/node. Auto-merge limitato: dipendenze di sviluppo fino a minor, dipendenze runtime solo patch.",
+        "es": "Anadido cooldown de dependabot (E8915) y auto-merge.yml (S8914). Se ignoran las subidas major de @types/node. Auto-merge restringido: dependencias de desarrollo hasta minor, dependencias de runtime solo patch.",
+        "pl": "Dodano cooldown dependabot (E8915) i auto-merge.yml (S8914). Ignorowane sa major aktualizacje @types/node. Auto-merge ograniczony: zaleznosci dev do minor, zaleznosci runtime tylko patch.",
+        "pt": "Adicionado cooldown do dependabot (E8915) e auto-merge.yml (S8914). Atualizacoes major de @types/node sao ignoradas. Auto-merge restrito: dependencias de desenvolvimento ate minor, dependencias de runtime apenas patch.",
+        "nl": "Dependabot cooldown (E8915) en auto-merge.yml (S8914) toegevoegd. Major updates van @types/node worden genegeerd. Auto-merge beperkt: dev-afhankelijkheden tot minor, runtime-afhankelijkheden alleen patch.",
+        "uk": "Додано cooldown для dependabot (E8915) та auto-merge.yml (S8914). Мажорні оновлення @types/node ігноруються. Автомерж обмежено: dev-залежності до minor, runtime-залежності лише patch.",
+        "zh-cn": "添加 dependabot 冷却时间（E8915）和 auto-merge.yml（S8914）。忽略 @types/node 的主版本升级。限制自动合并：开发依赖至 minor，运行时依赖仅 patch。"
+      },
       "1.0.53": {
         "en": "Update CI: testing-action-check to v2, Node.js 24 for check/deploy, test matrix 22.x/24.x (drop EOL Node 20). Require Node.js >=22.",
         "de": "CI aktualisiert: testing-action-check auf v2, Node.js 24 fuer check/deploy, Testmatrix 22.x/24.x (Node 20 entfernt). Erfordert Node.js >=22.",
@@ -80,19 +93,6 @@
         "nl": "Verzoektracking per sleutel: elke API-sleutel slaat zijn eigen dagelijkse teller op per hash. Dezelfde sleutel meerdere keren hergebruikt toont altijd de juiste resterende verzoeken.",
         "uk": "Облік запитів на ключ: кожен API ключ зберігає свій денний лічильник за хешем. Один ключ що використовується кілька разів завжди показує правильний залишок запитів.",
         "zh-cn": "按键跟踪请求：每个API密钥通过密钥哈希存储自己的每日请求计数器。同一密钥多次重用时始终显示正确的剩余请求数。"
-      },
-      "1.0.47": {
-        "en": "Fix totalMovies state: always shows real DB count, not per-key counter. Fix requestsUsed/requestsRemaining: parsed from script output per key. On key switch totalMovies read from DB file.",
-        "de": "totalMovies-Status korrigiert: zeigt immer echte DB-Anzahl. requestsUsed/requestsRemaining aus Skript-Ausgabe pro Schluessel. Bei Schluessel-Wechsel wird totalMovies aus DB-Datei gelesen.",
-        "ru": "Исправлен state totalMovies: всегда показывает реальное количество из базы, не счётчик ключа. Исправлен учёт requestsUsed/requestsRemaining из вывода скрипта. При смене ключа totalMovies читается из файла базы.",
-        "fr": "Correction totalMovies: affiche toujours le vrai compte DB. requestsUsed/requestsRemaining analyses depuis la sortie du script par cle.",
-        "it": "Corretto totalMovies: mostra sempre il conteggio reale del DB. requestsUsed/requestsRemaining analizzati dall'output dello script per chiave.",
-        "es": "Corregido totalMovies: siempre muestra el conteo real de la BD. requestsUsed/requestsRemaining analizados de la salida del script por clave.",
-        "pl": "Poprawiono totalMovies: zawsze pokazuje rzeczywista liczbe z bazy. requestsUsed/requestsRemaining parsowane z wyjscia skryptu per klucz.",
-        "pt": "Corrigido totalMovies: sempre mostra contagem real do BD. requestsUsed/requestsRemaining analisados da saida do script por chave.",
-        "nl": "totalMovies gecorrigeerd: toont altijd echte DB-telling. requestsUsed/requestsRemaining geparseerd uit scriptuitvoer per sleutel.",
-        "uk": "Виправлено totalMovies: завжди показує реальну кількість з бази. requestsUsed/requestsRemaining парситься з виводу скрипта на ключ.",
-        "zh-cn": "修复totalMovies状态：始终显示真实DB计数。requestsUsed/requestsRemaining从每个键的脚本输出解析。"
       }
     },
     "titleLang": {

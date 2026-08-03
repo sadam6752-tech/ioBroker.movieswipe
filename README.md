@@ -170,6 +170,12 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 
 ## Changelog
 
+### 1.0.54
+- (sadam6752-tech) Add dependabot cooldown of 7 days (checker rule E8915) and a weekly cron schedule
+- (sadam6752-tech) Ignore major `@types/node` bumps — the type definitions must stay within the Node major line the adapter runs on
+- (sadam6752-tech) Add `.github/auto-merge.yml` (checker rule S8914)
+- (sadam6752-tech) Restrict dependabot auto-merge: dev dependencies up to minor, runtime dependencies to patch only. The action defaults to merging everything including majors
+
 ### 1.0.53
 - (sadam6752-tech) CI: bump `ioBroker/testing-action-check` to v2 (`testing-action-adapter` and `testing-action-deploy` have no v2 yet)
 - (sadam6752-tech) CI: Node.js 24 for the check and deploy jobs; test matrix reduced to 22.x / 24.x (Node 20 is end-of-life)

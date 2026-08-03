@@ -1,17 +1,27 @@
-name: Auto-merge Dependabot PRs
+name: Automerge Dependabot PRs
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types:
+      - opened
+      - synchronize
+
+permissions:
+  pull-requests: write
+  contents: write
 
 jobs:
-  auto-merge:
+  automerge:
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]'
-    permissions:
-      pull-requests: write
-      contents: write
     steps:
       - uses: fastify/github-action-merge-dependabot@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          merge-method: squash
+          # The action defaults to target: 'any', which would auto-merge major
+          # bumps too. Runtime dependencies (express, multer) can break the
+          # adapter on a major, so they are restricted to patch and must be
+          # reviewed by hand for anything larger.
+          target-development: minor
+          target-production: patch
