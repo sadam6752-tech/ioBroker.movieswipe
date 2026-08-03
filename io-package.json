@@ -1,20 +1,20 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.56",
+    "version": "1.0.57",
     "news": {
-      "1.0.56": {
-        "en": "Update multer to 2.x. Remove the Content Filters section: 'Maximum Rating' had no effect at all, while minimum rating and minimum votes are already configured per API key.",
-        "de": "multer auf 2.x aktualisiert. Bereich Inhaltsfilter entfernt: 'Maximale Bewertung' war ohne jede Wirkung, Mindestbewertung und Mindestanzahl der Stimmen werden bereits pro API-Schluessel konfiguriert.",
-        "ru": "multer обновлён до 2.x. Удалена секция «Фильтры контента»: «Максимальный рейтинг» вообще ни на что не влиял, а минимальный рейтинг и минимум голосов задаются в настройках каждого API-ключа.",
-        "fr": "multer mis a jour en 2.x. Section Filtres de contenu supprimee: 'Note maximale' n'avait aucun effet, la note minimale et le nombre minimal de votes sont deja configures par cle API.",
-        "it": "multer aggiornato a 2.x. Rimossa la sezione Filtri contenuto: 'Valutazione massima' non aveva alcun effetto, valutazione minima e voti minimi sono gia configurati per singola chiave API.",
-        "es": "multer actualizado a 2.x. Eliminada la seccion Filtros de contenido: 'Valoracion maxima' no tenia ningun efecto, la valoracion minima y los votos minimos ya se configuran por clave API.",
-        "pl": "multer zaktualizowany do 2.x. Usunieto sekcje Filtry tresci: 'Maksymalna ocena' nie mialo zadnego efektu, a minimalna ocena i minimalna liczba glosow sa juz ustawiane dla kazdego klucza API.",
-        "pt": "multer atualizado para 2.x. Removida a seccao Filtros de conteudo: 'Avaliacao maxima' nao tinha qualquer efeito, avaliacao minima e votos minimos ja sao configurados por chave API.",
-        "nl": "multer bijgewerkt naar 2.x. Sectie Inhoudsfilters verwijderd: 'Maximale beoordeling' had geen enkel effect, minimale beoordeling en minimaal aantal stemmen worden al per API-sleutel ingesteld.",
-        "uk": "multer оновлено до 2.x. Видалено секцію «Фільтри контенту»: «Максимальний рейтинг» взагалі ні на що не впливав, а мінімальний рейтинг і мінімум голосів задаються для кожного API-ключа.",
-        "zh-cn": "multer 更新至 2.x。移除内容过滤器部分：“最高评分”完全没有作用，而最低评分和最少投票数已在每个 API 密钥中单独配置。"
+      "1.0.57": {
+        "en": "Update multer to 2.x. Remove the Content Filters section (Maximum Rating had no effect; minimum rating and votes are set per API key). admin/i18n migrated to the short format and extended to 11 languages. Year To in the key table now defaults to the current year. Request-limit fallbacks aligned with the UI defaults.",
+        "de": "multer auf 2.x aktualisiert. Bereich Inhaltsfilter entfernt (Maximale Bewertung war ohne Wirkung; Mindestbewertung und Stimmen werden pro API-Schluessel gesetzt). admin/i18n auf Kurzformat migriert und auf 11 Sprachen erweitert. Jahr bis in der Schluesseltabelle nutzt jetzt standardmaessig das aktuelle Jahr. Fallbacks der Anfragelimits an die UI-Standardwerte angeglichen.",
+        "ru": "multer обновлён до 2.x. Удалена секция «Фильтры контента» («Максимальный рейтинг» ни на что не влиял; минимальный рейтинг и голоса задаются на ключ). admin/i18n переведён в короткий формат и расширен до 11 языков. «Год до» в таблице ключей по умолчанию берёт текущий год. Фолбэки лимитов запросов приведены к дефолтам интерфейса.",
+        "fr": "multer mis a jour en 2.x. Section Filtres de contenu supprimee (Note maximale sans effet ; note minimale et votes definis par cle API). admin/i18n migre au format court et etendu a 11 langues. Annee a dans le tableau des cles utilise desormais l annee en cours par defaut. Valeurs de repli des limites de requetes alignees sur les valeurs par defaut de l interface.",
+        "it": "multer aggiornato a 2.x. Rimossa la sezione Filtri contenuto (Valutazione massima senza effetto; valutazione minima e voti impostati per chiave API). admin/i18n migrato al formato breve ed esteso a 11 lingue. Anno a nella tabella delle chiavi usa ora l anno corrente come predefinito. Fallback dei limiti di richieste allineati ai valori predefiniti dell interfaccia.",
+        "es": "multer actualizado a 2.x. Eliminada la seccion Filtros de contenido (Valoracion maxima no tenia efecto; valoracion minima y votos se definen por clave API). admin/i18n migrado al formato corto y ampliado a 11 idiomas. Ano hasta en la tabla de claves usa ahora el ano actual por defecto. Valores de reserva de los limites de solicitudes alineados con los predeterminados de la interfaz.",
+        "pl": "multer zaktualizowany do 2.x. Usunieto sekcje Filtry tresci (Maksymalna ocena nie dzialala; minimalna ocena i glosy ustawiane na klucz API). admin/i18n przeniesiony do krotkiego formatu i rozszerzony do 11 jezykow. Rok do w tabeli kluczy domyslnie przyjmuje biezacy rok. Wartosci zapasowe limitow zapytan zgodne z domyslnymi w interfejsie.",
+        "pt": "multer atualizado para 2.x. Removida a seccao Filtros de conteudo (Avaliacao maxima nao tinha efeito; avaliacao minima e votos definidos por chave API). admin/i18n migrado para o formato curto e ampliado para 11 idiomas. Ano ate na tabela de chaves usa agora o ano atual por omissao. Valores de reserva dos limites de pedidos alinhados com os predefinidos da interface.",
+        "nl": "multer bijgewerkt naar 2.x. Sectie Inhoudsfilters verwijderd (Maximale beoordeling had geen effect; minimale beoordeling en stemmen worden per API-sleutel ingesteld). admin/i18n gemigreerd naar het korte formaat en uitgebreid naar 11 talen. Jaar tot in de sleuteltabel gebruikt nu standaard het huidige jaar. Fallbacks van de verzoeklimieten afgestemd op de standaardwaarden in de interface.",
+        "uk": "multer оновлено до 2.x. Видалено секцію «Фільтри контенту» («Максимальний рейтинг» ні на що не впливав; мінімальний рейтинг і голоси задаються на ключ). admin/i18n переведено у короткий формат і розширено до 11 мов. «Рік до» у таблиці ключів за замовчуванням бере поточний рік. Фолбеки лімітів запитів приведено до дефолтів інтерфейсу.",
+        "zh-cn": "multer 更新至 2.x。移除内容过滤器部分（“最高评分”没有作用；最低评分与投票数按 API 密钥设置）。admin/i18n 迁移为短格式并扩展至 11 种语言。密钥表中的“年份至”现在默认使用当前年份。请求上限的回退值与界面默认值保持一致。"
       },
       "1.0.55": {
         "en": "Fix invalid dependabot schedule: the cron expression key is 'cronjob', not 'cron'. Switched to interval 'weekly' to match the other adapters.",
@@ -28,45 +28,6 @@
         "nl": "Ongeldig dependabot-schema gecorrigeerd: de sleutel voor de cron-expressie is 'cronjob', niet 'cron'. Overgezet naar interval 'weekly' zoals de andere adapters.",
         "uk": "Виправлено невалідний розклад dependabot: ключ cron-виразу називається 'cronjob', а не 'cron'. Переведено на interval 'weekly' як в інших адаптерах.",
         "zh-cn": "修复无效的 dependabot 计划：cron 表达式的键名是 'cronjob' 而非 'cron'。改用 interval 'weekly'，与其他适配器保持一致。"
-      },
-      "1.0.54": {
-        "en": "Add dependabot cooldown (E8915) and auto-merge.yml (S8914). Ignore major @types/node bumps. Restrict auto-merge: dev dependencies to minor, runtime dependencies to patch.",
-        "de": "Dependabot-Cooldown (E8915) und auto-merge.yml (S8914) hinzugefuegt. Major-Updates von @types/node ignoriert. Auto-Merge eingeschraenkt: Dev-Abhaengigkeiten bis minor, Laufzeit-Abhaengigkeiten nur patch.",
-        "ru": "Добавлен cooldown для dependabot (E8915) и auto-merge.yml (S8914). Мажорные обновления @types/node игнорируются. Автомерж ограничен: dev-зависимости до minor, runtime-зависимости только patch.",
-        "fr": "Ajout du cooldown dependabot (E8915) et de auto-merge.yml (S8914). Les majeures de @types/node sont ignorees. Auto-merge restreint: dependances de dev jusqu'a minor, dependances runtime en patch uniquement.",
-        "it": "Aggiunto cooldown dependabot (E8915) e auto-merge.yml (S8914). Ignorati aggiornamenti major di @types/node. Auto-merge limitato: dipendenze di sviluppo fino a minor, dipendenze runtime solo patch.",
-        "es": "Anadido cooldown de dependabot (E8915) y auto-merge.yml (S8914). Se ignoran las subidas major de @types/node. Auto-merge restringido: dependencias de desarrollo hasta minor, dependencias de runtime solo patch.",
-        "pl": "Dodano cooldown dependabot (E8915) i auto-merge.yml (S8914). Ignorowane sa major aktualizacje @types/node. Auto-merge ograniczony: zaleznosci dev do minor, zaleznosci runtime tylko patch.",
-        "pt": "Adicionado cooldown do dependabot (E8915) e auto-merge.yml (S8914). Atualizacoes major de @types/node sao ignoradas. Auto-merge restrito: dependencias de desenvolvimento ate minor, dependencias de runtime apenas patch.",
-        "nl": "Dependabot cooldown (E8915) en auto-merge.yml (S8914) toegevoegd. Major updates van @types/node worden genegeerd. Auto-merge beperkt: dev-afhankelijkheden tot minor, runtime-afhankelijkheden alleen patch.",
-        "uk": "Додано cooldown для dependabot (E8915) та auto-merge.yml (S8914). Мажорні оновлення @types/node ігноруються. Автомерж обмежено: dev-залежності до minor, runtime-залежності лише patch.",
-        "zh-cn": "添加 dependabot 冷却时间（E8915）和 auto-merge.yml（S8914）。忽略 @types/node 的主版本升级。限制自动合并：开发依赖至 minor，运行时依赖仅 patch。"
-      },
-      "1.0.53": {
-        "en": "Update CI: testing-action-check to v2, Node.js 24 for check/deploy, test matrix 22.x/24.x (drop EOL Node 20). Require Node.js >=22.",
-        "de": "CI aktualisiert: testing-action-check auf v2, Node.js 24 fuer check/deploy, Testmatrix 22.x/24.x (Node 20 entfernt). Erfordert Node.js >=22.",
-        "ru": "Обновлён CI: testing-action-check до v2, Node.js 24 для check/deploy, матрица тестов 22.x/24.x (Node 20 убран как EOL). Требуется Node.js >=22.",
-        "fr": "CI mis a jour: testing-action-check en v2, Node.js 24 pour check/deploy, matrice de tests 22.x/24.x (Node 20 retire). Requiert Node.js >=22.",
-        "it": "CI aggiornato: testing-action-check a v2, Node.js 24 per check/deploy, matrice test 22.x/24.x (Node 20 rimosso). Richiede Node.js >=22.",
-        "es": "CI actualizado: testing-action-check a v2, Node.js 24 para check/deploy, matriz de pruebas 22.x/24.x (Node 20 eliminado). Requiere Node.js >=22.",
-        "pl": "Zaktualizowano CI: testing-action-check do v2, Node.js 24 dla check/deploy, macierz testow 22.x/24.x (usunieto Node 20). Wymaga Node.js >=22.",
-        "pt": "CI atualizado: testing-action-check para v2, Node.js 24 para check/deploy, matriz de testes 22.x/24.x (Node 20 removido). Requer Node.js >=22.",
-        "nl": "CI bijgewerkt: testing-action-check naar v2, Node.js 24 voor check/deploy, testmatrix 22.x/24.x (Node 20 verwijderd). Vereist Node.js >=22.",
-        "uk": "Оновлено CI: testing-action-check до v2, Node.js 24 для check/deploy, матриця тестів 22.x/24.x (Node 20 прибрано як EOL). Потрібен Node.js >=22.",
-        "zh-cn": "更新 CI：testing-action-check 升级到 v2，check/deploy 使用 Node.js 24，测试矩阵 22.x/24.x（移除已停止维护的 Node 20）。要求 Node.js >=22。"
-      },
-      "1.0.52": {
-        "en": "Fix CI: commit package-lock.json (npm ci requires it). Upgrade to Express 5 (SPA fallback route adapted to path-to-regexp v8). Update adapter-core to ^3.4.3. Remove redundant eslint/mocha devDependencies. Fix broken npm test script.",
-        "de": "CI behoben: package-lock.json committet (npm ci benoetigt sie). Upgrade auf Express 5 (SPA-Fallback-Route an path-to-regexp v8 angepasst). adapter-core auf ^3.4.3 aktualisiert. Redundante eslint/mocha devDependencies entfernt. Defektes npm test Skript korrigiert.",
-        "ru": "Исправлен CI: package-lock.json закоммичен (npm ci требует его). Переход на Express 5 (SPA-fallback приведён к path-to-regexp v8). adapter-core обновлён до ^3.4.3. Удалены избыточные devDependencies eslint/mocha. Исправлен нерабочий скрипт npm test.",
-        "fr": "Fix CI: package-lock.json commite (npm ci en a besoin). Passage a Express 5 (route SPA adaptee a path-to-regexp v8). adapter-core mis a jour vers ^3.4.3. devDependencies eslint/mocha redondantes supprimees. Script npm test corrige.",
-        "it": "Fix CI: package-lock.json committato (npm ci lo richiede). Passaggio a Express 5 (route SPA adattata a path-to-regexp v8). adapter-core aggiornato a ^3.4.3. Rimosse devDependencies eslint/mocha ridondanti. Corretto script npm test.",
-        "es": "Fix CI: package-lock.json commiteado (npm ci lo requiere). Actualizacion a Express 5 (ruta SPA adaptada a path-to-regexp v8). adapter-core actualizado a ^3.4.3. Eliminadas devDependencies eslint/mocha redundantes. Corregido script npm test.",
-        "pl": "Naprawa CI: package-lock.json w repozytorium (npm ci go wymaga). Przejscie na Express 5 (trasa SPA dostosowana do path-to-regexp v8). adapter-core zaktualizowano do ^3.4.3. Usunieto zbedne devDependencies eslint/mocha. Naprawiono skrypt npm test.",
-        "pt": "Fix CI: package-lock.json commitado (npm ci precisa dele). Atualizacao para Express 5 (rota SPA adaptada ao path-to-regexp v8). adapter-core atualizado para ^3.4.3. Removidas devDependencies eslint/mocha redundantes. Corrigido script npm test.",
-        "nl": "Fix CI: package-lock.json gecommit (npm ci vereist dit). Upgrade naar Express 5 (SPA-fallback route aangepast aan path-to-regexp v8). adapter-core bijgewerkt naar ^3.4.3. Overbodige eslint/mocha devDependencies verwijderd. Defect npm test script gerepareerd.",
-        "uk": "Виправлено CI: package-lock.json закомічено (npm ci його потребує). Перехід на Express 5 (SPA-fallback приведено до path-to-regexp v8). adapter-core оновлено до ^3.4.3. Видалено зайві devDependencies eslint/mocha. Виправлено неробочий скрипт npm test.",
-        "zh-cn": "修复CI：提交package-lock.json（npm ci 需要它）。升级到 Express 5（SPA 回退路由适配 path-to-regexp v8）。adapter-core 更新至 ^3.4.3。移除多余的 eslint/mocha devDependencies。修复损坏的 npm test 脚本。"
       },
       "1.0.51": {
         "en": "Replace timePicker with text field for sync time (timePicker type does not support 'default'/'help' in jsonConfig schema).",
@@ -105,6 +66,7 @@
       "pl": "MovieSwipe PWA",
       "pt": "MovieSwipe PWA",
       "nl": "MovieSwipe PWA",
+      "uk": "MovieSwipe PWA",
       "zh-cn": "MovieSwipe PWA"
     },
     "desc": {
@@ -117,6 +79,7 @@
       "pl": "PWA do odkrywania filmow z integracja API Kinopoisk",
       "pt": "PWA de descoberta de filmes com integracao da API Kinopoisk",
       "nl": "PWA voor filmontdekking met Kinopoisk API-integratie",
+      "uk": "PWA для пошуку фільмів з інтеграцією Kinopoisk API",
       "zh-cn": "电影发现PWA与Kinopoisk API集成"
     },
     "authors": [

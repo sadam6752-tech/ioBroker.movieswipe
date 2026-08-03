@@ -43,7 +43,7 @@
         "apiKeys": {
           "type": "table",
           "label": "API Keys",
-          "help": "API keys with year ranges. Each key covers its own year range (demo tier: max 10 pages = 2500 movies per key). Press '+' to add.",
+          "help": "help_apiKeys",
           "items": [
             {
               "type": "text",
@@ -62,8 +62,7 @@
               "type": "number",
               "title": "Year To",
               "attr": "yearEnd",
-              "width": "15%",
-              "default": 2026
+              "width": "15%"
             },
             {
               "type": "number",
