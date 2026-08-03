@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.48",
+    "version": "1.0.49",
     "news": {
+      "1.0.49": {
+        "en": "Scheduled auto sync: new option to run daily at a fixed time (HH:MM) instead of every N hours. Removed redundant global year range fields (year is set per API key).",
+        "de": "Geplante Auto-Synchronisierung: neue Option zur täglichen Ausführung zu einer festen Uhrzeit (HH:MM) statt alle N Stunden. Redundante globale Jahresbereich-Felder entfernt (Jahr wird pro API-Schlüssel gesetzt).",
+        "ru": "Автосинхронизация по расписанию: новая опция запуска каждый день в фиксированное время (ЧЧ:ММ) вместо каждые N часов. Удалены избыточные глобальные поля диапазона лет (год задаётся на ключ).",
+        "fr": "Sync automatique planifiée: nouvelle option pour s'exécuter quotidiennement à une heure fixe (HH:MM) au lieu de toutes les N heures. Champs plage d'années globaux redondants supprimés.",
+        "it": "Sync automatica pianificata: nuova opzione per eseguire ogni giorno a un'ora fissa (HH:MM) invece di ogni N ore. Rimossi campi intervallo anni globali ridondanti.",
+        "es": "Sync automática programada: nueva opción para ejecutar diariamente a una hora fija (HH:MM) en lugar de cada N horas. Eliminados campos de rango de años globales redundantes.",
+        "pl": "Zaplanowana auto-synchronizacja: nowa opcja uruchamiania codziennie o stałej godzinie (HH:MM) zamiast co N godzin. Usunięto redundantne globalne pola zakresu lat.",
+        "pt": "Sync automática agendada: nova opção para executar diariamente a uma hora fixa (HH:MM) em vez de a cada N horas. Removidos campos de intervalo de anos globais redundantes.",
+        "nl": "Geplande auto-sync: nieuwe optie om dagelijks op een vaste tijd (HH:MM) te draaien in plaats van elke N uur. Overbodige globale jaarbereikvelden verwijderd.",
+        "uk": "Автосинхронізація за розкладом: нова опція запуску щодня у фіксований час (ГГ:ХХ) замість кожні N годин. Видалено зайві глобальні поля діапазону років.",
+        "zh-cn": "计划自动同步：新选项可在固定时间（HH:MM）每日运行，而不是每N小时一次。删除了冗余的全局年份范围字段（年份按API密钥设置）。"
+      },
       "1.0.48": {
         "en": "Per-key request tracking: each API key stores its own daily request counter by key hash. Same key reused multiple times always shows correct remaining requests. --status shows stats per key.",
         "de": "Anfragen-Tracking pro Schluessel: Jeder API-Schluessel speichert seinen eigenen Tageszaehler per Hash. Derselbe Schluessel mehrfach verwendet zeigt korrekte verbleibende Anfragen.",
@@ -214,9 +227,9 @@
     "minRating": 5,
     "maxRating": 10,
     "minVotes": 500,
-    "yearRangeStart": 2020,
-    "yearRangeEnd": 2026,
     "autoSync": false,
+    "syncScheduled": false,
+    "syncScheduledTime": "03:00",
     "syncInterval": 24,
     "maxRequestsPerRun": 250,
     "dailyRequestLimit": 200,

@@ -166,37 +166,6 @@
           "lg": 6,
           "xl": 6
         },
-        "_yearRange": {
-          "type": "header",
-          "text": "Year Range",
-          "size": 3
-        },
-        "yearRangeStart": {
-          "type": "number",
-          "label": "Start Year",
-          "min": 1900,
-          "max": 2030,
-          "default": 2020,
-          "help": "Starting year for movie search",
-          "xs": 12,
-          "sm": 12,
-          "md": 6,
-          "lg": 6,
-          "xl": 6
-        },
-        "yearRangeEnd": {
-          "type": "number",
-          "label": "End Year",
-          "min": 1900,
-          "max": 2030,
-          "default": 2026,
-          "help": "Ending year for movie search",
-          "xs": 12,
-          "sm": 12,
-          "md": 6,
-          "lg": 6,
-          "xl": 6
-        },
         "_advanced": {
           "type": "header",
           "text": "Advanced Settings",
@@ -239,6 +208,18 @@
           "lg": 6,
           "xl": 6
         },
+        "syncScheduled": {
+          "type": "checkbox",
+          "label": "label_syncScheduled",
+          "help": "help_syncScheduled",
+          "default": false,
+          "hidden": "!data.autoSync",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 6,
+          "xl": 6
+        },
         "syncInterval": {
           "type": "number",
           "label": "Sync Interval",
@@ -247,7 +228,19 @@
           "default": 24,
           "unit": "hours",
           "help": "Interval between automatic synchronizations (if Auto Sync is enabled)",
-          "hidden": "!data.autoSync",
+          "hidden": "!data.autoSync || data.syncScheduled",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 6,
+          "xl": 6
+        },
+        "syncScheduledTime": {
+          "type": "timePicker",
+          "label": "label_syncScheduledTime",
+          "help": "help_syncScheduledTime",
+          "default": "03:00",
+          "hidden": "!data.autoSync || !data.syncScheduled",
           "xs": 12,
           "sm": 12,
           "md": 6,
