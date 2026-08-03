@@ -117,55 +117,6 @@
       "type": "panel",
       "label": "Synchronization",
       "items": {
-        "_filters": {
-          "type": "header",
-          "text": "Content Filters",
-          "size": 3
-        },
-        "minRating": {
-          "type": "slider",
-          "label": "Minimum Rating",
-          "min": 0,
-          "max": 10,
-          "step": 0.1,
-          "default": 5.0,
-          "unit": "★",
-          "help": "Minimum Kinopoisk rating for movies",
-          "xs": 12,
-          "sm": 12,
-          "md": 6,
-          "lg": 6,
-          "xl": 6
-        },
-        "maxRating": {
-          "type": "slider",
-          "label": "Maximum Rating",
-          "min": 0,
-          "max": 10,
-          "step": 0.1,
-          "default": 10.0,
-          "unit": "★",
-          "help": "Maximum Kinopoisk rating for movies",
-          "xs": 12,
-          "sm": 12,
-          "md": 6,
-          "lg": 6,
-          "xl": 6
-        },
-        "minVotes": {
-          "type": "number",
-          "label": "Minimum Votes",
-          "min": 0,
-          "max": 100000,
-          "step": 100,
-          "default": 500,
-          "help": "Minimum number of votes (popularity filter)",
-          "xs": 12,
-          "sm": 12,
-          "md": 6,
-          "lg": 6,
-          "xl": 6
-        },
         "_advanced": {
           "type": "header",
           "text": "Advanced Settings",
