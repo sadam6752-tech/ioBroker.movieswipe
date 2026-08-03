@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.57",
+    "version": "1.0.58",
     "news": {
+      "1.0.58": {
+        "en": "Add @tsconfig/node22 and tsconfig.json with extends (checker rules S0085/S0088), matching the other adapters. Add prettier.config.mjs required by @iobroker/eslint-config.",
+        "de": "@tsconfig/node22 und tsconfig.json mit extends hinzugefuegt (Pruefregeln S0085/S0088), analog zu den anderen Adaptern. prettier.config.mjs hinzugefuegt, benoetigt von @iobroker/eslint-config.",
+        "ru": "Добавлены @tsconfig/node22 и tsconfig.json с extends (правила проверки S0085/S0088), как в остальных адаптерах. Добавлен prettier.config.mjs, требуемый @iobroker/eslint-config.",
+        "fr": "Ajout de @tsconfig/node22 et tsconfig.json avec extends (regles S0085/S0088), comme les autres adaptateurs. Ajout de prettier.config.mjs requis par @iobroker/eslint-config.",
+        "it": "Aggiunti @tsconfig/node22 e tsconfig.json con extends (regole S0085/S0088), come gli altri adapter. Aggiunto prettier.config.mjs richiesto da @iobroker/eslint-config.",
+        "es": "Anadidos @tsconfig/node22 y tsconfig.json con extends (reglas S0085/S0088), igual que los otros adaptadores. Anadido prettier.config.mjs requerido por @iobroker/eslint-config.",
+        "pl": "Dodano @tsconfig/node22 i tsconfig.json z extends (reguly S0085/S0088), tak jak w innych adapterach. Dodano prettier.config.mjs wymagany przez @iobroker/eslint-config.",
+        "pt": "Adicionados @tsconfig/node22 e tsconfig.json com extends (regras S0085/S0088), tal como nos outros adaptadores. Adicionado prettier.config.mjs exigido pelo @iobroker/eslint-config.",
+        "nl": "@tsconfig/node22 en tsconfig.json met extends toegevoegd (regels S0085/S0088), zoals de andere adapters. prettier.config.mjs toegevoegd, vereist door @iobroker/eslint-config.",
+        "uk": "Додано @tsconfig/node22 та tsconfig.json з extends (правила S0085/S0088), як в інших адаптерах. Додано prettier.config.mjs, який вимагає @iobroker/eslint-config.",
+        "zh-cn": "添加 @tsconfig/node22 和带 extends 的 tsconfig.json（检查规则 S0085/S0088），与其他适配器保持一致。添加 @iobroker/eslint-config 所需的 prettier.config.mjs。"
+      },
       "1.0.57": {
         "en": "Update multer to 2.x. Remove the Content Filters section (Maximum Rating had no effect; minimum rating and votes are set per API key). admin/i18n migrated to the short format and extended to 11 languages. Year To in the key table now defaults to the current year. Request-limit fallbacks aligned with the UI defaults.",
         "de": "multer auf 2.x aktualisiert. Bereich Inhaltsfilter entfernt (Maximale Bewertung war ohne Wirkung; Mindestbewertung und Stimmen werden pro API-Schluessel gesetzt). admin/i18n auf Kurzformat migriert und auf 11 Sprachen erweitert. Jahr bis in der Schluesseltabelle nutzt jetzt standardmaessig das aktuelle Jahr. Fallbacks der Anfragelimits an die UI-Standardwerte angeglichen.",

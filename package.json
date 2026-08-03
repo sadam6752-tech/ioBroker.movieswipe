@@ -1,6 +1,6 @@
 {
   "name": "iobroker.movieswipe",
-  "version": "1.0.57",
+  "version": "1.0.58",
   "description": "ioBroker adapter for MovieSwipe PWA - Movie discovery application with Kinopoisk API integration. Optimized database (48 MB) with improved rate limit handling",
   "author": {
     "name": "sadam6752-tech",
@@ -37,6 +37,7 @@
     "@iobroker/dev-server": "^0.8.0",
     "@iobroker/eslint-config": "^2.3.4",
     "@iobroker/testing": "^5.2.2",
+    "@tsconfig/node22": "^22.0.5",
     "@types/node": "^22.10.2"
   },
   "main": "main.js",

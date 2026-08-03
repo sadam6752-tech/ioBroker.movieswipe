@@ -170,6 +170,11 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 
 ## Changelog
 
+### 1.0.58
+- (sadam6752-tech) Add `@tsconfig/node22` and `tsconfig.json` with `extends` (checker rules S0085/S0088), matching the other adapters
+- (sadam6752-tech) Add `prettier.config.mjs` required by `@iobroker/eslint-config`
+
+
 > Versions 1.0.52, 1.0.53 and 1.0.54 were tagged but never published to npm — their deploy
 > runs failed before Trusted Publishing was configured. The changes they describe are
 > contained in 1.0.55, so they are listed below for history but are absent from `common.news`.
