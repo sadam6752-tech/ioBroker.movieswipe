@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.51",
+    "version": "1.0.52",
     "news": {
+      "1.0.52": {
+        "en": "Fix CI: commit package-lock.json (npm ci requires it). Upgrade to Express 5 (SPA fallback route adapted to path-to-regexp v8). Update adapter-core to ^3.4.3. Remove redundant eslint/mocha devDependencies. Fix broken npm test script.",
+        "de": "CI behoben: package-lock.json committet (npm ci benoetigt sie). Upgrade auf Express 5 (SPA-Fallback-Route an path-to-regexp v8 angepasst). adapter-core auf ^3.4.3 aktualisiert. Redundante eslint/mocha devDependencies entfernt. Defektes npm test Skript korrigiert.",
+        "ru": "Исправлен CI: package-lock.json закоммичен (npm ci требует его). Переход на Express 5 (SPA-fallback приведён к path-to-regexp v8). adapter-core обновлён до ^3.4.3. Удалены избыточные devDependencies eslint/mocha. Исправлен нерабочий скрипт npm test.",
+        "fr": "Fix CI: package-lock.json commite (npm ci en a besoin). Passage a Express 5 (route SPA adaptee a path-to-regexp v8). adapter-core mis a jour vers ^3.4.3. devDependencies eslint/mocha redondantes supprimees. Script npm test corrige.",
+        "it": "Fix CI: package-lock.json committato (npm ci lo richiede). Passaggio a Express 5 (route SPA adattata a path-to-regexp v8). adapter-core aggiornato a ^3.4.3. Rimosse devDependencies eslint/mocha ridondanti. Corretto script npm test.",
+        "es": "Fix CI: package-lock.json commiteado (npm ci lo requiere). Actualizacion a Express 5 (ruta SPA adaptada a path-to-regexp v8). adapter-core actualizado a ^3.4.3. Eliminadas devDependencies eslint/mocha redundantes. Corregido script npm test.",
+        "pl": "Naprawa CI: package-lock.json w repozytorium (npm ci go wymaga). Przejscie na Express 5 (trasa SPA dostosowana do path-to-regexp v8). adapter-core zaktualizowano do ^3.4.3. Usunieto zbedne devDependencies eslint/mocha. Naprawiono skrypt npm test.",
+        "pt": "Fix CI: package-lock.json commitado (npm ci precisa dele). Atualizacao para Express 5 (rota SPA adaptada ao path-to-regexp v8). adapter-core atualizado para ^3.4.3. Removidas devDependencies eslint/mocha redundantes. Corrigido script npm test.",
+        "nl": "Fix CI: package-lock.json gecommit (npm ci vereist dit). Upgrade naar Express 5 (SPA-fallback route aangepast aan path-to-regexp v8). adapter-core bijgewerkt naar ^3.4.3. Overbodige eslint/mocha devDependencies verwijderd. Defect npm test script gerepareerd.",
+        "uk": "Виправлено CI: package-lock.json закомічено (npm ci його потребує). Перехід на Express 5 (SPA-fallback приведено до path-to-regexp v8). adapter-core оновлено до ^3.4.3. Видалено зайві devDependencies eslint/mocha. Виправлено неробочий скрипт npm test.",
+        "zh-cn": "修复CI：提交package-lock.json（npm ci 需要它）。升级到 Express 5（SPA 回退路由适配 path-to-regexp v8）。adapter-core 更新至 ^3.4.3。移除多余的 eslint/mocha devDependencies。修复损坏的 npm test 脚本。"
+      },
       "1.0.51": {
         "en": "Replace timePicker with text field for sync time (timePicker type does not support 'default'/'help' in jsonConfig schema).",
         "de": "timePicker durch Textfeld für Synchronisierungszeit ersetzt (timePicker-Typ unterstützt 'default'/'help' im jsonConfig-Schema nicht).",
@@ -80,106 +93,6 @@
         "nl": "Jaarbereik uitbreiding opgelost: stopt aan het einde van het toegewezen bereik, schakelt over naar de volgende sleutel.",
         "uk": "Виправлено розширення діапазону років: зупиняється на заданому діапазоні, перемикається на наступний ключ.",
         "zh-cn": "修复年份范围扩展：在分配范围结束时停止，切换到下一个密钥而不是向后扩展。"
-      },
-      "1.0.45": {
-        "en": "Per-key year range and filters: each API key can have its own year range, minVotes and minRating. Fixes demo tier 10-page limit by using different ranges per key.",
-        "de": "Jahresbereich und Filter pro Schlüssel: Jeder API-Schlüssel kann einen eigenen Jahresbereich, minVotes und minRating haben. Behebt Demo-Tarif 10-Seiten-Limit durch verschiedene Bereiche pro Schlüssel.",
-        "ru": "Диапазон лет и фильтры на ключ: каждый API ключ может иметь свой диапазон лет, minVotes и minRating. Исправляет лимит 10 страниц демо-тарифа через разные диапазоны на ключ.",
-        "fr": "Plage d'années et filtres par clé: chaque clé API peut avoir sa propre plage d'années, minVotes et minRating.",
-        "it": "Intervallo anni e filtri per chiave: ogni chiave API può avere il proprio intervallo di anni, minVotes e minRating.",
-        "es": "Rango de años y filtros por clave: cada clave API puede tener su propio rango de años, minVotes y minRating.",
-        "pl": "Zakres lat i filtry na klucz: każdy klucz API może mieć własny zakres lat, minVotes i minRating.",
-        "pt": "Intervalo de anos e filtros por chave: cada chave API pode ter seu próprio intervalo de anos, minVotes e minRating.",
-        "nl": "Jaarbereik en filters per sleutel: elke API-sleutel kan zijn eigen jaarbereik, minVotes en minRating hebben.",
-        "uk": "Діапазон років і фільтри на ключ: кожен API ключ може мати свій діапазон років, minVotes і minRating.",
-        "zh-cn": "每个密钥的年份范围和过滤器：每个API密钥可以有自己的年份范围、minVotes和minRating。"
-      },
-      "1.0.44": {
-        "en": "Add CI/CD workflow, dependabot, release-script; use node: prefix for built-in modules; fix unload cleanup; fix lint warnings",
-        "de": "CI/CD Workflow, Dependabot, Release-Script hinzugefuegt; node:-Praefix fuer eingebaute Module; Unload-Bereinigung verbessert; Lint-Warnungen behoben",
-        "ru": "Добавлены CI/CD workflow, dependabot, release-script; префикс node: для встроенных модулей; улучшена очистка unload; исправлены lint-предупреждения",
-        "fr": "Ajout CI/CD workflow, dependabot, release-script; prefixe node: pour modules integres; nettoyage unload ameliore; avertissements lint corriges",
-        "it": "Aggiunto CI/CD workflow, dependabot, release-script; prefisso node: per moduli integrati; pulizia unload migliorata; avvisi lint corretti",
-        "es": "Anadido CI/CD workflow, dependabot, release-script; prefijo node: para modulos integrados; limpieza unload mejorada; advertencias lint corregidas",
-        "pl": "Dodano CI/CD workflow, dependabot, release-script; prefiks node: dla wbudowanych modulow; ulepszone czyszczenie unload; naprawiono ostrzezenia lint",
-        "pt": "Adicionado CI/CD workflow, dependabot, release-script; prefixo node: para modulos integrados; limpeza unload melhorada; avisos lint corrigidos",
-        "nl": "CI/CD workflow, dependabot, release-script toegevoegd; node: prefix voor ingebouwde modules; unload opruiming verbeterd; lint waarschuwingen opgelost",
-        "uk": "Додано CI/CD workflow, dependabot, release-script; префікс node: для вбудованих модулів; покращено очищення unload; виправлено lint-попередження",
-        "zh-cn": "添加CI/CD工作流、dependabot、release-script；内置模块使用node:前缀；改进unload清理；修复lint警告"
-      },
-      "1.0.43": {
-        "en": "Add EU server mirror option (eu-api.poiskkino.dev) for users in Europe where main API is not accessible",
-        "de": "EU-Server-Spiegel-Option hinzugefuegt (eu-api.poiskkino.dev) fuer Nutzer in Europa, bei denen die Haupt-API nicht erreichbar ist",
-        "ru": "Добавлена опция EU-зеркала (eu-api.poiskkino.dev) для пользователей в Европе, где основной API недоступен",
-        "fr": "Ajout de l option miroir EU (eu-api.poiskkino.dev) pour les utilisateurs en Europe ou l API principale est inaccessible",
-        "it": "Aggiunta opzione mirror EU (eu-api.poiskkino.dev) per utenti in Europa dove l API principale non e accessibile",
-        "es": "Anadida opcion de espejo EU (eu-api.poiskkino.dev) para usuarios en Europa donde la API principal no es accesible",
-        "pl": "Dodano opcje serwera lustrzanego EU (eu-api.poiskkino.dev) dla uzytkownikow w Europie, gdzie glowne API jest niedostepne",
-        "pt": "Adicionada opcao de espelho EU (eu-api.poiskkino.dev) para utilizadores na Europa onde a API principal nao esta acessivel",
-        "nl": "EU-spiegelserveroptie toegevoegd (eu-api.poiskkino.dev) voor gebruikers in Europa waar de hoofd-API niet toegankelijk is",
-        "uk": "Додано опцію EU-дзеркала (eu-api.poiskkino.dev) для користувачів у Європі, де основний API недоступний",
-        "zh-cn": "为欧洲主API不可访问的用户添加EU镜像服务器选项（eu-api.poiskkino.dev）"
-      },
-      "1.0.42": {
-        "en": "Replace log.info with log.debug for startup/shutdown details (adapter starting, ready, cleanup, database info)",
-        "de": "log.info durch log.debug fuer Start-/Stop-Details ersetzt (Adapter-Start, bereit, Cleanup, Datenbankinfo)",
-        "ru": "Заменены log.info на log.debug для деталей запуска/остановки (старт адаптера, готовность, очистка, инфо о базе)",
-        "fr": "Remplacement de log.info par log.debug pour les details de demarrage/arret (demarrage adaptateur, pret, nettoyage, info base)",
-        "it": "Sostituito log.info con log.debug per i dettagli di avvio/arresto (avvio adapter, pronto, pulizia, info database)",
-        "es": "Reemplazado log.info por log.debug para detalles de inicio/parada (inicio adaptador, listo, limpieza, info base de datos)",
-        "pl": "Zastapiono log.info przez log.debug dla szczegolów uruchamiania/zatrzymywania (start adaptera, gotowy, czyszczenie, info bazy)",
-        "pt": "Substituido log.info por log.debug para detalhes de inicio/parada (inicio adaptador, pronto, limpeza, info base de dados)",
-        "nl": "log.info vervangen door log.debug voor opstart-/stopdetails (adapter start, gereed, opruimen, database-info)",
-        "uk": "Замінено log.info на log.debug для деталей запуску/зупинки (старт адаптера, готовність, очищення, інфо про базу)",
-        "zh-cn": "将启动/停止详情的log.info替换为log.debug（适配器启动、就绪、清理、数据库信息）"
-      },
-      "1.0.41": {
-        "en": "Fix broken news section in io-package.json (JSON syntax error)",
-        "de": "Fehlerhafte news-Sektion in io-package.json behoben (JSON-Syntaxfehler)",
-        "ru": "Исправлена сломанная секция news в io-package.json (синтаксическая ошибка JSON)",
-        "fr": "Correction de la section news incorrecte dans io-package.json (erreur de syntaxe JSON)",
-        "it": "Corretta sezione news non valida in io-package.json (errore di sintassi JSON)",
-        "es": "Corregida seccion news incorrecta en io-package.json (error de sintaxis JSON)",
-        "pl": "Naprawiono uszkodzona sekcje news w io-package.json (blad skladni JSON)",
-        "pt": "Corrigida secao news incorreta em io-package.json (erro de sintaxe JSON)",
-        "nl": "Kapotte news-sectie in io-package.json hersteld (JSON-syntaxisfout)",
-        "zh-cn": "修复 io-package.json 中损坏的 news 部分（JSON 语法错误）"
-      },
-      "1.0.40": {
-        "en": "Bind IP field: replaced interface selector with ip type (listenOnAllPorts: true) to allow selecting 0.0.0.0 for all interfaces.",
-        "de": "Bind-IP-Feld: Schnittstellenauswahl durch ip-Typ ersetzt (listenOnAllPorts: true), um 0.0.0.0 fuer alle Schnittstellen auswaehlen zu koennen.",
-        "ru": "Поле Bind IP: заменён тип interface на ip (listenOnAllPorts: true) для возможности выбора 0.0.0.0 для всех интерфейсов.",
-        "fr": "Champ IP de liaison: selecteur d'interface remplace par le type ip (listenOnAllPorts: true) pour permettre de selectionner 0.0.0.0 pour toutes les interfaces.",
-        "it": "Campo IP di binding: selettore interfaccia sostituito con tipo ip (listenOnAllPorts: true) per consentire la selezione di 0.0.0.0 per tutte le interfacce.",
-        "es": "Campo IP de enlace: selector de interfaz reemplazado por tipo ip (listenOnAllPorts: true) para permitir seleccionar 0.0.0.0 para todas las interfaces.",
-        "pl": "Pole IP powiazania: selektor interfejsu zastapiony typem ip (listenOnAllPorts: true) umozliwiajacym wybor 0.0.0.0 dla wszystkich interfejsow.",
-        "pt": "Campo IP de ligacao: seletor de interface substituido por tipo ip (listenOnAllPorts: true) para permitir selecionar 0.0.0.0 para todas as interfaces.",
-        "nl": "Bind IP-veld: interfaceselector vervangen door ip-type (listenOnAllPorts: true) om 0.0.0.0 voor alle interfaces te kunnen selecteren.",
-        "zh-cn": "绑定IP字段：将接口选择器替换为ip类型（listenOnAllPorts: true），以允许选择0.0.0.0用于所有接口。"
-      },
-      "1.0.39": {
-        "en": "Status tab: clickable links for app URL and backup manager using port from config. Replace localhost with server IP if accessing remotely.",
-        "de": "Status-Tab: klickbare Links fuer App-URL und Backup-Manager mit Port aus Konfiguration.",
-        "ru": "Вкладка Статус: кликабельные ссылки для URL приложения и менеджера бэкапов с портом из конфига.",
-        "fr": "Onglet Statut: liens cliquables pour URL app et gestionnaire backup avec port de la config.",
-        "it": "Scheda Stato: link cliccabili per URL app e gestore backup con porta dalla config.",
-        "es": "Pestana Estado: enlaces clicables para URL app y gestor backup con puerto de la config.",
-        "pl": "Zakladka Status: klikalne linki dla URL aplikacji i menedzera kopii z portem z konfiguracji.",
-        "pt": "Aba Status: links clicaveis para URL do app e gerenciador de backup com porta da config.",
-        "nl": "Status-tabblad: klikbare links voor app-URL en backup-manager met poort uit configuratie.",
-        "zh-cn": "状态选项卡：使用配置中端口的应用URL和备份管理器可点击链接。"
-      },
-      "1.0.38": {
-        "en": "Status tab: show port from config in URL hints using staticText with data interpolation.",
-        "de": "Status-Tab: Port aus Konfiguration in URL-Hinweisen anzeigen mit staticText und Daten-Interpolation.",
-        "ru": "Вкладка Статус: отображение порта из конфига в подсказках URL через staticText с интерполяцией данных.",
-        "fr": "Onglet Statut: affichage du port de la config dans les indications URL via staticText avec interpolation.",
-        "it": "Scheda Stato: mostra porta dalla config negli hint URL tramite staticText con interpolazione dati.",
-        "es": "Pestana Estado: muestra puerto de config en hints URL usando staticText con interpolacion de datos.",
-        "pl": "Zakladka Status: wyswietlanie portu z konfiguracji w podpowiedziach URL przez staticText z interpolacja.",
-        "pt": "Aba Status: exibe porta da config nas dicas de URL via staticText com interpolacao de dados.",
-        "nl": "Status-tabblad: poort uit config tonen in URL-hints via staticText met data-interpolatie.",
-        "zh-cn": "状态选项卡：使用staticText数据插值在URL提示中显示配置中的端口。"
       }
     },
     "titleLang": {
