@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.54",
+    "version": "1.0.55",
     "news": {
+      "1.0.55": {
+        "en": "Fix invalid dependabot schedule: the cron expression key is 'cronjob', not 'cron'. Switched to interval 'weekly' to match the other adapters.",
+        "de": "Ungueltigen Dependabot-Zeitplan korrigiert: der Schluessel fuer den Cron-Ausdruck heisst 'cronjob', nicht 'cron'. Auf Intervall 'weekly' umgestellt wie bei den anderen Adaptern.",
+        "ru": "Исправлено невалидное расписание dependabot: ключ cron-выражения называется 'cronjob', а не 'cron'. Переведено на interval 'weekly' как в остальных адаптерах.",
+        "fr": "Correction du planning dependabot invalide: la cle de l'expression cron est 'cronjob', pas 'cron'. Passage a interval 'weekly' comme les autres adaptateurs.",
+        "it": "Corretta pianificazione dependabot non valida: la chiave dell'espressione cron e 'cronjob', non 'cron'. Passato a interval 'weekly' come negli altri adapter.",
+        "es": "Corregida planificacion de dependabot invalida: la clave de la expresion cron es 'cronjob', no 'cron'. Cambiado a interval 'weekly' como en los otros adaptadores.",
+        "pl": "Naprawiono nieprawidlowy harmonogram dependabot: kluczem wyrazenia cron jest 'cronjob', nie 'cron'. Zmieniono na interval 'weekly' jak w pozostalych adapterach.",
+        "pt": "Corrigido agendamento invalido do dependabot: a chave da expressao cron e 'cronjob', nao 'cron'. Alterado para interval 'weekly' como nos outros adaptadores.",
+        "nl": "Ongeldig dependabot-schema gecorrigeerd: de sleutel voor de cron-expressie is 'cronjob', niet 'cron'. Overgezet naar interval 'weekly' zoals de andere adapters.",
+        "uk": "Виправлено невалідний розклад dependabot: ключ cron-виразу називається 'cronjob', а не 'cron'. Переведено на interval 'weekly' як в інших адаптерах.",
+        "zh-cn": "修复无效的 dependabot 计划：cron 表达式的键名是 'cronjob' 而非 'cron'。改用 interval 'weekly'，与其他适配器保持一致。"
+      },
       "1.0.54": {
         "en": "Add dependabot cooldown (E8915) and auto-merge.yml (S8914). Ignore major @types/node bumps. Restrict auto-merge: dev dependencies to minor, runtime dependencies to patch.",
         "de": "Dependabot-Cooldown (E8915) und auto-merge.yml (S8914) hinzugefuegt. Major-Updates von @types/node ignoriert. Auto-Merge eingeschraenkt: Dev-Abhaengigkeiten bis minor, Laufzeit-Abhaengigkeiten nur patch.",
@@ -80,19 +93,6 @@
         "nl": "Geplande auto-sync: nieuwe optie om dagelijks op een vaste tijd (HH:MM) te draaien in plaats van elke N uur. Overbodige globale jaarbereikvelden verwijderd.",
         "uk": "Автосинхронізація за розкладом: нова опція запуску щодня у фіксований час (ГГ:ХХ) замість кожні N годин. Видалено зайві глобальні поля діапазону років.",
         "zh-cn": "计划自动同步：新选项可在固定时间（HH:MM）每日运行，而不是每N小时一次。删除了冗余的全局年份范围字段（年份按API密钥设置）。"
-      },
-      "1.0.48": {
-        "en": "Per-key request tracking: each API key stores its own daily request counter by key hash. Same key reused multiple times always shows correct remaining requests. --status shows stats per key.",
-        "de": "Anfragen-Tracking pro Schluessel: Jeder API-Schluessel speichert seinen eigenen Tageszaehler per Hash. Derselbe Schluessel mehrfach verwendet zeigt korrekte verbleibende Anfragen.",
-        "ru": "Учёт запросов на ключ: каждый API ключ хранит свой дневной счётчик по хешу ключа. Один ключ используемый несколько раз всегда показывает правильный остаток запросов.",
-        "fr": "Suivi des requetes par cle: chaque cle API stocke son propre compteur journalier par hash. La meme cle reutilisee plusieurs fois affiche toujours les requetes restantes correctes.",
-        "it": "Tracciamento richieste per chiave: ogni chiave API memorizza il proprio contatore giornaliero per hash. La stessa chiave riutilizzata piu volte mostra sempre le richieste rimanenti corrette.",
-        "es": "Seguimiento de solicitudes por clave: cada clave API almacena su propio contador diario por hash. La misma clave reutilizada varias veces siempre muestra las solicitudes restantes correctas.",
-        "pl": "Sledzenie zapytan na klucz: kazdy klucz API przechowuje wlasny dzienny licznik po hashu. Ten sam klucz uzywany wielokrotnie zawsze pokazuje prawidlowa liczbe pozostalych zapytan.",
-        "pt": "Rastreamento de solicitacoes por chave: cada chave API armazena seu proprio contador diario por hash. A mesma chave reutilizada varias vezes sempre mostra as solicitacoes restantes corretas.",
-        "nl": "Verzoektracking per sleutel: elke API-sleutel slaat zijn eigen dagelijkse teller op per hash. Dezelfde sleutel meerdere keren hergebruikt toont altijd de juiste resterende verzoeken.",
-        "uk": "Облік запитів на ключ: кожен API ключ зберігає свій денний лічильник за хешем. Один ключ що використовується кілька разів завжди показує правильний залишок запитів.",
-        "zh-cn": "按键跟踪请求：每个API密钥通过密钥哈希存储自己的每日请求计数器。同一密钥多次重用时始终显示正确的剩余请求数。"
       }
     },
     "titleLang": {

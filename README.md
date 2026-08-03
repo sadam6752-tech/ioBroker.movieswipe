@@ -170,6 +170,9 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 
 ## Changelog
 
+### 1.0.55
+- (sadam6752-tech) Fix invalid dependabot schedule: with `interval: cron` the expression key is `cronjob`, not `cron`. Switched to `interval: weekly` to match the other adapters
+
 ### 1.0.54
 - (sadam6752-tech) Add dependabot cooldown of 7 days (checker rule E8915) and a weekly cron schedule
 - (sadam6752-tech) Ignore major `@types/node` bumps — the type definitions must stay within the Node major line the adapter runs on
