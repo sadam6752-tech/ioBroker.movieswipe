@@ -1,6 +1,6 @@
 {
   "name": "iobroker.movieswipe",
-  "version": "1.0.52",
+  "version": "1.0.53",
   "description": "ioBroker adapter for MovieSwipe PWA - Movie discovery application with Kinopoisk API integration. Optimized database (48 MB) with improved rate limit handling",
   "author": {
     "name": "sadam6752-tech",
@@ -21,7 +21,7 @@
     "url": "https://github.com/sadam6752-tech/ioBroker.movieswipe.git"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^3.4.3",

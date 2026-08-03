@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.52",
+    "version": "1.0.53",
     "news": {
+      "1.0.53": {
+        "en": "Update CI: testing-action-check to v2, Node.js 24 for check/deploy, test matrix 22.x/24.x (drop EOL Node 20). Require Node.js >=22.",
+        "de": "CI aktualisiert: testing-action-check auf v2, Node.js 24 fuer check/deploy, Testmatrix 22.x/24.x (Node 20 entfernt). Erfordert Node.js >=22.",
+        "ru": "Обновлён CI: testing-action-check до v2, Node.js 24 для check/deploy, матрица тестов 22.x/24.x (Node 20 убран как EOL). Требуется Node.js >=22.",
+        "fr": "CI mis a jour: testing-action-check en v2, Node.js 24 pour check/deploy, matrice de tests 22.x/24.x (Node 20 retire). Requiert Node.js >=22.",
+        "it": "CI aggiornato: testing-action-check a v2, Node.js 24 per check/deploy, matrice test 22.x/24.x (Node 20 rimosso). Richiede Node.js >=22.",
+        "es": "CI actualizado: testing-action-check a v2, Node.js 24 para check/deploy, matriz de pruebas 22.x/24.x (Node 20 eliminado). Requiere Node.js >=22.",
+        "pl": "Zaktualizowano CI: testing-action-check do v2, Node.js 24 dla check/deploy, macierz testow 22.x/24.x (usunieto Node 20). Wymaga Node.js >=22.",
+        "pt": "CI atualizado: testing-action-check para v2, Node.js 24 para check/deploy, matriz de testes 22.x/24.x (Node 20 removido). Requer Node.js >=22.",
+        "nl": "CI bijgewerkt: testing-action-check naar v2, Node.js 24 voor check/deploy, testmatrix 22.x/24.x (Node 20 verwijderd). Vereist Node.js >=22.",
+        "uk": "Оновлено CI: testing-action-check до v2, Node.js 24 для check/deploy, матриця тестів 22.x/24.x (Node 20 прибрано як EOL). Потрібен Node.js >=22.",
+        "zh-cn": "更新 CI：testing-action-check 升级到 v2，check/deploy 使用 Node.js 24，测试矩阵 22.x/24.x（移除已停止维护的 Node 20）。要求 Node.js >=22。"
+      },
       "1.0.52": {
         "en": "Fix CI: commit package-lock.json (npm ci requires it). Upgrade to Express 5 (SPA fallback route adapted to path-to-regexp v8). Update adapter-core to ^3.4.3. Remove redundant eslint/mocha devDependencies. Fix broken npm test script.",
         "de": "CI behoben: package-lock.json committet (npm ci benoetigt sie). Upgrade auf Express 5 (SPA-Fallback-Route an path-to-regexp v8 angepasst). adapter-core auf ^3.4.3 aktualisiert. Redundante eslint/mocha devDependencies entfernt. Defektes npm test Skript korrigiert.",
@@ -80,19 +93,6 @@
         "nl": "totalMovies gecorrigeerd: toont altijd echte DB-telling. requestsUsed/requestsRemaining geparseerd uit scriptuitvoer per sleutel.",
         "uk": "Виправлено totalMovies: завжди показує реальну кількість з бази. requestsUsed/requestsRemaining парситься з виводу скрипта на ключ.",
         "zh-cn": "修复totalMovies状态：始终显示真实DB计数。requestsUsed/requestsRemaining从每个键的脚本输出解析。"
-      },
-      "1.0.46": {
-        "en": "Fix year range expansion: stop at assigned range end, switch to next key instead of expanding backwards. Reset completed flag on key change.",
-        "de": "Jahresbereich-Erweiterung behoben: stoppt am zugewiesenen Bereichsende, wechselt zum naechsten Schluessel statt rueckwaerts zu erweitern.",
-        "ru": "Исправлено расширение диапазона лет: останавливается на заданном диапазоне, переключается на следующий ключ вместо расширения назад. Сброс флага completed при смене ключа.",
-        "fr": "Correction expansion plage d'annees: s'arrete a la fin de la plage assignee, passe a la cle suivante.",
-        "it": "Corretto espansione intervallo anni: si ferma alla fine dell'intervallo assegnato, passa alla chiave successiva.",
-        "es": "Corregida expansion rango de anos: se detiene al final del rango asignado, cambia a la siguiente clave.",
-        "pl": "Poprawiono rozszerzanie zakresu lat: zatrzymuje sie na koncu przypisanego zakresu, przelacza na nastepny klucz.",
-        "pt": "Corrigida expansao do intervalo de anos: para no fim do intervalo atribuido, muda para a proxima chave.",
-        "nl": "Jaarbereik uitbreiding opgelost: stopt aan het einde van het toegewezen bereik, schakelt over naar de volgende sleutel.",
-        "uk": "Виправлено розширення діапазону років: зупиняється на заданому діапазоні, перемикається на наступний ключ.",
-        "zh-cn": "修复年份范围扩展：在分配范围结束时停止，切换到下一个密钥而不是向后扩展。"
       }
     },
     "titleLang": {

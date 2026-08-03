@@ -170,6 +170,11 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 
 ## Changelog
 
+### 1.0.53
+- (sadam6752-tech) CI: bump `ioBroker/testing-action-check` to v2 (`testing-action-adapter` and `testing-action-deploy` have no v2 yet)
+- (sadam6752-tech) CI: Node.js 24 for the check and deploy jobs; test matrix reduced to 22.x / 24.x (Node 20 is end-of-life)
+- (sadam6752-tech) Require Node.js `>=22`, matching the other adapters
+
 ### 1.0.52
 - (sadam6752-tech) Fix CI: commit `package-lock.json` — `npm ci` cannot run without it
 - (sadam6752-tech) Upgrade to Express 5; SPA fallback route adapted to path-to-regexp v8 (`'*'` -> `'/{*splat}'`)
