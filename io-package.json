@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.49",
+    "version": "1.0.50",
     "news": {
+      "1.0.50": {
+        "en": "Fix auto sync: per-key parameters (yearStart/yearEnd/minVotes/minRating) now correctly passed when using scheduled sync. Fix timePicker validation warning (removed unsupported 'help' property).",
+        "de": "Auto-Sync-Fix: Schlüssel-Parameter (yearStart/yearEnd/minVotes/minRating) werden bei geplanter Synchronisierung jetzt korrekt übergeben. timePicker-Validierungswarnung behoben (nicht unterstützte 'help'-Eigenschaft entfernt).",
+        "ru": "Исправлена автосинхронизация: параметры ключа (yearStart/yearEnd/minVotes/minRating) теперь корректно передаются при синхронизации по расписанию. Исправлено предупреждение валидации timePicker (удалено неподдерживаемое свойство 'help').",
+        "fr": "Correction auto-sync: paramètres par clé correctement transmis lors de la sync planifiée. Avertissement de validation timePicker corrigé.",
+        "it": "Fix auto-sync: parametri per chiave ora passati correttamente nella sync pianificata. Avviso validazione timePicker corretto.",
+        "es": "Fix auto-sync: parámetros por clave ahora correctamente pasados en sync programada. Advertencia validación timePicker corregida.",
+        "pl": "Poprawka auto-sync: parametry per klucz teraz poprawnie przekazywane przy synchronizacji planowej. Poprawiono ostrzeżenie walidacji timePicker.",
+        "pt": "Fix auto-sync: parâmetros por chave agora passados corretamente na sync agendada. Aviso de validação timePicker corrigido.",
+        "nl": "Fix auto-sync: per-sleutel parameters nu correct doorgegeven bij geplande sync. timePicker validatiewaarschuwing opgelost.",
+        "uk": "Виправлено автосинхронізацію: параметри ключа тепер коректно передаються при синхронізації за розкладом. Виправлено попередження валідації timePicker.",
+        "zh-cn": "修复自动同步：计划同步时现在正确传递每密钥参数。修复timePicker验证警告（删除不支持的'help'属性）。"
+      },
       "1.0.49": {
         "en": "Scheduled auto sync: new option to run daily at a fixed time (HH:MM) instead of every N hours. Removed redundant global year range fields (year is set per API key).",
         "de": "Geplante Auto-Synchronisierung: neue Option zur täglichen Ausführung zu einer festen Uhrzeit (HH:MM) statt alle N Stunden. Redundante globale Jahresbereich-Felder entfernt (Jahr wird pro API-Schlüssel gesetzt).",
