@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.55",
+    "version": "1.0.56",
     "news": {
+      "1.0.56": {
+        "en": "Update multer to 2.x. Remove the Content Filters section: 'Maximum Rating' had no effect at all, while minimum rating and minimum votes are already configured per API key.",
+        "de": "multer auf 2.x aktualisiert. Bereich Inhaltsfilter entfernt: 'Maximale Bewertung' war ohne jede Wirkung, Mindestbewertung und Mindestanzahl der Stimmen werden bereits pro API-Schluessel konfiguriert.",
+        "ru": "multer обновлён до 2.x. Удалена секция «Фильтры контента»: «Максимальный рейтинг» вообще ни на что не влиял, а минимальный рейтинг и минимум голосов задаются в настройках каждого API-ключа.",
+        "fr": "multer mis a jour en 2.x. Section Filtres de contenu supprimee: 'Note maximale' n'avait aucun effet, la note minimale et le nombre minimal de votes sont deja configures par cle API.",
+        "it": "multer aggiornato a 2.x. Rimossa la sezione Filtri contenuto: 'Valutazione massima' non aveva alcun effetto, valutazione minima e voti minimi sono gia configurati per singola chiave API.",
+        "es": "multer actualizado a 2.x. Eliminada la seccion Filtros de contenido: 'Valoracion maxima' no tenia ningun efecto, la valoracion minima y los votos minimos ya se configuran por clave API.",
+        "pl": "multer zaktualizowany do 2.x. Usunieto sekcje Filtry tresci: 'Maksymalna ocena' nie mialo zadnego efektu, a minimalna ocena i minimalna liczba glosow sa juz ustawiane dla kazdego klucza API.",
+        "pt": "multer atualizado para 2.x. Removida a seccao Filtros de conteudo: 'Avaliacao maxima' nao tinha qualquer efeito, avaliacao minima e votos minimos ja sao configurados por chave API.",
+        "nl": "multer bijgewerkt naar 2.x. Sectie Inhoudsfilters verwijderd: 'Maximale beoordeling' had geen enkel effect, minimale beoordeling en minimaal aantal stemmen worden al per API-sleutel ingesteld.",
+        "uk": "multer оновлено до 2.x. Видалено секцію «Фільтри контенту»: «Максимальний рейтинг» взагалі ні на що не впливав, а мінімальний рейтинг і мінімум голосів задаються для кожного API-ключа.",
+        "zh-cn": "multer 更新至 2.x。移除内容过滤器部分：“最高评分”完全没有作用，而最低评分和最少投票数已在每个 API 密钥中单独配置。"
+      },
       "1.0.55": {
         "en": "Fix invalid dependabot schedule: the cron expression key is 'cronjob', not 'cron'. Switched to interval 'weekly' to match the other adapters.",
         "de": "Ungueltigen Dependabot-Zeitplan korrigiert: der Schluessel fuer den Cron-Ausdruck heisst 'cronjob', nicht 'cron'. Auf Intervall 'weekly' umgestellt wie bei den anderen Adaptern.",
@@ -80,19 +93,6 @@
         "nl": "Fix auto-sync: per-sleutel parameters nu correct doorgegeven bij geplande sync. timePicker validatiewaarschuwing opgelost.",
         "uk": "Виправлено автосинхронізацію: параметри ключа тепер коректно передаються при синхронізації за розкладом. Виправлено попередження валідації timePicker.",
         "zh-cn": "修复自动同步：计划同步时现在正确传递每密钥参数。修复timePicker验证警告（删除不支持的'help'属性）。"
-      },
-      "1.0.49": {
-        "en": "Scheduled auto sync: new option to run daily at a fixed time (HH:MM) instead of every N hours. Removed redundant global year range fields (year is set per API key).",
-        "de": "Geplante Auto-Synchronisierung: neue Option zur täglichen Ausführung zu einer festen Uhrzeit (HH:MM) statt alle N Stunden. Redundante globale Jahresbereich-Felder entfernt (Jahr wird pro API-Schlüssel gesetzt).",
-        "ru": "Автосинхронизация по расписанию: новая опция запуска каждый день в фиксированное время (ЧЧ:ММ) вместо каждые N часов. Удалены избыточные глобальные поля диапазона лет (год задаётся на ключ).",
-        "fr": "Sync automatique planifiée: nouvelle option pour s'exécuter quotidiennement à une heure fixe (HH:MM) au lieu de toutes les N heures. Champs plage d'années globaux redondants supprimés.",
-        "it": "Sync automatica pianificata: nuova opzione per eseguire ogni giorno a un'ora fissa (HH:MM) invece di ogni N ore. Rimossi campi intervallo anni globali ridondanti.",
-        "es": "Sync automática programada: nueva opción para ejecutar diariamente a una hora fija (HH:MM) en lugar de cada N horas. Eliminados campos de rango de años globales redundantes.",
-        "pl": "Zaplanowana auto-synchronizacja: nowa opcja uruchamiania codziennie o stałej godzinie (HH:MM) zamiast co N godzin. Usunięto redundantne globalne pola zakresu lat.",
-        "pt": "Sync automática agendada: nova opção para executar diariamente a uma hora fixa (HH:MM) em vez de a cada N horas. Removidos campos de intervalo de anos globais redundantes.",
-        "nl": "Geplande auto-sync: nieuwe optie om dagelijks op een vaste tijd (HH:MM) te draaien in plaats van elke N uur. Overbodige globale jaarbereikvelden verwijderd.",
-        "uk": "Автосинхронізація за розкладом: нова опція запуску щодня у фіксований час (ГГ:ХХ) замість кожні N годин. Видалено зайві глобальні поля діапазону років.",
-        "zh-cn": "计划自动同步：新选项可在固定时间（HH:MM）每日运行，而不是每N小时一次。删除了冗余的全局年份范围字段（年份按API密钥设置）。"
       }
     },
     "titleLang": {

@@ -170,6 +170,11 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 
 ## Changelog
 
+### 1.0.56
+- (sadam6752-tech) Update `multer` to 2.x
+- (sadam6752-tech) Remove the Content Filters section from the Synchronization tab: `Maximum Rating` was never read by any code, and minimum rating / minimum votes are already configured per API key
+- (sadam6752-tech) Per-key filter fallbacks no longer use `||`, so a deliberate `0` in a key row is respected instead of being replaced by the default
+
 ### 1.0.55
 - (sadam6752-tech) Fix invalid dependabot schedule: with `interval: cron` the expression key is `cronjob`, not `cron`. Switched to `interval: weekly` to match the other adapters
 
