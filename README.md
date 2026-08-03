@@ -170,9 +170,9 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 
 ## Changelog
 
-> Versions 1.0.52, 1.0.53, 1.0.54 and 1.0.56 were tagged but never published to npm — their
-> deploy runs failed. The changes they describe are contained in 1.0.55 and 1.0.57 respectively,
-> so they are listed below for history but are absent from `common.news`.
+> Versions 1.0.52, 1.0.53 and 1.0.54 were tagged but never published to npm — their deploy
+> runs failed before Trusted Publishing was configured. The changes they describe are
+> contained in 1.0.55, so they are listed below for history but are absent from `common.news`.
 
 ### 1.0.57
 - (sadam6752-tech) Update `multer` to 2.x
@@ -186,7 +186,9 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 - (sadam6752-tech) Remove news entries for 1.0.52, 1.0.53, 1.0.54 and 1.0.56, which never reached npm (checker rule E2004)
 
 ### 1.0.56
-- Not published to npm — the deploy run failed while writing the provenance attestation. Content released as 1.0.57
+- (sadam6752-tech) Update `multer` to 2.x
+- (sadam6752-tech) Remove the Content Filters section from the Synchronization tab: `Maximum Rating` was never read by any code, and minimum rating / minimum votes are already configured per API key
+- (sadam6752-tech) Per-key filter fallbacks no longer use `||`, so a deliberate `0` in a key row is respected instead of being replaced by the default
 
 ### 1.0.55
 - (sadam6752-tech) Fix invalid dependabot schedule: with `interval: cron` the expression key is `cronjob`, not `cron`. Switched to `interval: weekly` to match the other adapters
