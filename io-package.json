@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.58",
+    "version": "1.0.59",
     "news": {
+      "1.0.59": {
+        "en": "Add navigation between the app settings and the database backup manager: a link to open the backup manager from the Settings tab, and a link back to Settings from the backup page.",
+        "de": "Navigation zwischen den App-Einstellungen und dem Datenbank-Backup-Manager hinzugefuegt: Link zum Oeffnen des Backup-Managers aus dem Einstellungen-Tab und Link zurueck zu den Einstellungen von der Backup-Seite.",
+        "ru": "Добавлена навигация между настройками приложения и менеджером резервных копий базы данных: ссылка для открытия менеджера бэкапов из вкладки настроек, и ссылка назад в настройки со страницы бэкапа.",
+        "fr": "Ajout de la navigation entre les parametres de l'application et le gestionnaire de sauvegarde de la base de donnees: lien pour ouvrir le gestionnaire depuis les parametres, et lien de retour vers les parametres depuis la page de sauvegarde.",
+        "it": "Aggiunta navigazione tra le impostazioni dell'app e il gestore di backup del database: link per aprire il gestore backup dalla scheda impostazioni, e link per tornare alle impostazioni dalla pagina di backup.",
+        "es": "Anadida navegacion entre la configuracion de la app y el gestor de copias de seguridad de la base de datos: enlace para abrir el gestor desde configuracion, y enlace de vuelta a configuracion desde la pagina de backup.",
+        "pl": "Dodano nawigacje miedzy ustawieniami aplikacji a menedzerem kopii zapasowych bazy danych: link do otwarcia menedzera z zakladki ustawien i link powrotny do ustawien ze strony kopii zapasowej.",
+        "pt": "Adicionada navegacao entre as configuracoes do app e o gestor de backup da base de dados: link para abrir o gestor a partir das configuracoes, e link de volta as configuracoes a partir da pagina de backup.",
+        "nl": "Navigatie toegevoegd tussen de app-instellingen en de database-backupmanager: link om de backupmanager te openen vanuit het instellingentabblad, en link terug naar instellingen vanaf de backuppagina.",
+        "uk": "Додано навігацію між налаштуваннями застосунку та менеджером резервних копій бази даних: посилання для відкриття менеджера з вкладки налаштувань, і посилання назад до налаштувань зі сторінки резервної копії.",
+        "zh-cn": "在应用设置和数据库备份管理器之间添加导航：在设置标签页添加打开备份管理器的链接，在备份页面添加返回设置的链接。"
+      },
       "1.0.58": {
         "en": "Add @tsconfig/node22 and tsconfig.json with extends (checker rules S0085/S0088), matching the other adapters. Add prettier.config.mjs required by @iobroker/eslint-config.",
         "de": "@tsconfig/node22 und tsconfig.json mit extends hinzugefuegt (Pruefregeln S0085/S0088), analog zu den anderen Adaptern. prettier.config.mjs hinzugefuegt, benoetigt von @iobroker/eslint-config.",

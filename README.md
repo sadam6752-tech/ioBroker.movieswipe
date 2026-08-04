@@ -170,6 +170,9 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 
 ## Changelog
 
+### 1.0.59
+- (sadam6752-tech) Add navigation between app settings and the database backup manager: a "Open backup manager" link in the Settings tab, and a "Back to Settings" link on the backup page
+
 ### 1.0.58
 - (sadam6752-tech) Add `@tsconfig/node22` and `tsconfig.json` with `extends` (checker rules S0085/S0088), matching the other adapters
 - (sadam6752-tech) Add `prettier.config.mjs` required by `@iobroker/eslint-config`
