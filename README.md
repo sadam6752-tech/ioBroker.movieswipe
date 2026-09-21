@@ -43,22 +43,14 @@ This adapter integrates the MovieSwipe Progressive Web Application (PWA) into io
 
 ## Installation
 
-### From ioBroker Admin (when published)
-1. Open ioBroker Admin interface
-2. Go to "Adapters" tab
+1. Open the ioBroker Admin interface
+2. Go to the "Adapters" tab
 3. Search for "movieswipe"
 4. Click "Install"
 
-### From GitHub (development)
-```bash
-cd /opt/iobroker
-npm install https://github.com/sadam6752-tech/ioBroker.movieswipe/tarball/main
-```
-
-### From URL
-```bash
-iobroker url https://github.com/sadam6752-tech/ioBroker.movieswipe
-```
+> The adapter is not part of the official ioBroker repository yet, so it may not show up in the
+> adapter search. In that case install it by name from the ioBroker console with
+> `iobroker install iobroker.movieswipe`.
 
 ## Configuration
 
@@ -170,6 +162,15 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 
 ## Changelog
 
+### 1.1.0
+- (sadam6752-tech) Maintenance release - no functional changes to the adapter
+- (sadam6752-tech) CI: Node.js 26 added to the test matrix
+- (sadam6752-tech) CI: restore the deploy job - releases are published automatically using npm "Trusted Publishing" (OIDC) including a provenance attestation
+- (sadam6752-tech) README.md: complete MIT license text with contact address; "License" section moved to the end of the file
+- (sadam6752-tech) LICENSE: add the contact address to the copyright line
+- (sadam6752-tech) Update `@iobroker/testing` to 6.2.x
+- (sadam6752-tech) Move older changelog entries to CHANGELOG_OLD.md
+
 ### 1.0.59
 - (sadam6752-tech) Add navigation between app settings and the database backup manager: a "Open backup manager" link in the Settings tab, and a "Back to Settings" link on the backup page
 
@@ -223,49 +224,7 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 ### 1.0.51
 - (sadam6752-tech) Replace `timePicker` with a text field for the sync time (`timePicker` rejects `default`/`help` in the jsonConfig schema)
 
-### 1.0.50
-- (sadam6752-tech) Fix scheduled auto sync: per-key parameters (year range, min votes, min rating) are now passed correctly instead of falling back to the global content filters
-
-### 1.0.49
-- (sadam6752-tech) Add scheduled auto sync: run daily at a fixed time (HH:MM) instead of every N hours
-- (sadam6752-tech) Remove redundant global year range fields — the year range is configured per API key
-
-### 1.0.48
-- (sadam6752-tech) Per-key request tracking: each API key keeps its own daily request counter, keyed by hash
-
-### 1.0.47
-- (sadam6752-tech) Fix `sync.totalMovies`: always report the real database count instead of the per-key counter
-- (sadam6752-tech) Fix `sync.requestsUsed` / `sync.requestsRemaining` parsing from the sync script output
-
-### 1.0.46
-- (sadam6752-tech) Fix year range expansion: stop at the assigned range end and switch to the next key instead of expanding backwards
-
-### 1.0.45
-- (sadam6752-tech) Per-key year range and filters: each API key can define its own year range, min votes and min rating
-
-### 1.0.44 (2026-03-30)
-- (sadam6752-tech) Add CI/CD workflow, dependabot, release-script
-- (sadam6752-tech) Use node: prefix for built-in modules (path, fs, os)
-- (sadam6752-tech) Fix unload: null references after cleanup
-- (sadam6752-tech) Fix lint warnings in web-server.js and main.js
-
-### 1.0.43 (2026-03-19)
-- Add EU server mirror option (eu-api.poiskkino.dev) for users in Europe where main API is not accessible
-
-### 1.0.42 (2026-03-18)
-- Replace log.info with log.debug for startup/shutdown details (adapter starting, ready, cleanup, database info)
-
-### 1.0.0 (2026-03-11)
-- First stable release
-- Web server for PWA hosting
-- Synchronization management with Kinopoisk API
-- Multi-language support (DE, EN, RU, FR, IT, ES, PL, PT, NL, ZH-CN)
-- Real-time progress monitoring
-- Multiple API key support with rotation
-- Configurable filters (rating, votes, year range)
-
-### 0.1.0 (2026-03-09)
-- Initial development release
+Older changelog entries can be found in [CHANGELOG_OLD.md](CHANGELOG_OLD.md).
 
 ## Credits
 
@@ -278,12 +237,30 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 - **GitHub Issues**: https://github.com/sadam6752-tech/ioBroker.movieswipe/issues
 - **ioBroker Forum**: https://forum.iobroker.net/
 
+---
+
+**Made with ❤️ for ioBroker community**
+
 ## License
 
 MIT License
 
-Copyright (c) 2026 sadam6752-tech
+Copyright (c) 2026 sadam6752-tech <sadam6752@gmail.com>
 
----
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-**Made with ❤️ for ioBroker community**
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

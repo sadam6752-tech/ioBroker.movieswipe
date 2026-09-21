@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.0.59",
+    "version": "1.1.0",
     "news": {
+      "1.1.0": {
+        "en": "Maintenance release: Node.js 26 added to the CI test matrix, automatic releases via npm \"Trusted Publishing\" (OIDC) restored, complete license information and updated dependencies. No functional changes.",
+        "de": "Wartungsrelease: Node.js 26 in der CI-Testmatrix, automatische Releases über npm \"Trusted Publishing\" (OIDC) wieder aktiviert, vollständige Lizenzangaben und aktualisierte Abhängigkeiten. Keine funktionalen Änderungen.",
+        "ru": "Сервисный релиз: Node.js 26 в матрице тестов CI, восстановлена автоматическая публикация через npm \"Trusted Publishing\" (OIDC), полная информация о лицензии и обновлённые зависимости. Функциональных изменений нет.",
+        "fr": "Version de maintenance : Node.js 26 dans la matrice de tests CI, publication automatique via npm \"Trusted Publishing\" (OIDC) rétablie, informations de licence complètes et dépendances mises à jour. Aucun changement fonctionnel.",
+        "it": "Release di manutenzione: Node.js 26 nella matrice di test CI, pubblicazione automatica tramite npm \"Trusted Publishing\" (OIDC) ripristinata, informazioni complete sulla licenza e dipendenze aggiornate. Nessuna modifica funzionale.",
+        "es": "Versión de mantenimiento: Node.js 26 en la matriz de pruebas de CI, publicación automática mediante npm \"Trusted Publishing\" (OIDC) restaurada, información completa de licencia y dependencias actualizadas. Sin cambios funcionales.",
+        "pl": "Wydanie serwisowe: Node.js 26 w macierzy testów CI, przywrócona automatyczna publikacja przez npm \"Trusted Publishing\" (OIDC), pełne informacje o licencji i zaktualizowane zależności. Brak zmian funkcjonalnych.",
+        "pt": "Versão de manutenção: Node.js 26 na matriz de testes de CI, publicação automática via npm \"Trusted Publishing\" (OIDC) restaurada, informações completas de licença e dependências atualizadas. Sem alterações funcionais.",
+        "nl": "Onderhoudsrelease: Node.js 26 in de CI-testmatrix, automatische publicatie via npm \"Trusted Publishing\" (OIDC) hersteld, volledige licentie-informatie en bijgewerkte afhankelijkheden. Geen functionele wijzigingen.",
+        "uk": "Сервісний реліз: Node.js 26 у матриці тестів CI, відновлено автоматичну публікацію через npm \"Trusted Publishing\" (OIDC), повна інформація про ліцензію та оновлені залежності. Функціональних змін немає.",
+        "zh-cn": "维护版本：CI 测试矩阵新增 Node.js 26，恢复通过 npm \"Trusted Publishing\" (OIDC) 自动发布，补全许可证信息并更新依赖。无功能性变更。"
+      },
       "1.0.59": {
         "en": "Add navigation between the app settings and the database backup manager: a link to open the backup manager from the Settings tab, and a link back to Settings from the backup page.",
         "de": "Navigation zwischen den App-Einstellungen und dem Datenbank-Backup-Manager hinzugefuegt: Link zum Oeffnen des Backup-Managers aus dem Einstellungen-Tab und Link zurueck zu den Einstellungen von der Backup-Seite.",
@@ -80,19 +93,6 @@
         "nl": "timePicker vervangen door tekstveld voor sync-tijd (timePicker ondersteunt 'default'/'help' niet in jsonConfig-schema).",
         "uk": "timePicker замінено на текстове поле для часу синхронізації (тип timePicker не підтримує 'default'/'help' у схемі jsonConfig).",
         "zh-cn": "将timePicker替换为同步时间的文本字段（timePicker类型在jsonConfig模式中不支持'default'/'help'）。"
-      },
-      "1.0.50": {
-        "en": "Fix auto sync: per-key parameters (yearStart/yearEnd/minVotes/minRating) now correctly passed when using scheduled sync. Fix timePicker validation warning (removed unsupported 'help' property).",
-        "de": "Auto-Sync-Fix: Schlüssel-Parameter (yearStart/yearEnd/minVotes/minRating) werden bei geplanter Synchronisierung jetzt korrekt übergeben. timePicker-Validierungswarnung behoben (nicht unterstützte 'help'-Eigenschaft entfernt).",
-        "ru": "Исправлена автосинхронизация: параметры ключа (yearStart/yearEnd/minVotes/minRating) теперь корректно передаются при синхронизации по расписанию. Исправлено предупреждение валидации timePicker (удалено неподдерживаемое свойство 'help').",
-        "fr": "Correction auto-sync: paramètres par clé correctement transmis lors de la sync planifiée. Avertissement de validation timePicker corrigé.",
-        "it": "Fix auto-sync: parametri per chiave ora passati correttamente nella sync pianificata. Avviso validazione timePicker corretto.",
-        "es": "Fix auto-sync: parámetros por clave ahora correctamente pasados en sync programada. Advertencia validación timePicker corregida.",
-        "pl": "Poprawka auto-sync: parametry per klucz teraz poprawnie przekazywane przy synchronizacji planowej. Poprawiono ostrzeżenie walidacji timePicker.",
-        "pt": "Fix auto-sync: parâmetros por chave agora passados corretamente na sync agendada. Aviso de validação timePicker corrigido.",
-        "nl": "Fix auto-sync: per-sleutel parameters nu correct doorgegeven bij geplande sync. timePicker validatiewaarschuwing opgelost.",
-        "uk": "Виправлено автосинхронізацію: параметри ключа тепер коректно передаються при синхронізації за розкладом. Виправлено попередження валідації timePicker.",
-        "zh-cn": "修复自动同步：计划同步时现在正确传递每密钥参数。修复timePicker验证警告（删除不支持的'help'属性）。"
       }
     },
     "titleLang": {
