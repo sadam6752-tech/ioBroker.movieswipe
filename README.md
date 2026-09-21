@@ -162,6 +162,15 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 
 ## Changelog
 
+### 1.1.1
+- (sadam6752-tech) Code quality (checker E5004/E5005): the auto sync timers now use the adapter API (`adapter.setTimeout` / `adapter.setInterval`) so they are cleared automatically when the adapter is unloaded
+- (sadam6752-tech) Code quality (checker E5043): built-in modules are imported with the `node:` prefix
+- (sadam6752-tech) Code quality (checker E5049): removed the `process.env` usage when starting the sync script - compatible with compact mode again
+- (sadam6752-tech) Repository (checker E0075): `eslint.config.js` replaced by `eslint.config.mjs`
+- (sadam6752-tech) Repository (checker E5030): fixed `.releaseconfig.json` (`plugins` must be an array)
+- (sadam6752-tech) Repository (checker E0036): updated the `@alcalzone/release-script` plugins to 5.2.x
+- (sadam6752-tech) io-package.json (checker E1056/W1134): admin dependency `>=7.6.20`, button states are write-only (`read: false`)
+
 ### 1.1.0
 - (sadam6752-tech) Maintenance release - no functional changes to the adapter
 - (sadam6752-tech) CI: Node.js 26 added to the test matrix

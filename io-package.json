@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "news": {
+      "1.1.1": {
+        "en": "Code quality: internal timers now use the adapter API so they are cleaned up on unload, built-in modules use the \"node:\" prefix, removed process.env usage (compact mode) and updated the release tooling.",
+        "de": "Code-Qualität: interne Timer nutzen jetzt die Adapter-API und werden beim Entladen aufgeräumt, Built-in-Module mit \"node:\"-Präfix, process.env-Nutzung entfernt (Kompaktmodus) und Release-Tooling aktualisiert.",
+        "ru": "Качество кода: внутренние таймеры теперь используют API адаптера и очищаются при выгрузке, встроенные модули с префиксом \"node:\", удалено использование process.env (компактный режим), обновлены инструменты релиза.",
+        "fr": "Qualité du code : les minuteurs internes utilisent désormais l'API de l'adaptateur (nettoyage au déchargement), modules intégrés avec le préfixe « node: », suppression de process.env (mode compact) et mise à jour des outils de release.",
+        "it": "Qualità del codice: i timer interni ora usano l'API dell'adattatore (pulizia allo scaricamento), moduli integrati con prefisso \"node:\", rimosso l'uso di process.env (modalità compatta) e aggiornati gli strumenti di release.",
+        "es": "Calidad del código: los temporizadores internos usan ahora la API del adaptador (se limpian al descargar), módulos integrados con prefijo \"node:\", se eliminó el uso de process.env (modo compacto) y se actualizaron las herramientas de release.",
+        "pl": "Jakość kodu: wewnętrzne timery korzystają teraz z API adaptera (czyszczone przy wyładowaniu), moduły wbudowane z prefiksem \"node:\", usunięto użycie process.env (tryb kompaktowy) i zaktualizowano narzędzia wydania.",
+        "pt": "Qualidade de código: os temporizadores internos agora usam a API do adaptador (limpos ao descarregar), módulos internos com prefixo \"node:\", removido o uso de process.env (modo compacto) e ferramentas de release atualizadas.",
+        "nl": "Codekwaliteit: interne timers gebruiken nu de adapter-API (opgeruimd bij het lossen), ingebouwde modules met \"node:\"-prefix, process.env-gebruik verwijderd (compacte modus) en release-tooling bijgewerkt.",
+        "uk": "Якість коду: внутрішні таймери тепер використовують API адаптера та очищуються при вивантаженні, вбудовані модулі з префіксом \"node:\", прибрано використання process.env (компактний режим), оновлено інструменти релізу.",
+        "zh-cn": "代码质量：内部定时器改用适配器 API（卸载时自动清理），内置模块使用 \"node:\" 前缀，移除 process.env 用法（兼容紧凑模式），并更新发布工具。"
+      },
       "1.1.0": {
         "en": "Maintenance release: Node.js 26 added to the CI test matrix, automatic releases via npm \"Trusted Publishing\" (OIDC) restored, complete license information and updated dependencies. No functional changes.",
         "de": "Wartungsrelease: Node.js 26 in der CI-Testmatrix, automatische Releases über npm \"Trusted Publishing\" (OIDC) wieder aktiviert, vollständige Lizenzangaben und aktualisierte Abhängigkeiten. Keine funktionalen Änderungen.",
@@ -80,19 +93,6 @@
         "nl": "Ongeldig dependabot-schema gecorrigeerd: de sleutel voor de cron-expressie is 'cronjob', niet 'cron'. Overgezet naar interval 'weekly' zoals de andere adapters.",
         "uk": "Виправлено невалідний розклад dependabot: ключ cron-виразу називається 'cronjob', а не 'cron'. Переведено на interval 'weekly' як в інших адаптерах.",
         "zh-cn": "修复无效的 dependabot 计划：cron 表达式的键名是 'cronjob' 而非 'cron'。改用 interval 'weekly'，与其他适配器保持一致。"
-      },
-      "1.0.51": {
-        "en": "Replace timePicker with text field for sync time (timePicker type does not support 'default'/'help' in jsonConfig schema).",
-        "de": "timePicker durch Textfeld für Synchronisierungszeit ersetzt (timePicker-Typ unterstützt 'default'/'help' im jsonConfig-Schema nicht).",
-        "ru": "timePicker заменён на текстовое поле для времени синхронизации (тип timePicker не поддерживает 'default'/'help' в схеме jsonConfig).",
-        "fr": "Remplacement timePicker par champ texte pour l'heure de sync (timePicker ne supporte pas 'default'/'help' dans le schéma jsonConfig).",
-        "it": "Sostituito timePicker con campo testo per ora sync (timePicker non supporta 'default'/'help' nello schema jsonConfig).",
-        "es": "Reemplazado timePicker por campo texto para hora sync (timePicker no soporta 'default'/'help' en esquema jsonConfig).",
-        "pl": "Zastąpiono timePicker polem tekstowym dla czasu sync (timePicker nie obsługuje 'default'/'help' w schemacie jsonConfig).",
-        "pt": "timePicker substituído por campo texto para hora sync (timePicker não suporta 'default'/'help' no esquema jsonConfig).",
-        "nl": "timePicker vervangen door tekstveld voor sync-tijd (timePicker ondersteunt 'default'/'help' niet in jsonConfig-schema).",
-        "uk": "timePicker замінено на текстове поле для часу синхронізації (тип timePicker не підтримує 'default'/'help' у схемі jsonConfig).",
-        "zh-cn": "将timePicker替换为同步时间的文本字段（timePicker类型在jsonConfig模式中不支持'default'/'help'）。"
       }
     },
     "titleLang": {
@@ -156,7 +156,7 @@
     ],
     "globalDependencies": [
       {
-        "admin": ">=7.6.17"
+        "admin": ">=7.6.20"
       }
     ],
     "tier": 3
@@ -213,7 +213,7 @@
         "role": "button.start",
         "name": "Start synchronization",
         "type": "boolean",
-        "read": true,
+        "read": false,
         "write": true,
         "def": false
       },
@@ -378,7 +378,7 @@
         "role": "button",
         "name": "Reload app cache",
         "type": "boolean",
-        "read": true,
+        "read": false,
         "write": true,
         "def": false
       },

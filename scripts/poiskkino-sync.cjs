@@ -19,8 +19,8 @@
  * Прогресс сохраняется в .sync-progress.json
  */
 
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 
 // Конфигурация
 const CONFIG = {
@@ -120,7 +120,7 @@ const GENRE_TO_MOOD_MAP = {
  * Создать хеш API ключа (для отслеживания смены ключа)
  */
 function hashApiKey(apiKey) {
-  const crypto = require('crypto');
+  const crypto = require('node:crypto');
   return crypto.createHash('md5').update(apiKey).digest('hex').substring(0, 8);
 }
 
