@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "news": {
+      "1.1.2": {
+        "en": "Repository checker (W1134): the `sync.stop` button is now write-only (`read: false`), like `sync.start` and `sync.reloadApp`. `common.news` trimmed back to 7 entries.",
+        "de": "Repository-Checker (W1134): Der Button `sync.stop` ist jetzt wie `sync.start` und `sync.reloadApp` nur schreibbar (`read: false`). `common.news` wieder auf 7 Eintraege gekuerzt.",
+        "ru": "Проверка репозитория (W1134): кнопка `sync.stop` теперь, как `sync.start` и `sync.reloadApp`, только для записи (`read: false`). `common.news` вновь сокращён до 7 записей.",
+        "fr": "Verificateur de depot (W1134) : le bouton `sync.stop` est desormais en ecriture seule (`read: false`), comme `sync.start` et `sync.reloadApp`. `common.news` ramene a 7 entrees.",
+        "it": "Checker del repository (W1134): il pulsante `sync.stop` ora e di sola scrittura (`read: false`), come `sync.start` e `sync.reloadApp`. `common.news` ridotto di nuovo a 7 voci.",
+        "es": "Comprobador del repositorio (W1134): el boton `sync.stop` ahora es de solo escritura (`read: false`), como `sync.start` y `sync.reloadApp`. `common.news` reducido de nuevo a 7 entradas.",
+        "pl": "Sprawdzanie repozytorium (W1134): przycisk `sync.stop` jest teraz tylko do zapisu (`read: false`), tak jak `sync.start` i `sync.reloadApp`. `common.news` ponownie skrocone do 7 wpisow.",
+        "pt": "Verificador do repositorio (W1134): o botao `sync.stop` agora e somente gravacao (`read: false`), como `sync.start` e `sync.reloadApp`. `common.news` reduzido novamente para 7 entradas.",
+        "nl": "Repository-checker (W1134): de knop `sync.stop` is nu alleen schrijfbaar (`read: false`), net als `sync.start` en `sync.reloadApp`. `common.news` weer teruggebracht tot 7 items.",
+        "uk": "Перевірка репозиторію (W1134): кнопка `sync.stop` тепер, як `sync.start` і `sync.reloadApp`, лише для запису (`read: false`). `common.news` знову скорочено до 7 записів.",
+        "zh-cn": "仓库检查 (W1134)：`sync.stop` 按钮现在与 `sync.start`、`sync.reloadApp` 一样为只写（`read: false`）。`common.news` 重新精简为 7 条。"
+      },
       "1.1.1": {
         "en": "Code quality: internal timers now use the adapter API so they are cleaned up on unload, built-in modules use the \"node:\" prefix, removed process.env usage (compact mode) and updated the release tooling.",
         "de": "Code-Qualität: interne Timer nutzen jetzt die Adapter-API und werden beim Entladen aufgeräumt, Built-in-Module mit \"node:\"-Präfix, process.env-Nutzung entfernt (Kompaktmodus) und Release-Tooling aktualisiert.",
@@ -80,19 +93,6 @@
         "nl": "multer bijgewerkt naar 2.x. Sectie Inhoudsfilters verwijderd: 'Maximale beoordeling' had geen enkel effect, minimale beoordeling en minimaal aantal stemmen worden al per API-sleutel ingesteld.",
         "uk": "multer оновлено до 2.x. Видалено секцію «Фільтри контенту»: «Максимальний рейтинг» взагалі ні на що не впливав, а мінімальний рейтинг і мінімум голосів задаються для кожного API-ключа.",
         "zh-cn": "multer 更新至 2.x。移除内容过滤器部分：“最高评分”完全没有作用，而最低评分和最少投票数已在每个 API 密钥中单独配置。"
-      },
-      "1.0.55": {
-        "en": "Fix invalid dependabot schedule: the cron expression key is 'cronjob', not 'cron'. Switched to interval 'weekly' to match the other adapters.",
-        "de": "Ungueltigen Dependabot-Zeitplan korrigiert: der Schluessel fuer den Cron-Ausdruck heisst 'cronjob', nicht 'cron'. Auf Intervall 'weekly' umgestellt wie bei den anderen Adaptern.",
-        "ru": "Исправлено невалидное расписание dependabot: ключ cron-выражения называется 'cronjob', а не 'cron'. Переведено на interval 'weekly' как в остальных адаптерах.",
-        "fr": "Correction du planning dependabot invalide: la cle de l'expression cron est 'cronjob', pas 'cron'. Passage a interval 'weekly' comme les autres adaptateurs.",
-        "it": "Corretta pianificazione dependabot non valida: la chiave dell'espressione cron e 'cronjob', non 'cron'. Passato a interval 'weekly' come negli altri adapter.",
-        "es": "Corregida planificacion de dependabot invalida: la clave de la expresion cron es 'cronjob', no 'cron'. Cambiado a interval 'weekly' como en los otros adaptadores.",
-        "pl": "Naprawiono nieprawidlowy harmonogram dependabot: kluczem wyrazenia cron jest 'cronjob', nie 'cron'. Zmieniono na interval 'weekly' jak w pozostalych adapterach.",
-        "pt": "Corrigido agendamento invalido do dependabot: a chave da expressao cron e 'cronjob', nao 'cron'. Alterado para interval 'weekly' como nos outros adaptadores.",
-        "nl": "Ongeldig dependabot-schema gecorrigeerd: de sleutel voor de cron-expressie is 'cronjob', niet 'cron'. Overgezet naar interval 'weekly' zoals de andere adapters.",
-        "uk": "Виправлено невалідний розклад dependabot: ключ cron-виразу називається 'cronjob', а не 'cron'. Переведено на interval 'weekly' як в інших адаптерах.",
-        "zh-cn": "修复无效的 dependabot 计划：cron 表达式的键名是 'cronjob' 而非 'cron'。改用 interval 'weekly'，与其他适配器保持一致。"
       }
     },
     "titleLang": {
@@ -226,7 +226,7 @@
         "role": "button.stop",
         "name": "Stop synchronization",
         "type": "boolean",
-        "read": true,
+        "read": false,
         "write": true,
         "def": false
       },

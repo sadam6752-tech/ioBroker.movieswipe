@@ -117,8 +117,8 @@ Monitor synchronization progress through the following states:
 ### sync.*
 | State | Type | R/W | Description |
 |-------|------|-----|-------------|
-| `sync.start` | boolean | R/W | Start synchronization trigger |
-| `sync.stop` | boolean | R/W | Stop synchronization trigger |
+| `sync.start` | boolean | W | Start synchronization trigger (write-only button) |
+| `sync.stop` | boolean | W | Stop synchronization trigger (write-only button) |
 | `sync.status` | string | R | Current status (idle/running/error/completed) |
 | `sync.progress` | number | R | Progress percentage (0-100) |
 | `sync.currentStep` | string | R | Current synchronization step |
@@ -161,6 +161,11 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 - Verify URL in `server.url` state
 
 ## Changelog
+
+### 1.1.2
+- (sadam6752-tech) io-package.json (checker W1134): the `sync.stop` button is now write-only (`read: false`), like `sync.start` and `sync.reloadApp` - 1.1.1 only converted `sync.start`
+- (sadam6752-tech) README: the state table marks `sync.start` and `sync.stop` as write-only buttons
+- (sadam6752-tech) Trim `common.news` back to 7 entries (1.0.55 is dropped there and stays documented in this changelog)
 
 ### 1.1.1
 - (sadam6752-tech) Code quality (checker E5004/E5005): the auto sync timers now use the adapter API (`adapter.setTimeout` / `adapter.setInterval`) so they are cleared automatically when the adapter is unloaded
