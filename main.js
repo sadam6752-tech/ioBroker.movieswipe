@@ -6,7 +6,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const WebServer = require('./lib/web-server');
 const SyncManager = require('./lib/sync-manager');
-const { atomicCopy, readMoviesFile } = require('./lib/fs-utils');
+const DbStore = require('./lib/db-store');
 const { findLanAddress } = require('./lib/net-utils');
 
 class MovieSwipe extends utils.Adapter {
@@ -18,58 +18,12 @@ class MovieSwipe extends utils.Adapter {
 
     this.webServer = null;
     this.syncManager = null;
+    this.dbStore = null;
 
     this.on('ready', this.onReady.bind(this));
     this.on('stateChange', this.onStateChange.bind(this));
     this.on('message', this.onMessage.bind(this));
     this.on('unload', this.onUnload.bind(this));
-  }
-
-  getBackupPath() {
-    // Хранить бэкап в iobroker-data — эта директория НЕ перезаписывается при обновлении адаптера
-    const dataDir = utils.getAbsoluteDefaultDataDir();
-    const backupDir = path.join(dataDir, this.namespace);
-    return { backupDir, backupPath: path.join(backupDir, 'movies-poiskkino.backup.json') };
-  }
-
-  async handleDatabasePreservation() {
-    const dbPath = path.join(__dirname, 'www/data/movies-poiskkino.json');
-    const { backupPath } = this.getBackupPath();
-
-    try {
-      if (this.config.preserveDatabase !== false) {
-        if (fs.existsSync(backupPath)) {
-          const backupStat = fs.statSync(backupPath);
-          const dbStat = fs.existsSync(dbPath) ? fs.statSync(dbPath) : null;
-
-          // Текущая база повреждена/отсутствует, либо резервная копия больше
-          // (после обновления адаптера база из пакета меньше пользовательской)
-          const dbBroken = !dbStat || !readMoviesFile(dbPath);
-          if (dbBroken || backupStat.size > dbStat.size) {
-            // Не восстанавливаем из повреждённой копии
-            if (readMoviesFile(backupPath)) {
-              this.log.debug(`Restoring database from backup (${Math.round(backupStat.size / 1024 / 1024)}MB) at ${backupPath}`);
-              atomicCopy(backupPath, dbPath);
-              this.log.debug('Database restored from backup successfully');
-            } else {
-              this.log.error(`Backup at ${backupPath} is not a valid database, not restoring`);
-            }
-          } else {
-            this.log.debug('Current database is up to date, backup not needed');
-          }
-        } else {
-          this.log.debug(`No backup found at ${backupPath}, will create one after first sync`);
-        }
-      } else {
-        this.log.debug('Database preservation is disabled');
-        // Удалить резервную копию если preservation выключен
-        if (fs.existsSync(backupPath)) {
-          fs.unlinkSync(backupPath);
-        }
-      }
-    } catch (error) {
-      this.log.error(`Error handling database preservation: ${error.message}`);
-    }
   }
 
   /**
@@ -103,8 +57,23 @@ class MovieSwipe extends utils.Adapter {
     // Установить connection в false при старте
     await this.setStateAsync('info.connection', false, true);
 
-    // Проверить и сохранить пользовательскую базу данных если нужно
-    await this.handleDatabasePreservation();
+    // Подготовить базу данных: рабочая копия в каталоге данных экземпляра,
+    // долговременная — в файловом хранилище ioBroker
+    try {
+      const dataDir = utils.getAbsoluteInstanceDataDir(this);
+      this.dbStore = new DbStore(
+        this,
+        dataDir,
+        path.join(__dirname, 'www/data/movies-poiskkino.json'),
+        path.join(utils.getAbsoluteDefaultDataDir(), this.namespace, 'movies-poiskkino.backup.json'),
+        path.join(__dirname, 'scripts/.sync-progress.json'),
+      );
+      await this.dbStore.init();
+    } catch (error) {
+      this.log.error(`Error preparing database: ${error.message}`);
+      this.terminate(11);
+      return;
+    }
 
     // Инициализировать веб-сервер
     try {
@@ -114,7 +83,7 @@ class MovieSwipe extends utils.Adapter {
       const wwwPath = `${__dirname}/www`;
 
       this.webServer = new WebServer(this);
-      await this.webServer.start(port, wwwPath, bind);
+      await this.webServer.start(port, wwwPath, bind, this.dbStore);
 
       // Обновить states сервера
       await this.setStateAsync('server.port', port, true);
@@ -132,8 +101,7 @@ class MovieSwipe extends utils.Adapter {
 
     // Инициализировать sync manager
     try {
-      const { backupDir, backupPath } = this.getBackupPath();
-      this.syncManager = new SyncManager(this, backupDir, backupPath);
+      this.syncManager = new SyncManager(this, this.dbStore);
     } catch (error) {
       this.log.error(`Failed to initialize sync manager: ${error.message}`);
     }
@@ -163,7 +131,7 @@ class MovieSwipe extends utils.Adapter {
    */
   async updateMovieCount() {
     try {
-      const dbPath = path.join(__dirname, 'www/data/movies-poiskkino.json');
+      const dbPath = this.dbStore.dbFile;
       
       if (fs.existsSync(dbPath)) {
         const data = await fs.promises.readFile(dbPath, 'utf8');

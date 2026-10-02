@@ -164,6 +164,13 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 
 ## Changelog
 
+### 1.1.4
+- (sadam6752-tech) The movie database is no longer kept inside the adapter package: the working copy lives in the instance data directory (`iobroker-data/movieswipe.N/`) and a durable copy in the ioBroker file storage (`movieswipe.N.storage`, type `meta.user`, so it is part of ioBroker backups). Updates no longer touch it
+- (sadam6752-tech) Sync progress and API key cooldowns moved to the instance data directory as well (progress was lost on every adapter update); an existing backup and progress file are migrated on the first start, the packaged database is only used for a fresh installation
+- (sadam6752-tech) The app is served with the database from the instance data directory (`/data/movies-poiskkino.json`); the Backup Manager reads and writes the same file and refreshes the stored copy after an upload
+- (sadam6752-tech) Add `common.localLinks`: the instance row in the admin now has a link that opens the app
+- (sadam6752-tech) Add unit tests for the database store
+
 ### 1.1.3
 - (sadam6752-tech) Security: new optional "Backup access token" (`dbToken`); when set, `/api/db/download`, `/api/db/upload` and `/api/db/info` require the `X-Db-Token` header (the Backup Manager page has a token field). Without a token the endpoints stay open and a warning is logged
 - (sadam6752-tech) Security: API keys are passed to the sync process via the `MOVIESWIPE_API_KEY` environment variable instead of the command line; `apiKeys` and `dbToken` are listed in `protectedNative`

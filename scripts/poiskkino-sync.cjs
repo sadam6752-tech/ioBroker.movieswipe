@@ -39,8 +39,11 @@ const CONFIG = {
   API_BASE_URL: 'https://api.poiskkino.dev',
   EU_API_BASE_URL: 'https://eu-api.poiskkino.dev',
   API_VERSION: 'v1.5',
-  PROGRESS_FILE: path.join(__dirname, '.sync-progress.json'),
-  OUTPUT_DIR: path.join(__dirname, '../www/data'),
+  // Каталог данных задаёт адаптер (MOVIESWIPE_DATA_DIR); без него — старое поведение для ручного запуска
+  PROGRESS_FILE: process.env.MOVIESWIPE_DATA_DIR
+    ? path.join(process.env.MOVIESWIPE_DATA_DIR, '.sync-progress.json')
+    : path.join(__dirname, '.sync-progress.json'),
+  OUTPUT_DIR: process.env.MOVIESWIPE_DATA_DIR || path.join(__dirname, '../www/data'),
   MOVIES_PER_REQUEST: 250, // Максимум для API
   MAX_REQUESTS_PER_DAY: 200,
   MIN_RATING: 5.0,
@@ -552,16 +555,6 @@ function saveMovies(movies, progress) {
 
   console.log(`✓ Сохранено ${newMovies.length} новых фильмов (всего: ${allMovies.length})`);
 
-  // Сразу создаём резервную копию чтобы не потерять прогресс при перезапуске адаптера
-  try {
-    const backupFile = path.join(CONFIG.OUTPUT_DIR, 'movies-poiskkino.backup.json');
-    const tmpBackup = `${backupFile}.${process.pid}.tmp`;
-    fs.copyFileSync(outputFile, tmpBackup);
-    fs.renameSync(tmpBackup, backupFile);
-  } catch (e) {
-    // Не критично если бэкап не создался
-  }
-  
   return newMovies.length;
 }
 

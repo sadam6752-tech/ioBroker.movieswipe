@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.1.3",
+    "version": "1.1.4",
     "news": {
+      "1.1.4": {
+        "en": "The movie database is now kept in the instance data directory and in the ioBroker file storage (included in ioBroker backups) instead of the adapter package; sync progress survives updates. New instance link to the app in the admin.",
+        "de": "Die Filmdatenbank liegt jetzt im Instanz-Datenverzeichnis und im ioBroker-Dateispeicher (Teil der ioBroker-Backups) statt im Adapter-Paket; der Sync-Fortschritt ueberlebt Updates. Neuer Instanz-Link zur App im Admin.",
+        "ru": "База фильмов теперь хранится в каталоге данных экземпляра и в файловом хранилище ioBroker (входит в бэкапы ioBroker), а не в пакете адаптера; прогресс синхронизации переживает обновления. Новая ссылка на приложение в админке.",
+        "fr": "La base de films est desormais conservee dans le repertoire de donnees de l'instance et dans le stockage de fichiers ioBroker (inclus dans les sauvegardes ioBroker) au lieu du paquet de l'adaptateur ; la progression de la synchronisation survit aux mises a jour. Nouveau lien vers l'application dans l'admin.",
+        "it": "Il database dei film ora si trova nella directory dati dell'istanza e nell'archivio file di ioBroker (incluso nei backup di ioBroker) invece che nel pacchetto dell'adapter; l'avanzamento della sincronizzazione sopravvive agli aggiornamenti. Nuovo link all'app nell'admin.",
+        "es": "La base de datos de peliculas ahora se guarda en el directorio de datos de la instancia y en el almacenamiento de archivos de ioBroker (incluido en las copias de ioBroker) en lugar del paquete del adaptador; el progreso de sincronizacion sobrevive a las actualizaciones. Nuevo enlace a la aplicacion en el admin.",
+        "pl": "Baza filmow jest teraz przechowywana w katalogu danych instancji i w magazynie plikow ioBroker (objetym kopiami ioBroker), a nie w pakiecie adaptera; postep synchronizacji przetrwa aktualizacje. Nowy link do aplikacji w panelu admin.",
+        "pt": "A base de dados de filmes passa a ficar no diretorio de dados da instancia e no armazenamento de ficheiros do ioBroker (incluido nas copias do ioBroker) em vez do pacote do adaptador; o progresso da sincronizacao sobrevive as atualizacoes. Nova ligacao para a aplicacao no admin.",
+        "nl": "De filmdatabase staat nu in de gegevensmap van de instantie en in de ioBroker-bestandsopslag (onderdeel van ioBroker-back-ups) in plaats van in het adapterpakket; de synchronisatievoortgang blijft na updates behouden. Nieuwe link naar de app in de admin.",
+        "uk": "База фільмів тепер зберігається в каталозі даних екземпляра та у файловому сховищі ioBroker (входить до резервних копій ioBroker), а не в пакеті адаптера; прогрес синхронізації переживає оновлення. Нове посилання на застосунок в адмінці.",
+        "zh-cn": "电影数据库现在保存在实例数据目录和 ioBroker 文件存储中（包含在 ioBroker 备份内），而不是适配器包内；同步进度在更新后保留。管理界面新增指向应用的实例链接。"
+      },
       "1.1.3": {
         "en": "Security and robustness: optional backup access token for /api/db/*, API keys passed to the sync process via environment instead of the command line, atomic database writes, validated backup restore, API key cooldowns survive restarts, reliable sync stop.",
         "de": "Sicherheit und Robustheit: optionales Zugriffstoken fuer /api/db/*, API-Keys gehen per Umgebungsvariable statt Kommandozeile an den Sync-Prozess, atomare Datenbank-Schreibzugriffe, geprueftes Backup-Restore, Key-Cooldowns ueberleben Neustarts, zuverlaessiges Stoppen der Synchronisation.",
@@ -80,19 +93,6 @@
         "nl": "@tsconfig/node22 en tsconfig.json met extends toegevoegd (regels S0085/S0088), zoals de andere adapters. prettier.config.mjs toegevoegd, vereist door @iobroker/eslint-config.",
         "uk": "Додано @tsconfig/node22 та tsconfig.json з extends (правила S0085/S0088), як в інших адаптерах. Додано prettier.config.mjs, який вимагає @iobroker/eslint-config.",
         "zh-cn": "添加 @tsconfig/node22 和带 extends 的 tsconfig.json（检查规则 S0085/S0088），与其他适配器保持一致。添加 @iobroker/eslint-config 所需的 prettier.config.mjs。"
-      },
-      "1.0.57": {
-        "en": "Update multer to 2.x. Remove the Content Filters section (Maximum Rating had no effect; minimum rating and votes are set per API key). admin/i18n migrated to the short format and extended to 11 languages. Year To in the key table now defaults to the current year. Request-limit fallbacks aligned with the UI defaults.",
-        "de": "multer auf 2.x aktualisiert. Bereich Inhaltsfilter entfernt (Maximale Bewertung war ohne Wirkung; Mindestbewertung und Stimmen werden pro API-Schluessel gesetzt). admin/i18n auf Kurzformat migriert und auf 11 Sprachen erweitert. Jahr bis in der Schluesseltabelle nutzt jetzt standardmaessig das aktuelle Jahr. Fallbacks der Anfragelimits an die UI-Standardwerte angeglichen.",
-        "ru": "multer обновлён до 2.x. Удалена секция «Фильтры контента» («Максимальный рейтинг» ни на что не влиял; минимальный рейтинг и голоса задаются на ключ). admin/i18n переведён в короткий формат и расширен до 11 языков. «Год до» в таблице ключей по умолчанию берёт текущий год. Фолбэки лимитов запросов приведены к дефолтам интерфейса.",
-        "fr": "multer mis a jour en 2.x. Section Filtres de contenu supprimee (Note maximale sans effet ; note minimale et votes definis par cle API). admin/i18n migre au format court et etendu a 11 langues. Annee a dans le tableau des cles utilise desormais l annee en cours par defaut. Valeurs de repli des limites de requetes alignees sur les valeurs par defaut de l interface.",
-        "it": "multer aggiornato a 2.x. Rimossa la sezione Filtri contenuto (Valutazione massima senza effetto; valutazione minima e voti impostati per chiave API). admin/i18n migrato al formato breve ed esteso a 11 lingue. Anno a nella tabella delle chiavi usa ora l anno corrente come predefinito. Fallback dei limiti di richieste allineati ai valori predefiniti dell interfaccia.",
-        "es": "multer actualizado a 2.x. Eliminada la seccion Filtros de contenido (Valoracion maxima no tenia efecto; valoracion minima y votos se definen por clave API). admin/i18n migrado al formato corto y ampliado a 11 idiomas. Ano hasta en la tabla de claves usa ahora el ano actual por defecto. Valores de reserva de los limites de solicitudes alineados con los predeterminados de la interfaz.",
-        "pl": "multer zaktualizowany do 2.x. Usunieto sekcje Filtry tresci (Maksymalna ocena nie dzialala; minimalna ocena i glosy ustawiane na klucz API). admin/i18n przeniesiony do krotkiego formatu i rozszerzony do 11 jezykow. Rok do w tabeli kluczy domyslnie przyjmuje biezacy rok. Wartosci zapasowe limitow zapytan zgodne z domyslnymi w interfejsie.",
-        "pt": "multer atualizado para 2.x. Removida a seccao Filtros de conteudo (Avaliacao maxima nao tinha efeito; avaliacao minima e votos definidos por chave API). admin/i18n migrado para o formato curto e ampliado para 11 idiomas. Ano ate na tabela de chaves usa agora o ano atual por omissao. Valores de reserva dos limites de pedidos alinhados com os predefinidos da interface.",
-        "nl": "multer bijgewerkt naar 2.x. Sectie Inhoudsfilters verwijderd (Maximale beoordeling had geen effect; minimale beoordeling en stemmen worden per API-sleutel ingesteld). admin/i18n gemigreerd naar het korte formaat en uitgebreid naar 11 talen. Jaar tot in de sleuteltabel gebruikt nu standaard het huidige jaar. Fallbacks van de verzoeklimieten afgestemd op de standaardwaarden in de interface.",
-        "uk": "multer оновлено до 2.x. Видалено секцію «Фільтри контенту» («Максимальний рейтинг» ні на що не впливав; мінімальний рейтинг і голоси задаються на ключ). admin/i18n переведено у короткий формат і розширено до 11 мов. «Рік до» у таблиці ключів за замовчуванням бере поточний рік. Фолбеки лімітів запитів приведено до дефолтів інтерфейсу.",
-        "zh-cn": "multer 更新至 2.x。移除内容过滤器部分（“最高评分”没有作用；最低评分与投票数按 API 密钥设置）。admin/i18n 迁移为短格式并扩展至 11 种语言。密钥表中的“年份至”现在默认使用当前年份。请求上限的回退值与界面默认值保持一致。"
       }
     },
     "titleLang": {
@@ -131,6 +131,25 @@
       "kinopoisk",
       "multimedia"
     ],
+    "localLinks": {
+      "_default": {
+        "link": "%protocol%://%ip%:%port%/",
+        "name": {
+          "en": "Open MovieSwipe",
+          "de": "MovieSwipe oeffnen",
+          "ru": "Открыть MovieSwipe",
+          "pt": "Abrir MovieSwipe",
+          "nl": "MovieSwipe openen",
+          "fr": "Ouvrir MovieSwipe",
+          "it": "Apri MovieSwipe",
+          "es": "Abrir MovieSwipe",
+          "pl": "Otworz MovieSwipe",
+          "uk": "Відкрити MovieSwipe",
+          "zh-cn": "打开 MovieSwipe"
+        },
+        "order": 5
+      }
+    },
     "licenseInformation": {
       "license": "MIT",
       "type": "free"
