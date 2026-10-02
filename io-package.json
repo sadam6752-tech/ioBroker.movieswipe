@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.1.2",
+    "version": "1.1.3",
     "news": {
+      "1.1.3": {
+        "en": "Security and robustness: optional backup access token for /api/db/*, API keys passed to the sync process via environment instead of the command line, atomic database writes, validated backup restore, API key cooldowns survive restarts, reliable sync stop.",
+        "de": "Sicherheit und Robustheit: optionales Zugriffstoken fuer /api/db/*, API-Keys gehen per Umgebungsvariable statt Kommandozeile an den Sync-Prozess, atomare Datenbank-Schreibzugriffe, geprueftes Backup-Restore, Key-Cooldowns ueberleben Neustarts, zuverlaessiges Stoppen der Synchronisation.",
+        "ru": "Безопасность и надёжность: необязательный токен доступа к /api/db/*, API-ключи передаются процессу синхронизации через переменную окружения, атомарная запись базы, проверка резервной копии при восстановлении, кулдауны ключей сохраняются после перезапуска, надёжная остановка синхронизации.",
+        "fr": "Securite et robustesse : jeton d'acces optionnel pour /api/db/*, cles API transmises au processus de synchronisation par variable d'environnement, ecritures atomiques de la base, restauration de sauvegarde verifiee, delais des cles conserves apres redemarrage, arret fiable de la synchronisation.",
+        "it": "Sicurezza e robustezza: token di accesso opzionale per /api/db/*, chiavi API passate al processo di sincronizzazione tramite variabile d'ambiente, scritture atomiche del database, ripristino del backup verificato, cooldown delle chiavi mantenuti dopo il riavvio, arresto affidabile della sincronizzazione.",
+        "es": "Seguridad y robustez: token de acceso opcional para /api/db/*, claves API pasadas al proceso de sincronizacion por variable de entorno, escrituras atomicas de la base de datos, restauracion de copia verificada, enfriamientos de claves conservados tras reiniciar, parada fiable de la sincronizacion.",
+        "pl": "Bezpieczenstwo i niezawodnosc: opcjonalny token dostepu do /api/db/*, klucze API przekazywane procesowi synchronizacji przez zmienna srodowiskowa, atomowe zapisy bazy, weryfikowane przywracanie kopii, czasy oczekiwania kluczy zachowane po restarcie, niezawodne zatrzymywanie synchronizacji.",
+        "pt": "Seguranca e robustez: token de acesso opcional para /api/db/*, chaves API passadas ao processo de sincronizacao por variavel de ambiente, gravacoes atomicas da base de dados, restauro de copia verificado, tempos de espera das chaves mantidos apos reinicio, paragem fiavel da sincronizacao.",
+        "nl": "Beveiliging en robuustheid: optioneel toegangstoken voor /api/db/*, API-sleutels via omgevingsvariabele aan het synchronisatieproces doorgegeven, atomaire databaseschrijfacties, gecontroleerd terugzetten van back-ups, sleutelwachttijden blijven na herstart behouden, betrouwbaar stoppen van synchronisatie.",
+        "uk": "Безпека та надійність: необов'язковий токен доступу до /api/db/*, API-ключі передаються процесу синхронізації через змінну середовища, атомарний запис бази, перевірка резервної копії під час відновлення, затримки ключів зберігаються після перезапуску, надійна зупинка синхронізації.",
+        "zh-cn": "安全与稳定性：/api/db/* 可选访问令牌，API 密钥通过环境变量而非命令行传给同步进程，数据库原子写入，备份恢复前校验，密钥冷却时间在重启后保留，可靠地停止同步。"
+      },
       "1.1.2": {
         "en": "Repository checker (W1134): the `sync.stop` button is now write-only (`read: false`), like `sync.start` and `sync.reloadApp`. `common.news` trimmed back to 7 entries.",
         "de": "Repository-Checker (W1134): Der Button `sync.stop` ist jetzt wie `sync.start` und `sync.reloadApp` nur schreibbar (`read: false`). `common.news` wieder auf 7 Eintraege gekuerzt.",
@@ -80,19 +93,6 @@
         "nl": "multer bijgewerkt naar 2.x. Sectie Inhoudsfilters verwijderd (Maximale beoordeling had geen effect; minimale beoordeling en stemmen worden per API-sleutel ingesteld). admin/i18n gemigreerd naar het korte formaat en uitgebreid naar 11 talen. Jaar tot in de sleuteltabel gebruikt nu standaard het huidige jaar. Fallbacks van de verzoeklimieten afgestemd op de standaardwaarden in de interface.",
         "uk": "multer оновлено до 2.x. Видалено секцію «Фільтри контенту» («Максимальний рейтинг» ні на що не впливав; мінімальний рейтинг і голоси задаються на ключ). admin/i18n переведено у короткий формат і розширено до 11 мов. «Рік до» у таблиці ключів за замовчуванням бере поточний рік. Фолбеки лімітів запитів приведено до дефолтів інтерфейсу.",
         "zh-cn": "multer 更新至 2.x。移除内容过滤器部分（“最高评分”没有作用；最低评分与投票数按 API 密钥设置）。admin/i18n 迁移为短格式并扩展至 11 种语言。密钥表中的“年份至”现在默认使用当前年份。请求上限的回退值与界面默认值保持一致。"
-      },
-      "1.0.56": {
-        "en": "Update multer to 2.x. Remove the Content Filters section: Maximum Rating had no effect at all, while minimum rating and minimum votes are already configured per API key.",
-        "de": "multer auf 2.x aktualisiert. Bereich Inhaltsfilter entfernt: Maximale Bewertung war ohne jede Wirkung, Mindestbewertung und Mindestanzahl der Stimmen werden bereits pro API-Schluessel konfiguriert.",
-        "ru": "multer обновлён до 2.x. Удалена секция «Фильтры контента»: «Максимальный рейтинг» вообще ни на что не влиял, а минимальный рейтинг и минимум голосов задаются в настройках каждого API-ключа.",
-        "fr": "multer mis a jour en 2.x. Section Filtres de contenu supprimee: 'Note maximale' n'avait aucun effet, la note minimale et le nombre minimal de votes sont deja configures par cle API.",
-        "it": "multer aggiornato a 2.x. Rimossa la sezione Filtri contenuto: 'Valutazione massima' non aveva alcun effetto, valutazione minima e voti minimi sono gia configurati per singola chiave API.",
-        "es": "multer actualizado a 2.x. Eliminada la seccion Filtros de contenido: 'Valoracion maxima' no tenia ningun efecto, la valoracion minima y los votos minimos ya se configuran por clave API.",
-        "pl": "multer zaktualizowany do 2.x. Usunieto sekcje Filtry tresci: 'Maksymalna ocena' nie mialo zadnego efektu, a minimalna ocena i minimalna liczba glosow sa juz ustawiane dla kazdego klucza API.",
-        "pt": "multer atualizado para 2.x. Removida a seccao Filtros de conteudo: 'Avaliacao maxima' nao tinha qualquer efeito, avaliacao minima e votos minimos ja sao configurados por chave API.",
-        "nl": "multer bijgewerkt naar 2.x. Sectie Inhoudsfilters verwijderd: 'Maximale beoordeling' had geen enkel effect, minimale beoordeling en minimaal aantal stemmen worden al per API-sleutel ingesteld.",
-        "uk": "multer оновлено до 2.x. Видалено секцію «Фільтри контенту»: «Максимальний рейтинг» взагалі ні на що не впливав, а мінімальний рейтинг і мінімум голосів задаються для кожного API-ключа.",
-        "zh-cn": "multer 更新至 2.x。移除内容过滤器部分：“最高评分”完全没有作用，而最低评分和最少投票数已在每个 API 密钥中单独配置。"
       }
     },
     "titleLang": {
@@ -161,9 +161,14 @@
     ],
     "tier": 3
   },
+  "protectedNative": [
+    "apiKeys",
+    "dbToken"
+  ],
   "native": {
+    "dbToken": "",
     "port": 3000,
-    "bind": "0.0.0.0",
+    "bind": "",
     "apiKeys": [],
     "autoSync": false,
     "syncScheduled": false,

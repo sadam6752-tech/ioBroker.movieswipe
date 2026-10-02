@@ -46,5 +46,7 @@
   "Total movies in database: Check 'sync.totalMovies' state in Objects tab": "数据库中的影片总数：请在“对象”标签页查看 sync.totalMovies 状态",
   "Use the 'sync.start' state to trigger synchronization. After sync completes, refresh the app (F5) to see new movies.": "使用 sync.start 状态触发同步。同步完成后刷新应用（F5）即可看到新影片。",
   "Help": "帮助",
-  "For more information, visit the <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>GitHub repository</a>.": "更多信息请访问 <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>GitHub 仓库</a>。"
+  "For more information, visit the <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>GitHub repository</a>.": "更多信息请访问 <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>GitHub 仓库</a>。",
+  "label_dbToken": "Backup access token",
+  "help_dbToken": "Token required for database download/upload (/backup.html). Empty = unprotected."
 }

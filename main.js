@@ -6,6 +6,8 @@ const fs = require('node:fs');
 const os = require('node:os');
 const WebServer = require('./lib/web-server');
 const SyncManager = require('./lib/sync-manager');
+const { atomicCopy, readMoviesFile } = require('./lib/fs-utils');
+const { findLanAddress } = require('./lib/net-utils');
 
 class MovieSwipe extends utils.Adapter {
   constructor(options) {
@@ -36,16 +38,22 @@ class MovieSwipe extends utils.Adapter {
 
     try {
       if (this.config.preserveDatabase !== false) {
-        // Если есть резервная копия — восстановить если она новее/больше текущей базы
         if (fs.existsSync(backupPath)) {
           const backupStat = fs.statSync(backupPath);
           const dbStat = fs.existsSync(dbPath) ? fs.statSync(dbPath) : null;
 
-          // Восстанавливаем если резервная копия новее или больше текущей базы
-          if (!dbStat || backupStat.size > dbStat.size || backupStat.mtimeMs > dbStat.mtimeMs) {
-            this.log.debug(`Restoring database from backup (${Math.round(backupStat.size / 1024 / 1024)}MB) at ${backupPath}`);
-            fs.copyFileSync(backupPath, dbPath);
-            this.log.debug('Database restored from backup successfully');
+          // Текущая база повреждена/отсутствует, либо резервная копия больше
+          // (после обновления адаптера база из пакета меньше пользовательской)
+          const dbBroken = !dbStat || !readMoviesFile(dbPath);
+          if (dbBroken || backupStat.size > dbStat.size) {
+            // Не восстанавливаем из повреждённой копии
+            if (readMoviesFile(backupPath)) {
+              this.log.debug(`Restoring database from backup (${Math.round(backupStat.size / 1024 / 1024)}MB) at ${backupPath}`);
+              atomicCopy(backupPath, dbPath);
+              this.log.debug('Database restored from backup successfully');
+            } else {
+              this.log.error(`Backup at ${backupPath} is not a valid database, not restoring`);
+            }
           } else {
             this.log.debug('Current database is up to date, backup not needed');
           }
@@ -69,16 +77,8 @@ class MovieSwipe extends utils.Adapter {
    */
   resolveBindAddress(bind) {
     if (!bind || bind === '0.0.0.0' || bind === '::') {
-      // Слушаем на всех — вернуть первый не-loopback IPv4
-      const interfaces = os.networkInterfaces();
-      for (const iface of Object.values(interfaces)) {
-        for (const addr of iface) {
-          if (addr.family === 'IPv4' && !addr.internal) {
-            return addr.address;
-          }
-        }
-      }
-      return '127.0.0.1';
+      // Слушаем на всех — вернуть первый не-loopback IPv4 (для отображения)
+      return findLanAddress() || '127.0.0.1';
     }
     // Проверить — это уже IP адрес?
     if (/^\d+\.\d+\.\d+\.\d+$/.test(bind) || bind.includes(':')) {
@@ -109,7 +109,7 @@ class MovieSwipe extends utils.Adapter {
     // Инициализировать веб-сервер
     try {
       const port = this.config.port || 3000;
-      const bind = this.config.bind || '0.0.0.0';
+      const bind = this.config.bind || '';
       const resolvedIp = this.resolveBindAddress(bind);
       const wwwPath = `${__dirname}/www`;
 
@@ -166,7 +166,7 @@ class MovieSwipe extends utils.Adapter {
       const dbPath = path.join(__dirname, 'www/data/movies-poiskkino.json');
       
       if (fs.existsSync(dbPath)) {
-        const data = fs.readFileSync(dbPath, 'utf8');
+        const data = await fs.promises.readFile(dbPath, 'utf8');
         const json = JSON.parse(data);
         const movieCount = json.movies ? json.movies.length : 0;
         
@@ -255,7 +255,7 @@ class MovieSwipe extends utils.Adapter {
     if (!obj || !obj.command) return;
     if (obj.command === 'getServerUrl') {
       const port = this.config.port || 3000;
-      const bind = this.config.bind || '0.0.0.0';
+      const bind = this.config.bind || '';
       const ip = this.resolveBindAddress(bind);
       const url = `http://${ip}:${port}`;
       if (obj.callback) this.sendTo(obj.from, obj.command, { url, ip, port }, obj.callback);

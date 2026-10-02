@@ -58,7 +58,9 @@ This adapter integrates the MovieSwipe Progressive Web Application (PWA) into io
 
 | Setting | Description | Default |
 |---------|-------------|---------|
+| **Bind IP address** | Interface/IP the web server listens on. Empty = first LAN IPv4 address, `0.0.0.0` = all interfaces | empty (LAN IP) |
 | **Port** | Web server port for PWA | 3000 |
+| **Backup access token** | Optional token required by `/backup.html` and `/api/db/*` (download/upload of the database). Empty = unprotected, so set it if the server is reachable from untrusted networks | empty |
 | **API Keys** | Kinopoisk API keys (one or more) | [] |
 | **Min Rating** | Minimum movie rating (0-10) | 5.0 |
 | **Min Votes** | Minimum number of votes | 500 |
@@ -161,6 +163,18 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 - Verify URL in `server.url` state
 
 ## Changelog
+
+### 1.1.3
+- (sadam6752-tech) Security: new optional "Backup access token" (`dbToken`); when set, `/api/db/download`, `/api/db/upload` and `/api/db/info` require the `X-Db-Token` header (the Backup Manager page has a token field). Without a token the endpoints stay open and a warning is logged
+- (sadam6752-tech) Security: API keys are passed to the sync process via the `MOVIESWIPE_API_KEY` environment variable instead of the command line; `apiKeys` and `dbToken` are listed in `protectedNative`
+- (sadam6752-tech) Database, sync progress and backups are written atomically (temp file + rename); the sync script no longer overwrites a corrupt database with only the newly fetched movies
+- (sadam6752-tech) Backup restore only uses a valid backup, also replaces a corrupt database, and an uploaded database now updates the backup immediately (it was reverted by a larger old backup on the next start)
+- (sadam6752-tech) Upload validates that every movie has an `id`; `/api/db/info` caches the movie count and no longer blocks the event loop
+- (sadam6752-tech) Stopping a sync now waits for the process and really escalates to SIGKILL (the old check never fired); a stop also prevents switching to the next API key
+- (sadam6752-tech) Switching to the next API key no longer risks an unhandled error; API key cooldowns survive adapter restarts
+- (sadam6752-tech) Scheduled sync validates `HH:MM` (falls back to 03:00) and cannot fire twice in the same minute
+- (sadam6752-tech) Security: for new instances the web server binds to the LAN IP by default (empty `bind`) instead of all interfaces; an unresolvable interface name no longer falls back to `0.0.0.0`. Existing instances keep their saved bind address - choose the LAN IP in the settings to apply it
+- (sadam6752-tech) Add unit tests, remove unused code
 
 ### 1.1.2
 - (sadam6752-tech) io-package.json (checker W1134): the `sync.stop` button is now write-only (`read: false`), like `sync.start` and `sync.reloadApp` - 1.1.1 only converted `sync.start`

@@ -28,6 +28,12 @@
   <h1>🎬 MovieSwipe Database</h1>
 
   <div class="card">
+    <h2>🔑 Access token</h2>
+    <p>Only needed if a backup access token is set in the adapter settings.</p>
+    <input type="password" id="tokenInput" placeholder="Token" autocomplete="off">
+  </div>
+
+  <div class="card">
     <h2>📊 Current Database</h2>
     <div id="dbInfo">Loading...</div>
   </div>
@@ -35,7 +41,7 @@
   <div class="card">
     <h2>⬇ Download Backup</h2>
     <p>Download the current database as a JSON file to your computer.</p>
-    <a class="btn btn-download" href="/api/db/download">Download database backup</a>
+    <button class="btn btn-download" onclick="downloadBackup()">Download database backup</button>
   </div>
 
   <div class="card">
@@ -47,18 +53,42 @@
   </div>
 
   <script>
+    function authHeaders() {
+      const t = document.getElementById('tokenInput').value;
+      return t ? { 'X-Db-Token': t } : {};
+    }
+
     // Загрузить информацию о базе
-    fetch('/api/db/info')
+    function loadInfo() {
+      fetch('/api/db/info', { headers: authHeaders() })
       .then(r => r.json())
       .then(d => {
         const el = document.getElementById('dbInfo');
-        if (d.exists) {
+        if (d.error) {
+          el.textContent = d.error;
+        } else if (d.exists) {
           el.innerHTML = `Movies: <strong>${d.movies.toLocaleString()}</strong> &nbsp;|&nbsp; Size: <strong>${d.sizeMB} MB</strong> &nbsp;|&nbsp; Modified: <strong>${new Date(d.modified).toLocaleString()}</strong>`;
         } else {
           el.textContent = 'Database file not found';
         }
       })
       .catch(() => { document.getElementById('dbInfo').textContent = 'Could not load database info'; });
+    }
+    loadInfo();
+    document.getElementById('tokenInput').addEventListener('change', loadInfo);
+
+    function downloadBackup() {
+      fetch('/api/db/download', { headers: authHeaders() })
+        .then(r => r.ok ? r.blob() : r.json().then(d => { throw new Error(d.error || r.status); }))
+        .then(blob => {
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = `movies-poiskkino-backup-${new Date().toISOString().slice(0, 10)}.json`;
+          a.click();
+          URL.revokeObjectURL(a.href);
+        })
+        .catch(e => showStatus(`✗ Download failed: ${e.message}`, false));
+    }
 
     function uploadBackup() {
       const file = document.getElementById('fileInput').files[0];
@@ -70,7 +100,7 @@
 
       showStatus('Uploading...', null);
 
-      fetch('/api/db/upload', { method: 'POST', body: formData })
+      fetch('/api/db/upload', { method: 'POST', headers: authHeaders(), body: formData })
         .then(r => r.json())
         .then(d => {
           if (d.success) {

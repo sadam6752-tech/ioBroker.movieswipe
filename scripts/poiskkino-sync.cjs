@@ -22,6 +22,18 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
+/** Атомарная запись: временный файл + rename, чтобы обрыв не портил целевой файл */
+function atomicWrite(target, data) {
+  const tmp = `${target}.${process.pid}.tmp`;
+  try {
+    fs.writeFileSync(tmp, data, 'utf8');
+    fs.renameSync(tmp, target);
+  } catch (error) {
+    try { fs.unlinkSync(tmp); } catch { /* временного файла нет */ }
+    throw error;
+  }
+}
+
 // Конфигурация
 const CONFIG = {
   API_BASE_URL: 'https://api.poiskkino.dev',
@@ -216,11 +228,7 @@ function loadProgress(apiKey) {
  */
 function saveProgress(progress) {
   try {
-    fs.writeFileSync(
-      CONFIG.PROGRESS_FILE,
-      JSON.stringify(progress, null, 2),
-      'utf8'
-    );
+    atomicWrite(CONFIG.PROGRESS_FILE, JSON.stringify(progress, null, 2));
   } catch (error) {
     console.error('Ошибка сохранения прогресса:', error.message);
   }
@@ -523,7 +531,8 @@ function saveMovies(movies, progress) {
       const json = JSON.parse(data);
       existingMovies = json.movies || [];
     } catch (error) {
-      console.warn('Не удалось загрузить существующие фильмы:', error.message);
+      // Не перезаписываем повреждённую базу только новыми фильмами — это потеря данных
+      throw new Error(`Существующая база повреждена (${error.message}), запись отменена`);
     }
   }
 
@@ -539,18 +548,16 @@ function saveMovies(movies, progress) {
   }
 
   // Сохраняем
-  fs.writeFileSync(
-    outputFile,
-    JSON.stringify({ movies: allMovies }, null, 2),
-    'utf8'
-  );
+  atomicWrite(outputFile, JSON.stringify({ movies: allMovies }, null, 2));
 
   console.log(`✓ Сохранено ${newMovies.length} новых фильмов (всего: ${allMovies.length})`);
 
   // Сразу создаём резервную копию чтобы не потерять прогресс при перезапуске адаптера
   try {
     const backupFile = path.join(CONFIG.OUTPUT_DIR, 'movies-poiskkino.backup.json');
-    fs.copyFileSync(outputFile, backupFile);
+    const tmpBackup = `${backupFile}.${process.pid}.tmp`;
+    fs.copyFileSync(outputFile, tmpBackup);
+    fs.renameSync(tmpBackup, backupFile);
   } catch (e) {
     // Не критично если бэкап не создался
   }
@@ -727,7 +734,7 @@ if (require.main === module) {
 Использование: node poiskkino-sync.cjs [опции]
 
 Опции:
-  --api-key <key>       API ключ ПоискКино (обязательно)
+  --api-key <key>       API ключ ПоискКино (или переменная окружения MOVIESWIPE_API_KEY)
   --max-requests <n>    Максимум запросов за один запуск (по умолчанию: до лимита)
   --daily-limit <n>     Дневной лимит запросов (по умолчанию: 200)
   --min-rating <n>      Минимальный рейтинг (по умолчанию: 5.0)
@@ -776,13 +783,14 @@ if (require.main === module) {
   }
 
   const apiKeyIndex = args.indexOf('--api-key');
-  if (apiKeyIndex === -1 || !args[apiKeyIndex + 1]) {
+  const apiKeyFromEnv = (process.env.MOVIESWIPE_API_KEY || '').trim();
+  if (!apiKeyFromEnv && (apiKeyIndex === -1 || !args[apiKeyIndex + 1])) {
     console.error('❌ Ошибка: требуется API ключ');
     console.error('Используйте: node poiskkino-sync.cjs --api-key YOUR_KEY\n');
     process.exit(1);
   }
 
-  const apiKey = args[apiKeyIndex + 1];
+  const apiKey = apiKeyFromEnv || args[apiKeyIndex + 1];
 
   // Применяем параметры из аргументов командной строки в CONFIG
   const getArg = (name) => {

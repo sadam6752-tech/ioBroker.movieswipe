@@ -46,5 +46,7 @@
   "Total movies in database: Check 'sync.totalMovies' state in Objects tab": "Totale film nel database: controlla lo stato 'sync.totalMovies' nella scheda Oggetti",
   "Use the 'sync.start' state to trigger synchronization. After sync completes, refresh the app (F5) to see new movies.": "Usa lo stato 'sync.start' per avviare la sincronizzazione. Al termine, aggiorna l'app (F5) per vedere i nuovi film.",
   "Help": "Aiuto",
-  "For more information, visit the <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>GitHub repository</a>.": "Per maggiori informazioni, visita il <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>repository GitHub</a>."
+  "For more information, visit the <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>GitHub repository</a>.": "Per maggiori informazioni, visita il <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>repository GitHub</a>.",
+  "label_dbToken": "Backup access token",
+  "help_dbToken": "Token required for database download/upload (/backup.html). Empty = unprotected."
 }
