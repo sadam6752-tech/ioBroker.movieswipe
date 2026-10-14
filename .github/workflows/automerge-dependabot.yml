@@ -25,3 +25,8 @@ jobs:
           # reviewed by hand for anything larger.
           target-development: minor
           target-production: patch
+          # Only mark the PR for auto-merge: GitHub merges it once the required
+          # status checks of the main branch ruleset have passed. Merging right
+          # away fails with "Repository rule violations found" while tests run.
+          # Needs "Allow auto-merge" in the repository settings.
+          use-github-auto-merge: true
