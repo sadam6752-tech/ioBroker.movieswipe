@@ -2,9 +2,15 @@
 
 ![Logo](admin/movieswipe.png)
 
+![Stable](https://iobroker.live/badges/movieswipe-stable.svg)
 [![NPM version](https://img.shields.io/npm/v/iobroker.movieswipe.svg)](https://www.npmjs.com/package/iobroker.movieswipe)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.movieswipe.svg)](https://www.npmjs.com/package/iobroker.movieswipe)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/sadam6752-tech/ioBroker.movieswipe/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/sadam6752-tech/ioBroker.movieswipe.svg)](LICENSE)
+
+[![NPM](https://nodei.co/npm/iobroker.movieswipe.png?downloads=true)](https://nodei.co/npm/iobroker.movieswipe/)
+
+[![Test and Release](https://github.com/sadam6752-tech/ioBroker.movieswipe/actions/workflows/test-and-release.yml/badge.svg)](https://github.com/sadam6752-tech/ioBroker.movieswipe/actions/workflows/test-and-release.yml)
+![Number of Installations](https://iobroker.live/badges/movieswipe-installed.svg)
 
 ## MovieSwipe PWA Adapter for ioBroker
 
