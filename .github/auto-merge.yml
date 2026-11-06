@@ -1,3 +1,9 @@
+# Which Dependabot updates are merged automatically (after the tests passed),
+# read by iobroker-bot-orga/action-automerge-dependabot
+- match:
+    # production dependencies: patch updates only
+    dependency_type: production
+    update_type: "semver:patch"
 - match:
     dependency_type: development
     update_type: "semver:minor"

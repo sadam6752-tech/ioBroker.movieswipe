@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.1.5",
+    "version": "1.1.6",
     "news": {
+      "1.1.6": {
+        "en": "Security: requires multer 2.5.0 or newer (fix for CVE-2026-113872 in the file upload of the Backup Manager). An installation with multer 2.4.0 gets the fixed version with this update.",
+        "de": "Sicherheit: benötigt multer 2.5.0 oder neuer (Behebung von CVE-2026-113872 beim Datei-Upload des Backup-Managers). Eine Installation mit multer 2.4.0 erhält mit diesem Update die korrigierte Version.",
+        "ru": "Безопасность: требуется multer 2.5.0 или новее (исправление CVE-2026-113872 в загрузке файлов Backup Manager). Установка с multer 2.4.0 получит исправленную версию с этим обновлением.",
+        "fr": "Sécurité : nécessite multer 2.5.0 ou plus récent (correction de CVE-2026-113872 dans le téléversement de fichiers du Backup Manager). Une installation avec multer 2.4.0 reçoit la version corrigée avec cette mise à jour.",
+        "it": "Sicurezza: richiede multer 2.5.0 o successivo (correzione di CVE-2026-113872 nel caricamento file del Backup Manager). Un'installazione con multer 2.4.0 riceve la versione corretta con questo aggiornamento.",
+        "es": "Seguridad: requiere multer 2.5.0 o posterior (corrección de CVE-2026-113872 en la subida de archivos del Backup Manager). Una instalación con multer 2.4.0 recibe la versión corregida con esta actualización.",
+        "pl": "Bezpieczeństwo: wymagany multer 2.5.0 lub nowszy (poprawka CVE-2026-113872 w przesyłaniu plików Backup Managera). Instalacja z multer 2.4.0 otrzyma poprawioną wersję wraz z tą aktualizacją.",
+        "pt": "Segurança: requer multer 2.5.0 ou mais recente (correção de CVE-2026-113872 no envio de ficheiros do Backup Manager). Uma instalação com multer 2.4.0 recebe a versão corrigida com esta atualização.",
+        "nl": "Beveiliging: vereist multer 2.5.0 of nieuwer (oplossing voor CVE-2026-113872 bij het uploaden van bestanden in de Backup Manager). Een installatie met multer 2.4.0 krijgt met deze update de gecorrigeerde versie.",
+        "uk": "Безпека: потрібен multer 2.5.0 або новіший (виправлення CVE-2026-113872 у завантаженні файлів Backup Manager). Встановлення з multer 2.4.0 отримає виправлену версію з цим оновленням.",
+        "zh-cn": "安全：需要 multer 2.5.0 或更高版本（修复 Backup Manager 文件上传中的 CVE-2026-113872）。使用 multer 2.4.0 的安装会随本次更新获得修复后的版本。"
+      },
       "1.1.5": {
         "en": "New adapter logo.",
         "de": "Neues Adapter-Logo.",
@@ -80,19 +93,6 @@
         "nl": "Onderhoudsrelease: Node.js 26 in de CI-testmatrix, automatische publicatie via npm \"Trusted Publishing\" (OIDC) hersteld, volledige licentie-informatie en bijgewerkte afhankelijkheden. Geen functionele wijzigingen.",
         "uk": "Сервісний реліз: Node.js 26 у матриці тестів CI, відновлено автоматичну публікацію через npm \"Trusted Publishing\" (OIDC), повна інформація про ліцензію та оновлені залежності. Функціональних змін немає.",
         "zh-cn": "维护版本：CI 测试矩阵新增 Node.js 26，恢复通过 npm \"Trusted Publishing\" (OIDC) 自动发布，补全许可证信息并更新依赖。无功能性变更。"
-      },
-      "1.0.59": {
-        "en": "Add navigation between the app settings and the database backup manager: a link to open the backup manager from the Settings tab, and a link back to Settings from the backup page.",
-        "de": "Navigation zwischen den App-Einstellungen und dem Datenbank-Backup-Manager hinzugefuegt: Link zum Oeffnen des Backup-Managers aus dem Einstellungen-Tab und Link zurueck zu den Einstellungen von der Backup-Seite.",
-        "ru": "Добавлена навигация между настройками приложения и менеджером резервных копий базы данных: ссылка для открытия менеджера бэкапов из вкладки настроек, и ссылка назад в настройки со страницы бэкапа.",
-        "fr": "Ajout de la navigation entre les parametres de l'application et le gestionnaire de sauvegarde de la base de donnees: lien pour ouvrir le gestionnaire depuis les parametres, et lien de retour vers les parametres depuis la page de sauvegarde.",
-        "it": "Aggiunta navigazione tra le impostazioni dell'app e il gestore di backup del database: link per aprire il gestore backup dalla scheda impostazioni, e link per tornare alle impostazioni dalla pagina di backup.",
-        "es": "Anadida navegacion entre la configuracion de la app y el gestor de copias de seguridad de la base de datos: enlace para abrir el gestor desde configuracion, y enlace de vuelta a configuracion desde la pagina de backup.",
-        "pl": "Dodano nawigacje miedzy ustawieniami aplikacji a menedzerem kopii zapasowych bazy danych: link do otwarcia menedzera z zakladki ustawien i link powrotny do ustawien ze strony kopii zapasowej.",
-        "pt": "Adicionada navegacao entre as configuracoes do app e o gestor de backup da base de dados: link para abrir o gestor a partir das configuracoes, e link de volta as configuracoes a partir da pagina de backup.",
-        "nl": "Navigatie toegevoegd tussen de app-instellingen en de database-backupmanager: link om de backupmanager te openen vanuit het instellingentabblad, en link terug naar instellingen vanaf de backuppagina.",
-        "uk": "Додано навігацію між налаштуваннями застосунку та менеджером резервних копій бази даних: посилання для відкриття менеджера з вкладки налаштувань, і посилання назад до налаштувань зі сторінки резервної копії.",
-        "zh-cn": "在应用设置和数据库备份管理器之间添加导航：在设置标签页添加打开备份管理器的链接，在备份页面添加返回设置的链接。"
       }
     },
     "titleLang": {

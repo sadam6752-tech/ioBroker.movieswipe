@@ -170,6 +170,9 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 
 ## Changelog
 
+### 1.1.6
+- (sadam6752-tech) Require multer 2.5.0 or newer (security fix CVE-2026-113872 in the upload of the Backup Manager); an existing installation with multer 2.4.0 gets the fixed version with this update
+
 ### 1.1.5
 - (sadam6752-tech) New adapter logo (`admin/movieswipe.png` and `admin/movieswipe.svg`)
 
