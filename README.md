@@ -194,7 +194,7 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 
 ## Changelog
 
-### **WORK IN PROGRESS**
+### 1.2.0
 - (sadam6752-tech) Answers `help` for AI agents (`common.supportedMessages.help`, js-controller PR #3638) with the commands `suggest`, `search`, `getMovie`, `markMovie`, `history` and `genres`: an agent such as ioBroker.pi-agent can search the movie database and recommend what to watch, and remembers what it suggested and what the household watched or skipped
 - (sadam6752-tech) The search runs in a worker thread that is started on demand and ends after ten minutes without requests
 - (sadam6752-tech) `@iobroker/testing` range raised to 6.3.2
