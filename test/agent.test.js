@@ -37,6 +37,7 @@ describe('movie search', () => {
       ['kp-1', 'kp-7'],
     );
     assert.ok(!('_title' in res.movies[0]));
+    assert.ok(!('poster' in res.movies[0]));
   });
 
   it('search treats ё as е and finds the original title', () => {
@@ -70,6 +71,7 @@ describe('movie search', () => {
   it('suggest leaves out shorts, concerts, weak and too short movies and excluded ids', () => {
     const res = suggest(index, keys, { type: 'movie', genres: 'comedy', count: 5 }, ['kp-7']);
     assert.deepStrictEqual(res.movies.map(m => m.id).sort(), ['kp-1', 'kp-2']);
+    assert.deepStrictEqual(res.movies.map(m => m.poster).sort(), ['p1', 'p2']);
   });
 
   it('suggest offers a short when it is asked for', () => {

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "news": {
+      "1.2.1": {
+        "en": "Suggestions for AI agents now include the poster of each title, and the help tells the agent how to send it to Telegram as a photo with a caption.",
+        "de": "Vorschläge für KI-Agenten enthalten jetzt das Poster jedes Titels, und die Hilfe erklärt dem Agenten, wie er es als Foto mit Bildunterschrift an Telegram sendet.",
+        "ru": "Советы для ИИ-агентов теперь содержат постер каждого фильма, а справка объясняет агенту, как отправить его в Telegram фотографией с подписью.",
+        "pt": "As sugestões para agentes de IA incluem agora o cartaz de cada título, e a ajuda explica ao agente como enviá-lo para o Telegram como foto com legenda.",
+        "nl": "Suggesties voor AI-agents bevatten nu de poster van elke titel, en de hulp legt de agent uit hoe hij die als foto met onderschrift naar Telegram stuurt.",
+        "fr": "Les suggestions pour les agents IA contiennent désormais l'affiche de chaque titre, et l'aide explique à l'agent comment l'envoyer sur Telegram en photo avec une légende.",
+        "it": "I suggerimenti per gli agenti IA includono ora la locandina di ogni titolo, e l'aiuto spiega all'agente come inviarla su Telegram come foto con didascalia.",
+        "es": "Las sugerencias para agentes de IA incluyen ahora el póster de cada título, y la ayuda explica al agente cómo enviarlo a Telegram como foto con pie de foto.",
+        "pl": "Propozycje dla agentów AI zawierają teraz plakat każdego tytułu, a pomoc wyjaśnia agentowi, jak wysłać go do Telegrama jako zdjęcie z podpisem.",
+        "uk": "Поради для ШІ-агентів тепер містять постер кожного фільму, а довідка пояснює агенту, як надіслати його в Telegram фотографією з підписом.",
+        "zh-cn": "为 AI 代理提供的推荐现在包含每部影片的海报，帮助说明会告诉代理如何将其作为带说明文字的照片发送到 Telegram。"
+      },
       "1.2.0": {
         "en": "AI agents such as ioBroker.pi-agent can now use the movie database: the adapter answers \"help\" and offers commands to search movies and series, suggest what to watch by type, genre, mood, rating and duration, and mark titles as watched or skipped. A shared history remembers what was suggested, so the same title is not offered again, and the agent can tell what it suggested yesterday. The search runs in a worker thread that is only started on demand.",
         "de": "KI-Agenten wie ioBroker.pi-agent können jetzt die Filmdatenbank nutzen: Der Adapter beantwortet \"help\" und bietet Befehle, um Filme und Serien zu suchen, nach Art, Genre, Stimmung, Bewertung und Dauer etwas zum Anschauen vorzuschlagen und Titel als gesehen oder übersprungen zu markieren. Ein gemeinsamer Verlauf merkt sich die Vorschläge, damit derselbe Titel nicht erneut angeboten wird, und der Agent kann sagen, was er gestern vorgeschlagen hat. Die Suche läuft in einem Worker-Thread, der nur bei Bedarf startet.",
@@ -80,19 +93,6 @@
         "nl": "Repository-checker (W1134): de knop `sync.stop` is nu alleen schrijfbaar (`read: false`), net als `sync.start` en `sync.reloadApp`. `common.news` weer teruggebracht tot 7 items.",
         "uk": "Перевірка репозиторію (W1134): кнопка `sync.stop` тепер, як `sync.start` і `sync.reloadApp`, лише для запису (`read: false`). `common.news` знову скорочено до 7 записів.",
         "zh-cn": "仓库检查 (W1134)：`sync.stop` 按钮现在与 `sync.start`、`sync.reloadApp` 一样为只写（`read: false`）。`common.news` 重新精简为 7 条。"
-      },
-      "1.1.1": {
-        "en": "Code quality: internal timers now use the adapter API so they are cleaned up on unload, built-in modules use the \"node:\" prefix, removed process.env usage (compact mode) and updated the release tooling.",
-        "de": "Code-Qualität: interne Timer nutzen jetzt die Adapter-API und werden beim Entladen aufgeräumt, Built-in-Module mit \"node:\"-Präfix, process.env-Nutzung entfernt (Kompaktmodus) und Release-Tooling aktualisiert.",
-        "ru": "Качество кода: внутренние таймеры теперь используют API адаптера и очищаются при выгрузке, встроенные модули с префиксом \"node:\", удалено использование process.env (компактный режим), обновлены инструменты релиза.",
-        "fr": "Qualité du code : les minuteurs internes utilisent désormais l'API de l'adaptateur (nettoyage au déchargement), modules intégrés avec le préfixe « node: », suppression de process.env (mode compact) et mise à jour des outils de release.",
-        "it": "Qualità del codice: i timer interni ora usano l'API dell'adattatore (pulizia allo scaricamento), moduli integrati con prefisso \"node:\", rimosso l'uso di process.env (modalità compatta) e aggiornati gli strumenti di release.",
-        "es": "Calidad del código: los temporizadores internos usan ahora la API del adaptador (se limpian al descargar), módulos integrados con prefijo \"node:\", se eliminó el uso de process.env (modo compacto) y se actualizaron las herramientas de release.",
-        "pl": "Jakość kodu: wewnętrzne timery korzystają teraz z API adaptera (czyszczone przy wyładowaniu), moduły wbudowane z prefiksem \"node:\", usunięto użycie process.env (tryb kompaktowy) i zaktualizowano narzędzia wydania.",
-        "pt": "Qualidade de código: os temporizadores internos agora usam a API do adaptador (limpos ao descarregar), módulos internos com prefixo \"node:\", removido o uso de process.env (modo compacto) e ferramentas de release atualizadas.",
-        "nl": "Codekwaliteit: interne timers gebruiken nu de adapter-API (opgeruimd bij het lossen), ingebouwde modules met \"node:\"-prefix, process.env-gebruik verwijderd (compacte modus) en release-tooling bijgewerkt.",
-        "uk": "Якість коду: внутрішні таймери тепер використовують API адаптера та очищуються при вивантаженні, вбудовані модулі з префіксом \"node:\", прибрано використання process.env (компактний режим), оновлено інструменти релізу.",
-        "zh-cn": "代码质量：内部定时器改用适配器 API（卸载时自动清理），内置模块使用 \"node:\" 前缀，移除 process.env 用法（兼容紧凑模式），并更新发布工具。"
       }
     },
     "titleLang": {

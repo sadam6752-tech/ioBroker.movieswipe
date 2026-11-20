@@ -124,7 +124,7 @@ watch from the movie database. All commands are sent with `sendTo("movieswipe.0"
 | Command | Changes | What it does |
 |---------|---------|--------------|
 | `help` | no | Description for the agent and the list of commands |
-| `suggest` | history | Random well rated titles of a type (`movie`, `series`, `cartoon`, `anime`, `any`) with optional genres, moods, rating, duration, years and country; leaves out what was watched, skipped or suggested in the last 30 days and logs the result as suggested. Without a type it asks the agent to ask the user first |
+| `suggest` | history | Random well rated titles of a type (`movie`, `series`, `cartoon`, `anime`, `any`) with optional genres, moods, rating, duration, years and country; leaves out what was watched, skipped or suggested in the last 30 days and logs the result as suggested. Each title has its poster URL, which the agent can send to Telegram as a photo (`type: "photo"`). Without a type it asks the agent to ask the user first |
 | `search` | no | Search by words of the title, director or actors and by the same filters, sorted by rating, year or relevance |
 | `getMovie` | no | Full card of a title (description, cast, poster) |
 | `markMovie` | history | Mark a title as `watched` or `skipped` (never suggested again), or `clear` the mark |
@@ -193,6 +193,9 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 - Verify URL in `server.url` state
 
 ## Changelog
+
+### 1.2.1
+- (sadam6752-tech) `suggest` returns the poster URL of each title, and the help tells the agent how to send it to Telegram as a photo with a caption (the poster URLs have no file extension, so the telegram adapter needs `type: "photo"`)
 
 ### 1.2.0
 - (sadam6752-tech) Answers `help` for AI agents (`common.supportedMessages.help`, js-controller PR #3638) with the commands `suggest`, `search`, `getMovie`, `markMovie`, `history` and `genres`: an agent such as ioBroker.pi-agent can search the movie database and recommend what to watch, and remembers what it suggested and what the household watched or skipped
