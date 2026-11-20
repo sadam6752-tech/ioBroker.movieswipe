@@ -115,6 +115,30 @@ Monitor synchronization progress through the following states:
 - `sync.totalMovies` - Total movies in database
 - `sync.newMovies` - New movies added
 
+## AI agents
+
+The adapter answers `help` (`common.supportedMessages.help`), so an AI agent such as
+[ioBroker.pi-agent](https://github.com/sadam6752-tech/ioBroker.pi-agent) finds its commands and can recommend what to
+watch from the movie database. All commands are sent with `sendTo("movieswipe.0", command, {...})`:
+
+| Command | Changes | What it does |
+|---------|---------|--------------|
+| `help` | no | Description for the agent and the list of commands |
+| `suggest` | history | Random well rated titles of a type (`movie`, `series`, `cartoon`, `anime`, `any`) with optional genres, moods, rating, duration, years and country; leaves out what was watched, skipped or suggested in the last 30 days and logs the result as suggested. Without a type it asks the agent to ask the user first |
+| `search` | no | Search by words of the title, director or actors and by the same filters, sorted by rating, year or relevance |
+| `getMovie` | no | Full card of a title (description, cast, poster) |
+| `markMovie` | history | Mark a title as `watched` or `skipped` (never suggested again), or `clear` the mark |
+| `history` | no | What was suggested, watched or skipped in a period (`days`, or `from` / `to`) |
+| `genres` | no | Genre and mood keys of the database |
+
+The history is shared by the household. It lives in the instance data directory and in the ioBroker file storage
+(`movieswipe.N.storage/agent-history.json`), so it is part of ioBroker backups. Swipes in the app itself stay in the
+browser and are not part of it.
+
+The search runs in a worker thread that loads the database on the first request and ends after ten minutes without
+requests, so the adapter does not keep the large database in memory. The first answer after a pause takes a few
+seconds.
+
 ## States
 
 ### info.*
@@ -169,6 +193,11 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 - Verify URL in `server.url` state
 
 ## Changelog
+
+### **WORK IN PROGRESS**
+- (sadam6752-tech) Answers `help` for AI agents (`common.supportedMessages.help`, js-controller PR #3638) with the commands `suggest`, `search`, `getMovie`, `markMovie`, `history` and `genres`: an agent such as ioBroker.pi-agent can search the movie database and recommend what to watch, and remembers what it suggested and what the household watched or skipped
+- (sadam6752-tech) The search runs in a worker thread that is started on demand and ends after ten minutes without requests
+- (sadam6752-tech) `@iobroker/testing` range raised to 6.3.2
 
 ### 1.1.6
 - (sadam6752-tech) Require multer 2.5.0 or newer (security fix CVE-2026-113872 in the upload of the Backup Manager); an existing installation with multer 2.4.0 gets the fixed version with this update

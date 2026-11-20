@@ -163,6 +163,9 @@
     "mode": "daemon",
     "type": "multimedia",
     "compact": true,
+    "supportedMessages": {
+      "help": true
+    },
     "connectionType": "local",
     "dataSource": "push",
     "adminUI": {

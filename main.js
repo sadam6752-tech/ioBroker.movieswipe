@@ -8,6 +8,9 @@ const WebServer = require('./lib/web-server');
 const SyncManager = require('./lib/sync-manager');
 const DbStore = require('./lib/db-store');
 const { findLanAddress } = require('./lib/net-utils');
+const { MovieSearch } = require('./lib/movie-search');
+const { AgentHistory } = require('./lib/agent-history');
+const { NAMES: AGENT_COMMANDS, runCommand } = require('./lib/agent-commands');
 
 class MovieSwipe extends utils.Adapter {
   constructor(options) {
@@ -19,6 +22,8 @@ class MovieSwipe extends utils.Adapter {
     this.webServer = null;
     this.syncManager = null;
     this.dbStore = null;
+    this.movieSearch = null;
+    this.history = null;
 
     this.on('ready', this.onReady.bind(this));
     this.on('stateChange', this.onStateChange.bind(this));
@@ -69,6 +74,9 @@ class MovieSwipe extends utils.Adapter {
         path.join(__dirname, 'scripts/.sync-progress.json'),
       );
       await this.dbStore.init();
+      this.movieSearch = new MovieSearch(this, this.dbStore.dbFile);
+      this.history = new AgentHistory(this, dataDir);
+      await this.history.init();
     } catch (error) {
       this.log.error(`Error preparing database: ${error.message}`);
       this.terminate(11);
@@ -227,7 +235,29 @@ class MovieSwipe extends utils.Adapter {
       const ip = this.resolveBindAddress(bind);
       const url = `http://${ip}:${port}`;
       if (obj.callback) this.sendTo(obj.from, obj.command, { url, ip, port }, obj.callback);
+    } else if (AGENT_COMMANDS.includes(obj.command)) {
+      this.onAgentCommand(obj);
     }
+  }
+
+  /**
+   * A command of an AI agent (help, suggest, search, getMovie, markMovie, history, genres), see lib/agent-commands.js
+   *
+   * @param {ioBroker.Message} obj message
+   */
+  async onAgentCommand(obj) {
+    let answer;
+    try {
+      if (!this.movieSearch || !this.history) {
+        throw new Error('The adapter is not ready yet');
+      }
+      answer = await runCommand(obj.command, obj.message, { search: this.movieSearch, history: this.history });
+      this.log.debug(`Agent command ${obj.command}: ${JSON.stringify(answer).slice(0, 200)}`);
+    } catch (error) {
+      this.log.debug(`Agent command ${obj.command} failed: ${error.message}`);
+      answer = { error: error.message };
+    }
+    if (obj.callback) this.sendTo(obj.from, obj.command, answer, obj.callback);
   }
 
   async onUnload(callback) {
@@ -238,6 +268,11 @@ class MovieSwipe extends utils.Adapter {
         this.syncManager.stopAutoSync();
         await this.syncManager.stop();
         this.syncManager = null;
+      }
+
+      if (this.movieSearch) {
+        this.movieSearch.stop();
+        this.movieSearch = null;
       }
 
       if (this.webServer) {
