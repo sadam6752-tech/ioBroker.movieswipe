@@ -1,6 +1,6 @@
 export default [
     {
-        ignores: ['node_modules/**', 'www/**', '.git/**', 'test/**', '.dev-server/**']
+        ignores: ['node_modules/**', 'www/**', 'lampa/**', '.git/**', 'test/**', '.dev-server/**']
     },
     {
         files: ['**/*.js'],

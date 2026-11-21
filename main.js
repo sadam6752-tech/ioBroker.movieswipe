@@ -11,6 +11,7 @@ const { findLanAddress } = require('./lib/net-utils');
 const { MovieSearch } = require('./lib/movie-search');
 const { AgentHistory } = require('./lib/agent-history');
 const { NAMES: AGENT_COMMANDS, runCommand } = require('./lib/agent-commands');
+const { LampaBridge } = require('./lib/lampa-bridge');
 
 class MovieSwipe extends utils.Adapter {
   constructor(options) {
@@ -24,6 +25,7 @@ class MovieSwipe extends utils.Adapter {
     this.dbStore = null;
     this.movieSearch = null;
     this.history = null;
+    this.lampa = null;
 
     this.on('ready', this.onReady.bind(this));
     this.on('stateChange', this.onStateChange.bind(this));
@@ -91,7 +93,8 @@ class MovieSwipe extends utils.Adapter {
       const wwwPath = `${__dirname}/www`;
 
       this.webServer = new WebServer(this);
-      await this.webServer.start(port, wwwPath, bind, this.dbStore);
+      this.lampa = new LampaBridge(this);
+      await this.webServer.start(port, wwwPath, bind, this.dbStore, this.lampa);
 
       // Обновить states сервера
       await this.setStateAsync('server.port', port, true);
@@ -103,6 +106,7 @@ class MovieSwipe extends utils.Adapter {
       this.log.info(`Web server started at http://${resolvedIp}:${port} (bind: ${bind})`);
     } catch (error) {
       this.log.error(`Failed to start web server: ${error.message}`);
+      this.lampa = null;
       await this.setStateAsync('server.running', false, true);
       // Продолжить работу адаптера даже если веб-сервер не запустился
     }
@@ -241,7 +245,7 @@ class MovieSwipe extends utils.Adapter {
   }
 
   /**
-   * A command of an AI agent (help, suggest, search, getMovie, markMovie, history, genres), see lib/agent-commands.js
+   * A command of an AI agent (help, suggest, search, getMovie, markMovie, history, genres, openInLampa, lampaDevices), see lib/agent-commands.js
    *
    * @param {ioBroker.Message} obj message
    */
@@ -251,7 +255,11 @@ class MovieSwipe extends utils.Adapter {
       if (!this.movieSearch || !this.history) {
         throw new Error('The adapter is not ready yet');
       }
-      answer = await runCommand(obj.command, obj.message, { search: this.movieSearch, history: this.history });
+      answer = await runCommand(obj.command, obj.message, {
+        search: this.movieSearch,
+        history: this.history,
+        lampa: this.lampa,
+      });
       this.log.debug(`Agent command ${obj.command}: ${JSON.stringify(answer).slice(0, 200)}`);
     } catch (error) {
       this.log.debug(`Agent command ${obj.command} failed: ${error.message}`);
@@ -273,6 +281,10 @@ class MovieSwipe extends utils.Adapter {
       if (this.movieSearch) {
         this.movieSearch.stop();
         this.movieSearch = null;
+      }
+
+      if (this.lampa) {
+        this.lampa.stop();
       }
 
       if (this.webServer) {

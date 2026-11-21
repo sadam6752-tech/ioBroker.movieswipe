@@ -130,6 +130,8 @@ watch from the movie database. All commands are sent with `sendTo("movieswipe.0"
 | `markMovie` | history | Mark a title as `watched` or `skipped` (never suggested again), or `clear` the mark |
 | `history` | no | What was suggested, watched or skipped in a period (`days`, or `from` / `to`) |
 | `genres` | no | Genre and mood keys of the database |
+| `openInLampa` | TV screen | Opens the card of a title in the Lampa app on a TV or player (see below); `device` names the device when several are online |
+| `lampaDevices` | no | Lampa devices that are online now |
 
 The history is shared by the household. It lives in the instance data directory and in the ioBroker file storage
 (`movieswipe.N.storage/agent-history.json`), so it is part of ioBroker backups. Swipes in the app itself stay in the
@@ -138,6 +140,20 @@ browser and are not part of it.
 The search runs in a worker thread that loads the database on the first request and ends after ten minutes without
 requests, so the adapter does not keep the large database in memory. The first answer after a pause takes a few
 seconds.
+
+### Lampa on the TV
+
+The agent can open the card of a suggested title in [Lampa](https://github.com/yumata/lampa-source) on an Android TV,
+a Dune HD player or any other device that runs it, so the user only has to press play. No Lampac server is needed:
+
+1. In Lampa open **Settings → Extensions → Add plugin** and enter `http://<ioBroker address>:<port>/lampa.js` (the
+   address of the MovieSwipe web server, see `server.url`).
+2. Restart Lampa. Under **Settings → MovieSwipe** give the device a name, for example `Living room TV` or `Dune`.
+3. Ask the agent for a movie and say "open it in Lampa".
+
+The plugin keeps a request to the adapter open and receives the command at once. Lampa finds the title on TMDB by
+its original title and year (MovieSwipe uses Kinopoisk ids) and opens its card; without an exact match it shows its
+search for the title. The device must have Lampa open: a TV in standby or Lampa in the background does not answer.
 
 ## States
 
@@ -193,6 +209,9 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 - Verify URL in `server.url` state
 
 ## Changelog
+
+### **WORK IN PROGRESS**
+- (sadam6752-tech) AI agents can open the card of a title in the Lampa app on a TV or player: the adapter serves a Lampa plugin (`/lampa.js`) and answers the new commands `openInLampa` and `lampaDevices`
 
 ### 1.2.1
 - (sadam6752-tech) `suggest` returns the poster URL of each title, and the help tells the agent how to send it to Telegram as a photo with a caption (the poster URLs have no file extension, so the telegram adapter needs `type: "photo"`)
