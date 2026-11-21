@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "news": {
+      "1.2.2": {
+        "en": "AI agents can open the card of a title in the Lampa app on a TV or player: the adapter serves a Lampa plugin (/lampa.js) and has the new commands openInLampa and lampaDevices.",
+        "de": "KI-Agenten können die Karte eines Titels in der Lampa-App auf einem Fernseher oder Player öffnen: Der Adapter stellt ein Lampa-Plugin (/lampa.js) bereit und hat die neuen Befehle openInLampa und lampaDevices.",
+        "ru": "ИИ-агенты могут открыть карточку фильма в приложении Lampa на телевизоре или плеере: адаптер раздаёт плагин для Lampa (/lampa.js) и получил новые команды openInLampa и lampaDevices.",
+        "pt": "Os agentes de IA podem abrir a ficha de um título na aplicação Lampa numa TV ou leitor: o adaptador disponibiliza um plugin Lampa (/lampa.js) e tem os novos comandos openInLampa e lampaDevices.",
+        "nl": "AI-agents kunnen de kaart van een titel openen in de Lampa-app op een tv of speler: de adapter levert een Lampa-plug-in (/lampa.js) en heeft de nieuwe opdrachten openInLampa en lampaDevices.",
+        "fr": "Les agents IA peuvent ouvrir la fiche d'un titre dans l'application Lampa sur un téléviseur ou un lecteur : l'adaptateur fournit un plugin Lampa (/lampa.js) et propose les nouvelles commandes openInLampa et lampaDevices.",
+        "it": "Gli agenti IA possono aprire la scheda di un titolo nell'app Lampa su un televisore o un lettore: l'adattatore fornisce un plugin Lampa (/lampa.js) e ha i nuovi comandi openInLampa e lampaDevices.",
+        "es": "Los agentes de IA pueden abrir la ficha de un título en la aplicación Lampa de un televisor o reproductor: el adaptador ofrece un plugin de Lampa (/lampa.js) y tiene los nuevos comandos openInLampa y lampaDevices.",
+        "pl": "Agenci AI mogą otworzyć kartę tytułu w aplikacji Lampa na telewizorze lub odtwarzaczu: adapter udostępnia wtyczkę Lampa (/lampa.js) i ma nowe polecenia openInLampa i lampaDevices.",
+        "uk": "ШІ-агенти можуть відкрити картку фільму в застосунку Lampa на телевізорі чи плеєрі: адаптер роздає плагін для Lampa (/lampa.js) і отримав нові команди openInLampa та lampaDevices.",
+        "zh-cn": "AI 代理可以在电视或播放器上的 Lampa 应用中打开影片的卡片：适配器提供 Lampa 插件（/lampa.js），并新增命令 openInLampa 和 lampaDevices。"
+      },
       "1.2.1": {
         "en": "Suggestions for AI agents now include the poster of each title, and the help tells the agent how to send it to Telegram as a photo with a caption.",
         "de": "Vorschläge für KI-Agenten enthalten jetzt das Poster jedes Titels, und die Hilfe erklärt dem Agenten, wie er es als Foto mit Bildunterschrift an Telegram sendet.",
@@ -80,19 +93,6 @@
         "nl": "Beveiliging en robuustheid: optioneel toegangstoken voor /api/db/*, API-sleutels via omgevingsvariabele aan het synchronisatieproces doorgegeven, atomaire databaseschrijfacties, gecontroleerd terugzetten van back-ups, sleutelwachttijden blijven na herstart behouden, betrouwbaar stoppen van synchronisatie.",
         "uk": "Безпека та надійність: необов'язковий токен доступу до /api/db/*, API-ключі передаються процесу синхронізації через змінну середовища, атомарний запис бази, перевірка резервної копії під час відновлення, затримки ключів зберігаються після перезапуску, надійна зупинка синхронізації.",
         "zh-cn": "安全与稳定性：/api/db/* 可选访问令牌，API 密钥通过环境变量而非命令行传给同步进程，数据库原子写入，备份恢复前校验，密钥冷却时间在重启后保留，可靠地停止同步。"
-      },
-      "1.1.2": {
-        "en": "Repository checker (W1134): the `sync.stop` button is now write-only (`read: false`), like `sync.start` and `sync.reloadApp`. `common.news` trimmed back to 7 entries.",
-        "de": "Repository-Checker (W1134): Der Button `sync.stop` ist jetzt wie `sync.start` und `sync.reloadApp` nur schreibbar (`read: false`). `common.news` wieder auf 7 Eintraege gekuerzt.",
-        "ru": "Проверка репозитория (W1134): кнопка `sync.stop` теперь, как `sync.start` и `sync.reloadApp`, только для записи (`read: false`). `common.news` вновь сокращён до 7 записей.",
-        "fr": "Verificateur de depot (W1134) : le bouton `sync.stop` est desormais en ecriture seule (`read: false`), comme `sync.start` et `sync.reloadApp`. `common.news` ramene a 7 entrees.",
-        "it": "Checker del repository (W1134): il pulsante `sync.stop` ora e di sola scrittura (`read: false`), come `sync.start` e `sync.reloadApp`. `common.news` ridotto di nuovo a 7 voci.",
-        "es": "Comprobador del repositorio (W1134): el boton `sync.stop` ahora es de solo escritura (`read: false`), como `sync.start` y `sync.reloadApp`. `common.news` reducido de nuevo a 7 entradas.",
-        "pl": "Sprawdzanie repozytorium (W1134): przycisk `sync.stop` jest teraz tylko do zapisu (`read: false`), tak jak `sync.start` i `sync.reloadApp`. `common.news` ponownie skrocone do 7 wpisow.",
-        "pt": "Verificador do repositorio (W1134): o botao `sync.stop` agora e somente gravacao (`read: false`), como `sync.start` e `sync.reloadApp`. `common.news` reduzido novamente para 7 entradas.",
-        "nl": "Repository-checker (W1134): de knop `sync.stop` is nu alleen schrijfbaar (`read: false`), net als `sync.start` en `sync.reloadApp`. `common.news` weer teruggebracht tot 7 items.",
-        "uk": "Перевірка репозиторію (W1134): кнопка `sync.stop` тепер, як `sync.start` і `sync.reloadApp`, лише для запису (`read: false`). `common.news` знову скорочено до 7 записів.",
-        "zh-cn": "仓库检查 (W1134)：`sync.stop` 按钮现在与 `sync.start`、`sync.reloadApp` 一样为只写（`read: false`）。`common.news` 重新精简为 7 条。"
       }
     },
     "titleLang": {

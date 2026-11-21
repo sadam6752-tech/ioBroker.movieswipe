@@ -210,7 +210,7 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 
 ## Changelog
 
-### **WORK IN PROGRESS**
+### 1.2.2
 - (sadam6752-tech) AI agents can open the card of a title in the Lampa app on a TV or player: the adapter serves a Lampa plugin (`/lampa.js`) and answers the new commands `openInLampa` and `lampaDevices`
 
 ### 1.2.1
