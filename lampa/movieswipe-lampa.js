@@ -190,15 +190,28 @@
     var SYNC_PERIOD_MS = 10 * 60 * 1000;
     var SYNC_TIMEOUT_MS = 120000;
     var LIST_LIMIT = 3000;
-    var SYNC_GROUPS = ['timeline', 'favorite', 'viewed', 'search'];
+    var SYNC_GROUPS = ['timeline', 'favorite', 'viewed', 'search', 'plugins'];
     var GROUP_OF = {
         timeline: 'timeline',
         favorite: 'favorite',
         cards: 'favorite',
         online_view: 'viewed',
         torrents_view: 'viewed',
-        search_history: 'search'
+        search_history: 'search',
+        plugins: 'plugins'
     };
+    /** Lampa refuses these plugins itself (core/plugins.js); plugins_blacklist adds the list of CUB */
+    var PLUGIN_BLACKLIST = [
+        'lipp.xyz',
+        'llpp.xyz',
+        'scabrum.github.io',
+        'bylampa.github.io',
+        'tinyurl.com',
+        't.me/',
+        '4pda.',
+        'teletype.in',
+        'yotube.com'
+    ];
     var LISTS = ['online_view', 'torrents_view', 'search_history'];
     var FAV_TYPES = ['like', 'wath', 'book', 'history', 'look', 'viewed', 'scheduled', 'continued', 'thrown'];
     var MODE_NAMES = {
@@ -216,8 +229,153 @@
         cats: null,
         cubWarned: false,
         resolved: [],
-        resolving: false
+        resolving: false,
+        offers: [],
+        offering: false
     };
+
+    /* ---------- Plugins: offered to the other devices, never removed or switched on without asking ---------- */
+
+    /** The address without the key parameter (the MovieSwipe plugin carries the sync key there) */
+    function pluginUrl(url) {
+        url = String(url || '').replace(/^\s+|\s+$/g, '');
+        if (!/^https?:\/\//i.test(url) || url.length > 500) return '';
+        url = url.split('#')[0];
+        var at = url.indexOf('?');
+        if (at < 0) return url;
+        var keep = [];
+        var params = url.slice(at + 1).split('&');
+        for (var i = 0; i < params.length; i++) {
+            if (params[i] && params[i].split('=')[0] !== 'key') keep.push(params[i]);
+        }
+        return url.slice(0, at) + (keep.length ? '?' + keep.join('&') : '');
+    }
+
+    function isOwnPlugin(url) {
+        return url.split('?')[0] === BASE + '/lampa.js';
+    }
+
+    function pluginBlocked(url) {
+        var list = PLUGIN_BLACKLIST.concat(readList('plugins_blacklist'));
+        for (var i = 0; i < list.length; i++) if (list[i] && url.indexOf(String(list[i])) >= 0) return true;
+        return false;
+    }
+
+    function localPlugins() {
+        try {
+            if (Lampa.Plugins && Lampa.Plugins.get) return Lampa.Plugins.get();
+        } catch (e) {
+            // fall back to the storage
+        }
+        return readList('plugins');
+    }
+
+    function hasPlugin(url) {
+        var list = localPlugins();
+        for (var i = 0; i < list.length; i++) {
+            var item = list[i];
+            if (pluginUrl(typeof item == 'string' ? item : item && item.url) === url) return true;
+        }
+        return false;
+    }
+
+    function addPlugin(plugin) {
+        try {
+            if (Lampa.Plugins && Lampa.Plugins.add) {
+                // with status 0 Lampa only stores it, it loads nothing
+                Lampa.Plugins.add(plugin);
+                return;
+            }
+        } catch (e) {
+            // fall back to the storage
+        }
+        var list = readList('plugins');
+        list.push(plugin);
+        Lampa.Storage.set('plugins', list, true);
+    }
+
+    function enablePlugin(url) {
+        var list = localPlugins();
+        for (var i = 0; i < list.length; i++) {
+            var item = list[i];
+            if (item && typeof item == 'object' && pluginUrl(item.url) === url) {
+                item.status = 1;
+                try {
+                    if (Lampa.Plugins && Lampa.Plugins.save) {
+                        Lampa.Plugins.save(item);
+                        // loads the script now, as the extensions screen of Lampa does
+                        Lampa.Plugins.push(item);
+                    } else {
+                        Lampa.Storage.set('plugins', list, true);
+                        Lampa.Noty.show('MovieSwipe: плагин включён, перезапустите Lampa');
+                    }
+                } catch (e) {
+                    try {
+                        Lampa.Noty.show('MovieSwipe: плагин включён, перезапустите Lampa');
+                    } catch (e2) {
+                        // no notice
+                    }
+                }
+                return;
+            }
+        }
+    }
+
+    function playerOpen() {
+        try {
+            return !!(Lampa.Player && Lampa.Player.opened && Lampa.Player.opened());
+        } catch (e) {
+            return false;
+        }
+    }
+
+    /** Asks for each plugin that arrived whether to switch it on; waits while a video plays */
+    function showOffers() {
+        if (syncState.offering || !syncState.offers.length) return;
+        if (playerOpen() || !Lampa.Select || !Lampa.Select.show) {
+            setTimeout(showOffers, 30000);
+            return;
+        }
+        var offer = syncState.offers.shift();
+        var label = offer.name || offer.url;
+        var back = '';
+        try {
+            back = Lampa.Controller.enabled().name;
+        } catch (e) {
+            back = 'content';
+        }
+        var done = function () {
+            syncState.offering = false;
+            try {
+                Lampa.Controller.toggle(back || 'content');
+            } catch (e) {
+                // nothing to restore
+            }
+            setTimeout(showOffers, 500);
+        };
+        syncState.offering = true;
+        try {
+            Lampa.Select.show({
+                title: 'Новый плагин от ' + (offer.from || 'другого устройства') + ': ' + label + ' — включить?',
+                items: [
+                    { title: 'Включить', subtitle: offer.url, enable: true },
+                    { title: 'Не сейчас', subtitle: 'Его можно включить позже в Настройки → Расширения' }
+                ],
+                onSelect: function (a) {
+                    if (a.enable) enablePlugin(offer.url);
+                    done();
+                },
+                onBack: done
+            });
+        } catch (e) {
+            syncState.offering = false;
+            try {
+                Lampa.Noty.show('MovieSwipe: новый плагин ' + label + ' — включить в Настройки → Расширения');
+            } catch (e2) {
+                // no notice
+            }
+        }
+    }
 
     function cardOf(item) {
         var card = item;
@@ -367,6 +525,14 @@
                     out[FAV_TYPES[i] + ':' + list[j]] = { v: { type: FAV_TYPES[i], id: list[j] } };
                 }
             }
+        } else if (cat == 'plugins') {
+            var plugins = localPlugins();
+            for (i = 0; i < plugins.length; i++) {
+                var p = plugins[i];
+                var url = pluginUrl(typeof p == 'string' ? p : p && p.url);
+                if (!url || isOwnPlugin(url) || pluginBlocked(url)) continue;
+                out[url] = { v: p && p.name ? { url: url, name: String(p.name) } : { url: url } };
+            }
         } else {
             var arr = readList(cat);
             for (i = 0; i < arr.length; i++) if (typeof arr[i] == 'string') out[arr[i]] = {};
@@ -378,7 +544,7 @@
     function localChanges(snap, now) {
         var changes = {};
         var next = {};
-        var cats = ['timeline', 'favorite'].concat(LISTS);
+        var cats = ['timeline', 'favorite'].concat(LISTS, ['plugins']);
         for (var c = 0; c < cats.length; c++) {
             var cat = cats[c];
             if (!allowed(cat, 'send') && !allowed(cat, 'receive')) continue;
@@ -398,7 +564,8 @@
                     if (send && !hasOwn(old, k)) list.push({ k: k, v: cur[k].v, ts: now });
                 }
             }
-            if (send && cat != 'timeline') {
+            // plugins: a removal on this device stays on this device
+            if (send && cat != 'timeline' && cat != 'plugins') {
                 for (k in old) if (hasOwn(old, k) && !hasOwn(cur, k)) list.push({ k: k, ts: now, del: true });
             }
             if (list.length) changes[cat] = list;
@@ -426,13 +593,28 @@
         var tl = null;
         var fav = null;
         var lists = {};
-        var cats = ['timeline', 'favorite', 'cards'].concat(LISTS);
+        var cats = ['timeline', 'favorite', 'cards'].concat(LISTS, ['plugins']);
         for (var c = 0; c < cats.length; c++) {
             cat = cats[c];
             if (!allowed(cat, 'receive')) continue;
             var list = (changes && changes[cat]) || [];
             if (!list.length && !replace) continue;
             var s = (snap[cat] = snap[cat] || {});
+            if (cat == 'plugins') {
+                // union only, also after a reset: nothing is removed and no status is changed
+                for (i = 0; i < list.length; i++) {
+                    e = list[i];
+                    var url = pluginUrl(e.v && e.v.url);
+                    if (e.del || !url || isOwnPlugin(url) || pluginBlocked(url)) continue;
+                    s[url] = 1;
+                    if (hasPlugin(url)) continue;
+                    var plugin = { url: url, status: 0 };
+                    if (e.v.name) plugin.name = String(e.v.name);
+                    addPlugin(plugin);
+                    syncState.offers.push({ url: url, name: plugin.name || '', from: e.v.from || '' });
+                }
+                continue;
+            }
             if (cat == 'timeline') {
                 tl = replace ? {} : readObject(timelineKey());
                 if (replace) snap[cat] = s = {};
@@ -621,6 +803,7 @@
                     next = localChanges({}, now).next;
                 }
                 setLocal('movieswipe_sync_snap', next);
+                if (syncState.offers.length) setTimeout(showOffers, 1000);
                 setLocal('movieswipe_sync_rev', res.rev || 0);
                 setLocal('movieswipe_sync_init', String(res.epoch));
                 if (replace) {
@@ -747,7 +930,8 @@
             ['timeline', 'Прогресс просмотра', 'Тайм-коды: где остановились в фильме или серии'],
             ['favorite', 'Закладки и история', 'Нравится, позже, закладки, история и отметки'],
             ['viewed', 'Просмотренное', 'Отметки просмотренного онлайн и в торрентах'],
-            ['search', 'История поиска', 'Что искали в Lampa']
+            ['search', 'История поиска', 'Что искали в Lampa'],
+            ['plugins', 'Плагины', 'Новые плагины других устройств приходят выключенными, Lampa спрашивает, включить ли']
         ];
         for (var i = 0; i < groups.length; i++) {
             Lampa.SettingsApi.addParam({

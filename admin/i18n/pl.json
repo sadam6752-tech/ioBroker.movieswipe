@@ -65,5 +65,9 @@
   "Reset sync copy": "Resetuj kopię synchronizacji",
   "confirm_lampaReset": "Kopia w ioBroker zostanie wyczyszczona i odbudowana podczas synchronizacji urządzeń. Kontynuować?",
   "Reset": "Resetuj",
-  "Cancel": "Anuluj"
+  "Cancel": "Anuluj",
+  "Plugins": "Wtyczki",
+  "help_lampaSyncPlugins": "Wtyczka dodana na jednym urządzeniu jest proponowana pozostałym: przychodzi wyłączona, a urządzenie pyta, czy ją włączyć. Synchronizacja nigdy nie usuwa ani nie włącza wtyczek.",
+  "Plugin in the copy": "Wtyczka w kopii",
+  "Remove from the copy": "Usuń z kopii"
 }

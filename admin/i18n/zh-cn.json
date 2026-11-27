@@ -65,5 +65,9 @@
   "Reset sync copy": "重置同步副本",
   "confirm_lampaReset": "ioBroker 中的同步副本将被清空，并在设备同步时重新建立。继续吗？",
   "Reset": "重置",
-  "Cancel": "取消"
+  "Cancel": "取消",
+  "Plugins": "插件",
+  "help_lampaSyncPlugins": "在一台设备上添加的插件会提供给其他设备：插件以关闭状态到达，设备会询问是否启用。同步从不删除或启用插件。",
+  "Plugin in the copy": "副本中的插件",
+  "Remove from the copy": "从副本中移除"
 }

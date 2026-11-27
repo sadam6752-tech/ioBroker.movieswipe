@@ -65,5 +65,9 @@
   "Reset sync copy": "Sync-Kopie zurücksetzen",
   "confirm_lampaReset": "Die synchronisierte Kopie in ioBroker wird geleert und beim Synchronisieren der Geräte neu aufgebaut. Fortfahren?",
   "Reset": "Zurücksetzen",
-  "Cancel": "Abbrechen"
+  "Cancel": "Abbrechen",
+  "Plugins": "Plugins",
+  "help_lampaSyncPlugins": "Ein auf einem Gerät hinzugefügtes Plugin wird den anderen angeboten: Es kommt ausgeschaltet an, und das Gerät fragt, ob es eingeschaltet werden soll. Die Synchronisation entfernt oder aktiviert nie Plugins.",
+  "Plugin in the copy": "Plugin in der Kopie",
+  "Remove from the copy": "Aus der Kopie entfernen"
 }

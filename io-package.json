@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "news": {
+      "1.4.0": {
+        "en": "Lampa sync of plugins (off by default): a plugin added on one device is offered to the others, arrives switched off and is switched on only when you agree on the device.",
+        "de": "Lampa-Synchronisation von Plugins (standardmäßig aus): Ein auf einem Gerät hinzugefügtes Plugin wird den anderen angeboten, kommt ausgeschaltet an und wird erst eingeschaltet, wenn Sie am Gerät zustimmen.",
+        "ru": "Синхронизация плагинов Lampa (по умолчанию выключена): плагин, добавленный на одном устройстве, предлагается остальным, приходит выключенным и включается только с вашего согласия на устройстве.",
+        "pt": "Sincronização de plugins do Lampa (desligada por padrão): um plugin adicionado num dispositivo é oferecido aos outros, chega desligado e só é ligado quando concorda no dispositivo.",
+        "nl": "Lampa-synchronisatie van plug-ins (standaard uit): een plug-in die op één apparaat is toegevoegd, wordt de andere aangeboden, komt uitgeschakeld aan en wordt pas ingeschakeld als u op het apparaat akkoord gaat.",
+        "fr": "Synchronisation des plugins Lampa (désactivée par défaut) : un plugin ajouté sur un appareil est proposé aux autres, arrive désactivé et n’est activé que si vous acceptez sur l’appareil.",
+        "it": "Sincronizzazione dei plugin di Lampa (disattivata per impostazione predefinita): un plugin aggiunto su un dispositivo viene offerto agli altri, arriva disattivato e viene attivato solo se acconsenti sul dispositivo.",
+        "es": "Sincronización de plugins de Lampa (desactivada por defecto): un plugin añadido en un dispositivo se ofrece a los demás, llega desactivado y solo se activa si lo aceptas en el dispositivo.",
+        "pl": "Synchronizacja wtyczek Lampa (domyślnie wyłączona): wtyczka dodana na jednym urządzeniu jest proponowana pozostałym, przychodzi wyłączona i włącza się dopiero po Twojej zgodzie na urządzeniu.",
+        "uk": "Синхронізація плагінів Lampa (типово вимкнена): плагін, доданий на одному пристрої, пропонується іншим, приходить вимкненим і вмикається лише з вашої згоди на пристрої.",
+        "zh-cn": "Lampa 插件同步（默认关闭）：在一台设备上添加的插件会提供给其他设备，以关闭状态到达，只有在设备上同意后才会启用。"
+      },
       "1.3.0": {
         "en": "Lampa sync: the MovieSwipe plugin keeps watch progress, bookmarks, watched marks and search history the same on all Lampa devices (new tab \"Lampa sync\"). AI agents can manage the Lampa bookmarks with the new commands addBookmark, removeBookmark, bookmarks and markWatched.",
         "de": "Lampa-Synchronisation: Das MovieSwipe-Plugin hält Wiedergabefortschritt, Lesezeichen, Gesehen-Markierungen und Suchverlauf auf allen Lampa-Geräten gleich (neuer Reiter „Lampa-Synchronisation“). KI-Agenten können die Lampa-Lesezeichen mit den neuen Befehlen addBookmark, removeBookmark, bookmarks und markWatched verwalten.",
@@ -80,19 +93,6 @@
         "nl": "Nieuw adapterlogo.",
         "uk": "Новий логотип адаптера.",
         "zh-cn": "新的适配器图标。"
-      },
-      "1.1.4": {
-        "en": "The movie database is now kept in the instance data directory and in the ioBroker file storage (included in ioBroker backups) instead of the adapter package; sync progress survives updates. New instance link to the app in the admin.",
-        "de": "Die Filmdatenbank liegt jetzt im Instanz-Datenverzeichnis und im ioBroker-Dateispeicher (Teil der ioBroker-Backups) statt im Adapter-Paket; der Sync-Fortschritt ueberlebt Updates. Neuer Instanz-Link zur App im Admin.",
-        "ru": "База фильмов теперь хранится в каталоге данных экземпляра и в файловом хранилище ioBroker (входит в бэкапы ioBroker), а не в пакете адаптера; прогресс синхронизации переживает обновления. Новая ссылка на приложение в админке.",
-        "fr": "La base de films est desormais conservee dans le repertoire de donnees de l'instance et dans le stockage de fichiers ioBroker (inclus dans les sauvegardes ioBroker) au lieu du paquet de l'adaptateur ; la progression de la synchronisation survit aux mises a jour. Nouveau lien vers l'application dans l'admin.",
-        "it": "Il database dei film ora si trova nella directory dati dell'istanza e nell'archivio file di ioBroker (incluso nei backup di ioBroker) invece che nel pacchetto dell'adapter; l'avanzamento della sincronizzazione sopravvive agli aggiornamenti. Nuovo link all'app nell'admin.",
-        "es": "La base de datos de peliculas ahora se guarda en el directorio de datos de la instancia y en el almacenamiento de archivos de ioBroker (incluido en las copias de ioBroker) en lugar del paquete del adaptador; el progreso de sincronizacion sobrevive a las actualizaciones. Nuevo enlace a la aplicacion en el admin.",
-        "pl": "Baza filmow jest teraz przechowywana w katalogu danych instancji i w magazynie plikow ioBroker (objetym kopiami ioBroker), a nie w pakiecie adaptera; postep synchronizacji przetrwa aktualizacje. Nowy link do aplikacji w panelu admin.",
-        "pt": "A base de dados de filmes passa a ficar no diretorio de dados da instancia e no armazenamento de ficheiros do ioBroker (incluido nas copias do ioBroker) em vez do pacote do adaptador; o progresso da sincronizacao sobrevive as atualizacoes. Nova ligacao para a aplicacao no admin.",
-        "nl": "De filmdatabase staat nu in de gegevensmap van de instantie en in de ioBroker-bestandsopslag (onderdeel van ioBroker-back-ups) in plaats van in het adapterpakket; de synchronisatievoortgang blijft na updates behouden. Nieuwe link naar de app in de admin.",
-        "uk": "База фільмів тепер зберігається в каталозі даних екземпляра та у файловому сховищі ioBroker (входить до резервних копій ioBroker), а не в пакеті адаптера; прогрес синхронізації переживає оновлення. Нове посилання на застосунок в адмінці.",
-        "zh-cn": "电影数据库现在保存在实例数据目录和 ioBroker 文件存储中（包含在 ioBroker 备份内），而不是适配器包内；同步进度在更新后保留。管理界面新增指向应用的实例链接。"
       }
     },
     "titleLang": {
@@ -207,7 +207,8 @@
     "lampaSyncTimeline": true,
     "lampaSyncFavorite": true,
     "lampaSyncViewed": true,
-    "lampaSyncSearch": true
+    "lampaSyncSearch": true,
+    "lampaSyncPlugins": false
   },
   "objects": [],
   "instanceObjects": [

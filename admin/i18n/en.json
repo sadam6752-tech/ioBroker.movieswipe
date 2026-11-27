@@ -65,5 +65,9 @@
   "Reset sync copy": "Reset sync copy",
   "confirm_lampaReset": "The synced copy on ioBroker is cleared and built again as the devices sync. Continue?",
   "Reset": "Reset",
-  "Cancel": "Cancel"
+  "Cancel": "Cancel",
+  "Plugins": "Plugins",
+  "help_lampaSyncPlugins": "A plugin added on one device is offered to the others: it arrives switched off and the device asks whether to switch it on. Plugins are never removed or switched on by the sync.",
+  "Plugin in the copy": "Plugin in the copy",
+  "Remove from the copy": "Remove from the copy"
 }

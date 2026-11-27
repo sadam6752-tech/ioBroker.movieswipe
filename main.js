@@ -12,16 +12,17 @@ const { MovieSearch } = require('./lib/movie-search');
 const { AgentHistory } = require('./lib/agent-history');
 const { NAMES: AGENT_COMMANDS, runCommand } = require('./lib/agent-commands');
 const { LampaBridge } = require('./lib/lampa-bridge');
-const { LampaSync, MOUNT: LAMPA_SYNC_MOUNT, GROUPS: LAMPA_GROUPS } = require('./lib/lampa-sync');
+const { LampaSync, MOUNT: LAMPA_SYNC_MOUNT, GROUPS: LAMPA_GROUPS, OPT_IN_GROUPS } = require('./lib/lampa-sync');
 
 /** Commands of the admin page for the Lampa sync */
-const LAMPA_SYNC_COMMANDS = ['lampaSyncInfo', 'lampaSyncDevices', 'lampaSyncReset'];
+const LAMPA_SYNC_COMMANDS = ['lampaSyncInfo', 'lampaSyncDevices', 'lampaSyncReset', 'lampaSyncPlugins', 'lampaSyncRemovePlugin'];
 /** Settings that switch the groups of the Lampa sync on */
 const LAMPA_GROUP_SETTINGS = {
   timeline: 'lampaSyncTimeline',
   favorite: 'lampaSyncFavorite',
   viewed: 'lampaSyncViewed',
   search: 'lampaSyncSearch',
+  plugins: 'lampaSyncPlugins',
 };
 
 /**
@@ -174,8 +175,17 @@ class MovieSwipe extends utils.Adapter {
       this.log.warn('Lampa sync is switched on but has no sync key: set "Sync key" in the adapter settings');
       return;
     }
-    const groups = Object.keys(LAMPA_GROUPS).filter(g => this.config[LAMPA_GROUP_SETTINGS[g]] !== false);
-    const sync = new LampaSync(this, { key, groups, mount: `${this.namespace}.${LAMPA_SYNC_MOUNT}` });
+    // the plugins group is only on when switched on explicitly, the others unless switched off
+    const groups = Object.keys(LAMPA_GROUPS).filter(g => {
+      const value = this.config[LAMPA_GROUP_SETTINGS[g]];
+      return OPT_IN_GROUPS.includes(g) ? value === true : value !== false;
+    });
+    const sync = new LampaSync(this, {
+      key,
+      groups,
+      mount: `${this.namespace}.${LAMPA_SYNC_MOUNT}`,
+      ownPort: this.config.port || 3000,
+    });
     try {
       await sync.load();
     } catch (error) {
@@ -256,6 +266,16 @@ class MovieSwipe extends utils.Adapter {
         answer = [{ label: 'All devices (merge)', value: 'all' }].concat(
           sync ? sync.devices().map(d => ({ label: d.name, value: d.id })) : [],
         );
+      } else if (obj.command === 'lampaSyncPlugins') {
+        answer = sync ? sync.plugins().map(p => ({ label: p.name ? `${p.name} (${p.url})` : p.url, value: p.url })) : [];
+      } else if (obj.command === 'lampaSyncRemovePlugin') {
+        const message = /** @type {any} */ (obj.message) || {};
+        if (!sync) {
+          throw new Error('Lampa sync is off');
+        }
+        answer = sync.removePlugin(message.url)
+          ? { result: 'Removed from the copy: devices that have it keep it, others are not offered it any more.' }
+          : { error: 'This plugin is not in the copy' };
       } else if (obj.command === 'lampaSyncReset') {
         const message = /** @type {any} */ (obj.message) || {};
         answer = { result: this.resetLampaSync(message.device) };
@@ -287,6 +307,19 @@ class MovieSwipe extends utils.Adapter {
       .join('');
     const pending = sync.pendingSource();
     const head = ['Device', 'Platform', 'Last sync', 'On the device'].map(h => `<th align="left">${h}</th>`).join('');
+    const plugins = sync.plugins();
+    const pluginRows = plugins
+      .map(p => {
+        const cells = [p.name || '', p.url, p.from || '', new Date(p.ts).toLocaleString()];
+        return `<tr>${cells.map(c => `<td>${escapeHtml(c)}</td>`).join('')}</tr>`;
+      })
+      .join('');
+    const pluginHead = ['Plugin', 'Address', 'From device', 'Added'].map(h => `<th align="left">${h}</th>`).join('');
+    const pluginTable = sync.categories().includes('plugins')
+      ? pluginRows
+        ? `<p><b>Plugins in the copy</b></p><table style="border-collapse:collapse" cellpadding="4"><tr>${pluginHead}</tr>${pluginRows}</table>`
+        : '<p>No plugin in the copy yet.</p>'
+      : '';
     return (
       `<p>${Object.keys(counts)
         .map(c => `${escapeHtml(c)}: ${counts[c]}`)
@@ -294,7 +327,8 @@ class MovieSwipe extends utils.Adapter {
       (pending ? `<p>Reset: waiting for "${escapeHtml(pending)}" to sync.</p>` : '') +
       (rows
         ? `<table style="border-collapse:collapse" cellpadding="4"><tr>${head}</tr>${rows}</table>`
-        : '<p>No device has synced yet.</p>')
+        : '<p>No device has synced yet.</p>') +
+      pluginTable
     );
   }
 

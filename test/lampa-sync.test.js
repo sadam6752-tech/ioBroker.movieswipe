@@ -268,6 +268,34 @@ function device(sync, name, data = {}, opts = {}) {
     Account: { Permit: { sync: !!opts.cub } },
     Api: { search: (p, cb) => setImmediate(() => cb(opts.search ? opts.search(decodeURIComponent(p.query)) : {})) },
   };
+  const shown = [];
+  const pushed = [];
+  if (opts.plugins) {
+    // the plugin list of Lampa lives in memory and is saved to the storage (core/plugins.js)
+    const loaded = store.plugins || [];
+    Lampa.Plugins = {
+      get: () => loaded.map(p => p),
+      add: p => {
+        loaded.push(p);
+        Lampa.Storage.set('plugins', loaded);
+      },
+      save: () => Lampa.Storage.set('plugins', loaded),
+      remove: url => {
+        loaded.splice(loaded.findIndex(p => p.url === url), 1);
+        Lampa.Storage.set('plugins', loaded);
+      },
+      push: p => pushed.push(p.url),
+    };
+    Lampa.Player = { opened: () => false };
+    Lampa.Controller = { enabled: () => ({ name: 'content' }), toggle() {} };
+    Lampa.Select = {
+      show: o => {
+        shown.push(o.title);
+        // the user picks the first item ("Включить") when opts.plugins says so
+        setImmediate(() => o.onSelect(opts.plugins === 'enable' ? o.items[0] : o.items[1]));
+      },
+    };
+  }
   const window = { appready: true };
   vm.runInNewContext(source, {
     window,
@@ -285,6 +313,9 @@ function device(sync, name, data = {}, opts = {}) {
   });
   return {
     store,
+    shown,
+    pushed,
+    lampa: Lampa,
     async sync() {
       window.movieswipe_lampa_sync();
       await new Promise(r => setTimeout(r, 60));
@@ -526,5 +557,94 @@ describe('Lampa sync file storage', () => {
   it('refuses a mount point that is not a meta object', async () => {
     const adapter = storageAdapter({ 'movieswipe.0.lampa': { type: 'channel' } });
     await assert.rejects(new LampaSync(adapter, { key: KEY, mount: 'movieswipe.0.lampa' }).load(), /channel, not a file storage/);
+  });
+});
+
+describe('Lampa plugin sync of plugins', () => {
+  const ALL = ['timeline', 'favorite', 'viewed', 'search', 'plugins'];
+  const OWN = `http://x:3000/lampa.js?key=${KEY}`;
+
+  it('is off unless the plugins group is named', () => {
+    assert.deepStrictEqual(newSync().categories().includes('plugins'), false);
+    assert.deepStrictEqual(newSync(ALL).categories().includes('plugins'), true);
+  });
+
+  it('server: union by address, key stripped, own plugin and removals refused, from device kept', () => {
+    const sync = new LampaSync(fakeAdapter(), { key: KEY, groups: ALL, ownPort: 3000 });
+    req(sync, 'a', {
+      changes: {
+        plugins: [
+          { k: 'x', v: { url: 'http://p.example/a.js?key=leak&v=2', name: 'A' }, ts: NOW },
+          { k: 'x', v: { url: OWN }, ts: NOW },
+          { k: 'x', v: { url: 'javascript:alert(1)' }, ts: NOW },
+        ],
+      },
+    });
+    req(sync, 'b', {
+      changes: {
+        plugins: [
+          { k: 'x', v: { url: 'http://p.example/a.js?v=2', name: 'renamed' }, ts: NOW + 5 },
+          { k: 'http://p.example/a.js?v=2', ts: NOW + 5, del: true },
+        ],
+      },
+    });
+    assert.deepStrictEqual(sync.plugins(), [{ url: 'http://p.example/a.js?v=2', name: 'A', from: 'a', ts: NOW }]);
+    assert.strictEqual(JSON.stringify(sync.state).includes('leak'), false);
+    // removed in the admin: not offered again, also not by a device that sends it again
+    assert.strictEqual(sync.removePlugin('http://p.example/a.js?v=2'), true);
+    req(sync, 'c', { changes: { plugins: [{ v: { url: 'http://p.example/a.js?v=2' }, ts: NOW + 9 }] } });
+    assert.deepStrictEqual(sync.plugins(), []);
+  });
+
+  it('two devices: new plugins arrive switched off, the device asks, own and blacklisted stay home', async () => {
+    const sync = newSync(ALL);
+    const a = device(
+      sync,
+      'TV',
+      {
+        plugins: [
+          { url: 'http://p.example/a.js', status: 1, name: 'A' },
+          { url: OWN, status: 1 },
+          { url: 'http://tinyurl.com/evil.js', status: 1 },
+          { url: 'http://blocked.example/x.js', status: 1 },
+          { url: 'http://p.example/shared.js', status: 0 },
+        ],
+        plugins_blacklist: ['blocked.example'],
+      },
+      { plugins: 'keep' },
+    );
+    const b = device(
+      sync,
+      'PC',
+      { plugins: [{ url: 'http://p.example/shared.js', status: 1 }, { url: 'http://p.example/b.js?key=pc', status: 1 }] },
+      { plugins: 'enable' },
+    );
+    await a.sync();
+    await b.sync();
+    await a.sync();
+    await new Promise(r => setTimeout(r, 1300)); // the question comes a second after the sync
+    const urls = sync.plugins().map(p => p.url).sort();
+    assert.deepStrictEqual(urls, ['http://p.example/a.js', 'http://p.example/b.js', 'http://p.example/shared.js']);
+
+    // PC got A switched off, asked and switched it on; its shared.js keeps status 1
+    const pcA = b.store.plugins.find(p => p.url === 'http://p.example/a.js');
+    assert.deepStrictEqual([pcA.status, pcA.name], [1, 'A']);
+    assert.deepStrictEqual(b.pushed, ['http://p.example/a.js']);
+    assert.match(b.shown[0], /Новый плагин от TV: A/);
+    assert.strictEqual(b.store.plugins.filter(p => p.url.includes('shared.js')).length, 1);
+    assert.strictEqual(b.store.plugins.find(p => p.url.includes('shared.js')).status, 1);
+
+    // TV got b.js without the key of the PC, switched off (its user said "not now"); shared.js stays off there
+    const tvB = a.store.plugins.find(p => p.url.startsWith('http://p.example/b.js'));
+    assert.deepStrictEqual([tvB.url, tvB.status], ['http://p.example/b.js', 0]);
+    assert.strictEqual(a.store.plugins.find(p => p.url.includes('shared.js')).status, 0);
+    assert.strictEqual(a.pushed.length, 0);
+
+    // a removal on the PC is not passed on
+    b.lampa.Plugins.remove('http://p.example/a.js');
+    assert.ok(!b.store.plugins.some(p => p.url === 'http://p.example/a.js'));
+    await b.sync();
+    await a.sync();
+    assert.ok(a.store.plugins.some(p => p.url === 'http://p.example/a.js'));
   });
 });

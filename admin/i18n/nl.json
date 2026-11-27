@@ -65,5 +65,9 @@
   "Reset sync copy": "Synchronisatiekopie resetten",
   "confirm_lampaReset": "De kopie in ioBroker wordt gewist en opnieuw opgebouwd wanneer de apparaten synchroniseren. Doorgaan?",
   "Reset": "Resetten",
-  "Cancel": "Annuleren"
+  "Cancel": "Annuleren",
+  "Plugins": "Plug-ins",
+  "help_lampaSyncPlugins": "Een plug-in die op één apparaat is toegevoegd, wordt de andere aangeboden: hij komt uitgeschakeld aan en het apparaat vraagt of hij moet worden ingeschakeld. De synchronisatie verwijdert of activeert nooit plug-ins.",
+  "Plugin in the copy": "Plug-in in de kopie",
+  "Remove from the copy": "Uit de kopie verwijderen"
 }

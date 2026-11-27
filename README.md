@@ -197,7 +197,20 @@ no Lampa is open, the bookmark waits (answer `queued`, `bookmarks` lists it as `
 opens Lampa.
 
 When a device is signed in to CUB, Lampa syncs its bookmarks and time codes through CUB; the plugin then leaves these
-two groups alone on that device and syncs only the rest. Installed plugins and the settings of Lampa are not synced.
+two groups alone on that device and syncs only the rest. The settings of Lampa are not synced.
+
+**Plugins** (off by default, switch on "Plugins" in the tab): a plugin added on one device is offered to the others.
+
+- It arrives **switched off**. When Lampa is open (and no video plays), the device asks "Новый плагин от <device>: …
+  — включить?"; **Включить** switches it on and loads it at once, **Не сейчас** leaves it off (it can be switched on
+  later under Settings → Extensions).
+- Only additions travel: a plugin removed or switched off on one device stays as it is on the others, and the sync never
+  changes the status of a plugin a device already has.
+- Plugins Lampa refuses (its built-in list and `plugins_blacklist` of CUB) are neither sent nor taken.
+- The MovieSwipe plugin itself is never synced, and a `key` parameter is removed from every address, so no key travels
+  to other devices.
+- The tab lists the plugins of the copy and the device each came from. **Remove from the copy** stops offering one to
+  other devices; devices that have it keep it.
 
 ## States
 
@@ -260,6 +273,9 @@ Free tier provides 200 requests per day per key. You can add multiple keys for e
 - Verify URL in `server.url` state
 
 ## Changelog
+
+### 1.4.0
+- (sadam6752-tech) Lampa sync of plugins (off by default): a plugin added on one device is offered to the others, arrives switched off and is switched on only when the user agrees on the device; never removed, blacklisted plugins and the MovieSwipe plugin stay out, keys are stripped from addresses; the admin lists the plugins of the copy with their device
 
 ### 1.3.0
 - (sadam6752-tech) Lampa sync: the MovieSwipe plugin keeps watch progress, bookmarks, watched marks and search history the same on all Lampa devices, with one sync key, groups chosen in the adapter and on each device, a device table and a reset in the new tab "Lampa sync"

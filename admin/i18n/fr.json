@@ -65,5 +65,9 @@
   "Reset sync copy": "Réinitialiser la copie",
   "confirm_lampaReset": "La copie dans ioBroker est effacée puis reconstruite lors de la synchronisation des appareils. Continuer ?",
   "Reset": "Réinitialiser",
-  "Cancel": "Annuler"
+  "Cancel": "Annuler",
+  "Plugins": "Plugins",
+  "help_lampaSyncPlugins": "Un plugin ajouté sur un appareil est proposé aux autres : il arrive désactivé et l’appareil demande s’il faut l’activer. La synchronisation ne supprime ni n’active jamais de plugins.",
+  "Plugin in the copy": "Plugin dans la copie",
+  "Remove from the copy": "Retirer de la copie"
 }

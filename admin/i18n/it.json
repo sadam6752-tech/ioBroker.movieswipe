@@ -65,5 +65,9 @@
   "Reset sync copy": "Ripristina la copia",
   "confirm_lampaReset": "La copia in ioBroker viene svuotata e ricostruita quando i dispositivi si sincronizzano. Continuare?",
   "Reset": "Ripristina",
-  "Cancel": "Annulla"
+  "Cancel": "Annulla",
+  "Plugins": "Plugin",
+  "help_lampaSyncPlugins": "Un plugin aggiunto su un dispositivo viene offerto agli altri: arriva disattivato e il dispositivo chiede se attivarlo. La sincronizzazione non rimuove né attiva mai i plugin.",
+  "Plugin in the copy": "Plugin nella copia",
+  "Remove from the copy": "Rimuovi dalla copia"
 }

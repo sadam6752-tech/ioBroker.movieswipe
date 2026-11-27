@@ -320,6 +320,18 @@
           "lg": 3,
           "xl": 3
         },
+        "lampaSyncPlugins": {
+          "type": "checkbox",
+          "label": "Plugins",
+          "help": "help_lampaSyncPlugins",
+          "default": false,
+          "hidden": "!data.lampaSync",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 3,
+          "xl": 3
+        },
         "_lampaDevicesHeader": {
           "type": "header",
           "text": "Devices",
@@ -364,6 +376,32 @@
             "ok": "Reset",
             "cancel": "Cancel"
           },
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4
+        },
+        "_lampaPluginRemove": {
+          "type": "selectSendTo",
+          "command": "lampaSyncPlugins",
+          "label": "Plugin in the copy",
+          "hidden": "!data.lampaSync || !data.lampaSyncPlugins",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4
+        },
+        "_lampaPluginRemoveButton": {
+          "type": "sendTo",
+          "command": "lampaSyncRemovePlugin",
+          "jsonData": "{\"url\":\"${data._lampaPluginRemove}\"}",
+          "label": "Remove from the copy",
+          "variant": "outlined",
+          "showProcess": true,
+          "hidden": "!data.lampaSync || !data.lampaSyncPlugins",
+          "disabled": "!data._lampaPluginRemove",
           "xs": 12,
           "sm": 12,
           "md": 6,
