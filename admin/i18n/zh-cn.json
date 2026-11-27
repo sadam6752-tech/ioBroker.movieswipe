@@ -48,5 +48,22 @@
   "Help": "帮助",
   "For more information, visit the <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>GitHub repository</a>.": "更多信息请访问 <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>GitHub 仓库</a>。",
   "label_dbToken": "Backup access token",
-  "help_dbToken": "Token required for database download/upload (/backup.html). Empty = unprotected."
+  "help_dbToken": "Token required for database download/upload (/backup.html). Empty = unprotected.",
+  "Lampa sync": "Lampa 同步",
+  "lampa_sync_intro": "在所有装有 Lampa 和 MovieSwipe 插件的设备上保持观看进度、书签、已看列表和搜索历史一致。以 http://<ioBroker>:<端口>/lampa.js?key=<同步密钥> 添加插件，或在设备的 设置 → MovieSwipe 中输入密钥。",
+  "Sync Lampa between devices": "在设备之间同步 Lampa",
+  "Sync key": "同步密钥",
+  "help_lampaSyncKey": "所有设备共用一个密钥。没有密钥的设备无法读取或更改同步的数据。",
+  "What is synced": "同步内容",
+  "Watch progress (time codes)": "观看进度（时间码）",
+  "Bookmarks and history": "书签和历史",
+  "Watched online and torrents": "已看（在线和种子）",
+  "Search history": "搜索历史",
+  "Devices": "设备",
+  "Reset from": "重置来源",
+  "help_lampaResetDevice": "选择设备：其数据替换副本，然后替换其他设备的数据。所有设备：合并每台设备的数据重新建立副本。",
+  "Reset sync copy": "重置同步副本",
+  "confirm_lampaReset": "ioBroker 中的同步副本将被清空，并在设备同步时重新建立。继续吗？",
+  "Reset": "重置",
+  "Cancel": "取消"
 }

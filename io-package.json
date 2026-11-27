@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "movieswipe",
-    "version": "1.2.2",
+    "version": "1.3.0",
     "news": {
+      "1.3.0": {
+        "en": "Lampa sync: the MovieSwipe plugin keeps watch progress, bookmarks, watched marks and search history the same on all Lampa devices (new tab \"Lampa sync\"). AI agents can manage the Lampa bookmarks with the new commands addBookmark, removeBookmark, bookmarks and markWatched.",
+        "de": "Lampa-Synchronisation: Das MovieSwipe-Plugin hält Wiedergabefortschritt, Lesezeichen, Gesehen-Markierungen und Suchverlauf auf allen Lampa-Geräten gleich (neuer Reiter „Lampa-Synchronisation“). KI-Agenten können die Lampa-Lesezeichen mit den neuen Befehlen addBookmark, removeBookmark, bookmarks und markWatched verwalten.",
+        "ru": "Синхронизация Lampa: плагин MovieSwipe держит одинаковыми прогресс просмотра, закладки, отметки просмотренного и историю поиска на всех устройствах с Lampa (новая вкладка «Синхронизация Lampa»). ИИ-агенты могут управлять закладками Lampa новыми командами addBookmark, removeBookmark, bookmarks и markWatched.",
+        "pt": "Sincronização Lampa: o plugin MovieSwipe mantém o progresso, os favoritos, as marcas de visto e o histórico de pesquisa iguais em todos os dispositivos Lampa (novo separador \"Sincronização Lampa\"). Os agentes de IA podem gerir os favoritos do Lampa com os novos comandos addBookmark, removeBookmark, bookmarks e markWatched.",
+        "nl": "Lampa-synchronisatie: de MovieSwipe-plug-in houdt kijkvoortgang, bladwijzers, bekeken-markeringen en zoekgeschiedenis gelijk op alle Lampa-apparaten (nieuw tabblad \"Lampa-synchronisatie\"). AI-agents kunnen de Lampa-bladwijzers beheren met de nieuwe opdrachten addBookmark, removeBookmark, bookmarks en markWatched.",
+        "fr": "Synchronisation Lampa : le plugin MovieSwipe garde la progression, les favoris, les marques de visionnage et l'historique de recherche identiques sur tous les appareils Lampa (nouvel onglet « Synchronisation Lampa »). Les agents IA peuvent gérer les favoris Lampa avec les nouvelles commandes addBookmark, removeBookmark, bookmarks et markWatched.",
+        "it": "Sincronizzazione Lampa: il plugin MovieSwipe mantiene uguali avanzamento, preferiti, segni di visto e cronologia delle ricerche su tutti i dispositivi Lampa (nuova scheda \"Sincronizzazione Lampa\"). Gli agenti IA possono gestire i preferiti di Lampa con i nuovi comandi addBookmark, removeBookmark, bookmarks e markWatched.",
+        "es": "Sincronización de Lampa: el plugin MovieSwipe mantiene iguales el progreso, los favoritos, las marcas de visto y el historial de búsqueda en todos los dispositivos Lampa (nueva pestaña \"Sincronización de Lampa\"). Los agentes de IA pueden gestionar los favoritos de Lampa con los nuevos comandos addBookmark, removeBookmark, bookmarks y markWatched.",
+        "pl": "Synchronizacja Lampa: wtyczka MovieSwipe utrzymuje jednakowy postęp oglądania, zakładki, oznaczenia obejrzanych i historię wyszukiwania na wszystkich urządzeniach Lampa (nowa karta „Synchronizacja Lampa”). Agenci AI mogą zarządzać zakładkami Lampa nowymi poleceniami addBookmark, removeBookmark, bookmarks i markWatched.",
+        "uk": "Синхронізація Lampa: плагін MovieSwipe тримає однаковими прогрес перегляду, закладки, позначки переглянутого та історію пошуку на всіх пристроях з Lampa (нова вкладка «Синхронізація Lampa»). ШІ-агенти можуть керувати закладками Lampa новими командами addBookmark, removeBookmark, bookmarks і markWatched.",
+        "zh-cn": "Lampa 同步：MovieSwipe 插件在所有 Lampa 设备上保持观看进度、书签、已看标记和搜索历史一致（新标签页“Lampa 同步”）。AI 代理可以使用新命令 addBookmark、removeBookmark、bookmarks 和 markWatched 管理 Lampa 书签。"
+      },
       "1.2.2": {
         "en": "AI agents can open the card of a title in the Lampa app on a TV or player: the adapter serves a Lampa plugin (/lampa.js) and has the new commands openInLampa and lampaDevices.",
         "de": "KI-Agenten können die Karte eines Titels in der Lampa-App auf einem Fernseher oder Player öffnen: Der Adapter stellt ein Lampa-Plugin (/lampa.js) bereit und hat die neuen Befehle openInLampa und lampaDevices.",
@@ -80,19 +93,6 @@
         "nl": "De filmdatabase staat nu in de gegevensmap van de instantie en in de ioBroker-bestandsopslag (onderdeel van ioBroker-back-ups) in plaats van in het adapterpakket; de synchronisatievoortgang blijft na updates behouden. Nieuwe link naar de app in de admin.",
         "uk": "База фільмів тепер зберігається в каталозі даних екземпляра та у файловому сховищі ioBroker (входить до резервних копій ioBroker), а не в пакеті адаптера; прогрес синхронізації переживає оновлення. Нове посилання на застосунок в адмінці.",
         "zh-cn": "电影数据库现在保存在实例数据目录和 ioBroker 文件存储中（包含在 ioBroker 备份内），而不是适配器包内；同步进度在更新后保留。管理界面新增指向应用的实例链接。"
-      },
-      "1.1.3": {
-        "en": "Security and robustness: optional backup access token for /api/db/*, API keys passed to the sync process via environment instead of the command line, atomic database writes, validated backup restore, API key cooldowns survive restarts, reliable sync stop.",
-        "de": "Sicherheit und Robustheit: optionales Zugriffstoken fuer /api/db/*, API-Keys gehen per Umgebungsvariable statt Kommandozeile an den Sync-Prozess, atomare Datenbank-Schreibzugriffe, geprueftes Backup-Restore, Key-Cooldowns ueberleben Neustarts, zuverlaessiges Stoppen der Synchronisation.",
-        "ru": "Безопасность и надёжность: необязательный токен доступа к /api/db/*, API-ключи передаются процессу синхронизации через переменную окружения, атомарная запись базы, проверка резервной копии при восстановлении, кулдауны ключей сохраняются после перезапуска, надёжная остановка синхронизации.",
-        "fr": "Securite et robustesse : jeton d'acces optionnel pour /api/db/*, cles API transmises au processus de synchronisation par variable d'environnement, ecritures atomiques de la base, restauration de sauvegarde verifiee, delais des cles conserves apres redemarrage, arret fiable de la synchronisation.",
-        "it": "Sicurezza e robustezza: token di accesso opzionale per /api/db/*, chiavi API passate al processo di sincronizzazione tramite variabile d'ambiente, scritture atomiche del database, ripristino del backup verificato, cooldown delle chiavi mantenuti dopo il riavvio, arresto affidabile della sincronizzazione.",
-        "es": "Seguridad y robustez: token de acceso opcional para /api/db/*, claves API pasadas al proceso de sincronizacion por variable de entorno, escrituras atomicas de la base de datos, restauracion de copia verificada, enfriamientos de claves conservados tras reiniciar, parada fiable de la sincronizacion.",
-        "pl": "Bezpieczenstwo i niezawodnosc: opcjonalny token dostepu do /api/db/*, klucze API przekazywane procesowi synchronizacji przez zmienna srodowiskowa, atomowe zapisy bazy, weryfikowane przywracanie kopii, czasy oczekiwania kluczy zachowane po restarcie, niezawodne zatrzymywanie synchronizacji.",
-        "pt": "Seguranca e robustez: token de acesso opcional para /api/db/*, chaves API passadas ao processo de sincronizacao por variavel de ambiente, gravacoes atomicas da base de dados, restauro de copia verificado, tempos de espera das chaves mantidos apos reinicio, paragem fiavel da sincronizacao.",
-        "nl": "Beveiliging en robuustheid: optioneel toegangstoken voor /api/db/*, API-sleutels via omgevingsvariabele aan het synchronisatieproces doorgegeven, atomaire databaseschrijfacties, gecontroleerd terugzetten van back-ups, sleutelwachttijden blijven na herstart behouden, betrouwbaar stoppen van synchronisatie.",
-        "uk": "Безпека та надійність: необов'язковий токен доступу до /api/db/*, API-ключі передаються процесу синхронізації через змінну середовища, атомарний запис бази, перевірка резервної копії під час відновлення, затримки ключів зберігаються після перезапуску, надійна зупинка синхронізації.",
-        "zh-cn": "安全与稳定性：/api/db/* 可选访问令牌，API 密钥通过环境变量而非命令行传给同步进程，数据库原子写入，备份恢复前校验，密钥冷却时间在重启后保留，可靠地停止同步。"
       }
     },
     "titleLang": {
@@ -185,7 +185,8 @@
   },
   "protectedNative": [
     "apiKeys",
-    "dbToken"
+    "dbToken",
+    "lampaSyncKey"
   ],
   "native": {
     "dbToken": "",
@@ -200,7 +201,13 @@
     "dailyRequestLimit": 200,
     "preserveSyncProgress": true,
     "preserveDatabase": true,
-    "useEuServer": false
+    "useEuServer": false,
+    "lampaSync": false,
+    "lampaSyncKey": "",
+    "lampaSyncTimeline": true,
+    "lampaSyncFavorite": true,
+    "lampaSyncViewed": true,
+    "lampaSyncSearch": true
   },
   "objects": [],
   "instanceObjects": [
@@ -468,6 +475,53 @@
         "read": true,
         "write": false,
         "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "lampa",
+      "type": "channel",
+      "common": {
+        "name": "Lampa"
+      },
+      "native": {}
+    },
+    {
+      "_id": "lampa.syncDevices",
+      "type": "state",
+      "common": {
+        "role": "json",
+        "name": "Lampa devices that synced (JSON)",
+        "type": "string",
+        "read": true,
+        "write": false,
+        "def": "[]"
+      },
+      "native": {}
+    },
+    {
+      "_id": "lampa.syncLastChange",
+      "type": "state",
+      "common": {
+        "role": "date",
+        "name": "Last change of the Lampa sync copy",
+        "type": "string",
+        "read": true,
+        "write": false,
+        "def": ""
+      },
+      "native": {}
+    },
+    {
+      "_id": "lampa.syncReset",
+      "type": "state",
+      "common": {
+        "role": "text",
+        "name": "Reset the Lampa sync copy: name of the device whose data is taken, or all",
+        "type": "string",
+        "read": true,
+        "write": true,
+        "def": ""
       },
       "native": {}
     }

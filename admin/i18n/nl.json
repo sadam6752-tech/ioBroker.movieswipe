@@ -48,5 +48,22 @@
   "Help": "Help",
   "For more information, visit the <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>GitHub repository</a>.": "Voor meer informatie, bezoek de <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>GitHub-repository</a>.",
   "label_dbToken": "Backup access token",
-  "help_dbToken": "Token required for database download/upload (/backup.html). Empty = unprotected."
+  "help_dbToken": "Token required for database download/upload (/backup.html). Empty = unprotected.",
+  "Lampa sync": "Lampa-synchronisatie",
+  "lampa_sync_intro": "Houdt kijkvoortgang, bladwijzers, bekeken lijsten en zoekgeschiedenis gelijk op alle apparaten met Lampa en de MovieSwipe-plugin. Voeg de plugin toe als http://<ioBroker>:<poort>/lampa.js?key=<sleutel> of voer de sleutel op het apparaat in onder Instellingen → MovieSwipe.",
+  "Sync Lampa between devices": "Lampa tussen apparaten synchroniseren",
+  "Sync key": "Synchronisatiesleutel",
+  "help_lampaSyncKey": "Eén sleutel voor alle apparaten. Zonder de sleutel kan een apparaat de gesynchroniseerde gegevens niet lezen of wijzigen.",
+  "What is synced": "Wat wordt gesynchroniseerd",
+  "Watch progress (time codes)": "Kijkvoortgang (tijdcodes)",
+  "Bookmarks and history": "Bladwijzers en geschiedenis",
+  "Watched online and torrents": "Bekeken online en torrents",
+  "Search history": "Zoekgeschiedenis",
+  "Devices": "Apparaten",
+  "Reset from": "Resetten vanaf",
+  "help_lampaResetDevice": "Een apparaat: zijn gegevens vervangen de kopie en daarna de gegevens van de andere apparaten. Alle apparaten: de kopie wordt opnieuw samengevoegd uit de gegevens van alle apparaten.",
+  "Reset sync copy": "Synchronisatiekopie resetten",
+  "confirm_lampaReset": "De kopie in ioBroker wordt gewist en opnieuw opgebouwd wanneer de apparaten synchroniseren. Doorgaan?",
+  "Reset": "Resetten",
+  "Cancel": "Annuleren"
 }

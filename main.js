@@ -12,6 +12,25 @@ const { MovieSearch } = require('./lib/movie-search');
 const { AgentHistory } = require('./lib/agent-history');
 const { NAMES: AGENT_COMMANDS, runCommand } = require('./lib/agent-commands');
 const { LampaBridge } = require('./lib/lampa-bridge');
+const { LampaSync, MOUNT: LAMPA_SYNC_MOUNT, GROUPS: LAMPA_GROUPS } = require('./lib/lampa-sync');
+
+/** Commands of the admin page for the Lampa sync */
+const LAMPA_SYNC_COMMANDS = ['lampaSyncInfo', 'lampaSyncDevices', 'lampaSyncReset'];
+/** Settings that switch the groups of the Lampa sync on */
+const LAMPA_GROUP_SETTINGS = {
+  timeline: 'lampaSyncTimeline',
+  favorite: 'lampaSyncFavorite',
+  viewed: 'lampaSyncViewed',
+  search: 'lampaSyncSearch',
+};
+
+/**
+ * @param {unknown} text text
+ * @returns {string} text for HTML
+ */
+function escapeHtml(text) {
+  return String(text ?? '').replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`);
+}
 
 class MovieSwipe extends utils.Adapter {
   constructor(options) {
@@ -26,6 +45,9 @@ class MovieSwipe extends utils.Adapter {
     this.movieSearch = null;
     this.history = null;
     this.lampa = null;
+    this.lampaSync = null;
+    this.lampaStatesTimer = null;
+    this.lampaChanged = false;
 
     this.on('ready', this.onReady.bind(this));
     this.on('stateChange', this.onStateChange.bind(this));
@@ -94,6 +116,7 @@ class MovieSwipe extends utils.Adapter {
 
       this.webServer = new WebServer(this);
       this.lampa = new LampaBridge(this);
+      await this.startLampaSync();
       await this.webServer.start(port, wwwPath, bind, this.dbStore, this.lampa);
 
       // Обновить states сервера
@@ -121,6 +144,7 @@ class MovieSwipe extends utils.Adapter {
     // Подписаться на изменения состояний
     this.subscribeStates('sync.start');
     this.subscribeStates('sync.stop');
+    this.subscribeStates('lampa.syncReset');
 
     // Запустить автосинхронизацию если включена
     if (this.config.autoSync && this.syncManager) {
@@ -136,6 +160,142 @@ class MovieSwipe extends utils.Adapter {
     
     // Обновить количество фильмов в базе
     this.updateMovieCount();
+  }
+
+  /**
+   * Starts the sync of Lampa data between devices (lib/lampa-sync.js) when it is switched on and has a key
+   */
+  async startLampaSync() {
+    if (!this.config.lampaSync) {
+      return;
+    }
+    const key = typeof this.config.lampaSyncKey === 'string' ? this.config.lampaSyncKey.trim() : '';
+    if (!key) {
+      this.log.warn('Lampa sync is switched on but has no sync key: set "Sync key" in the adapter settings');
+      return;
+    }
+    const groups = Object.keys(LAMPA_GROUPS).filter(g => this.config[LAMPA_GROUP_SETTINGS[g]] !== false);
+    const sync = new LampaSync(this, { key, groups, mount: `${this.namespace}.${LAMPA_SYNC_MOUNT}` });
+    try {
+      await sync.load();
+    } catch (error) {
+      this.log.warn(`Lampa sync: cannot prepare the file storage: ${error.message}`);
+      return;
+    }
+    sync.onChange = (rev, from) => {
+      if (this.lampa) {
+        this.lampa.broadcast({ action: 'sync', rev }, from);
+      }
+      this.scheduleLampaStates(true);
+    };
+    sync.onDevice = () => this.scheduleLampaStates(false);
+    this.lampaSync = sync;
+    if (this.lampa) {
+      this.lampa.sync = sync;
+    }
+    this.log.info(`Lampa sync is on: ${groups.join(', ') || 'no groups'}`);
+    this.scheduleLampaStates(false);
+  }
+
+  /**
+   * Publishes the devices and the last change of the Lampa sync, at most every few seconds
+   *
+   * @param {boolean} changed true when the copy changed
+   */
+  scheduleLampaStates(changed) {
+    if (changed) {
+      this.lampaChanged = true;
+    }
+    if (this.lampaStatesTimer) {
+      return;
+    }
+    this.lampaStatesTimer = this.setTimeout(async () => {
+      this.lampaStatesTimer = null;
+      if (!this.lampaSync) {
+        return;
+      }
+      try {
+        await this.setStateAsync('lampa.syncDevices', JSON.stringify(this.lampaSync.devices()), true);
+        if (this.lampaChanged) {
+          this.lampaChanged = false;
+          await this.setStateAsync('lampa.syncLastChange', new Date().toISOString(), true);
+        }
+      } catch (error) {
+        this.log.debug(`Lampa sync states: ${error.message}`);
+      }
+    }, 5000);
+  }
+
+  /**
+   * Resets the Lampa sync copy (state lampa.syncReset or the admin button)
+   *
+   * @param {unknown} target name or id of the device whose data is taken, or empty / "all"
+   * @returns {string} what happens now
+   */
+  resetLampaSync(target) {
+    if (!this.lampaSync) {
+      throw new Error('Lampa sync is off');
+    }
+    const { source } = this.lampaSync.reset(target);
+    return source
+      ? `The data of "${source}" replaces the copy as soon as it syncs; then the other devices take it over.`
+      : 'The copy is built again from the data of all devices as they sync.';
+  }
+
+  /**
+   * Answers the admin page about the Lampa sync
+   *
+   * @param {ioBroker.Message} obj message
+   */
+  onLampaSyncCommand(obj) {
+    /** @type {any} */
+    let answer;
+    const sync = this.lampaSync;
+    try {
+      if (obj.command === 'lampaSyncDevices') {
+        answer = [{ label: 'All devices (merge)', value: 'all' }].concat(
+          sync ? sync.devices().map(d => ({ label: d.name, value: d.id })) : [],
+        );
+      } else if (obj.command === 'lampaSyncReset') {
+        const message = /** @type {any} */ (obj.message) || {};
+        answer = { result: this.resetLampaSync(message.device) };
+      } else {
+        answer = this.lampaSyncHtml();
+      }
+    } catch (error) {
+      answer = obj.command === 'lampaSyncInfo' ? `<p>${escapeHtml(error.message)}</p>` : { error: error.message };
+    }
+    if (obj.callback) this.sendTo(obj.from, obj.command, answer, obj.callback);
+  }
+
+  /** @returns {string} the devices of the Lampa sync as HTML table for the admin page */
+  lampaSyncHtml() {
+    const sync = this.lampaSync;
+    if (!sync) {
+      return '<p>Lampa sync is off: switch it on, set a sync key and save the settings.</p>';
+    }
+    const counts = sync.counts();
+    const rows = sync
+      .devices()
+      .map(d => {
+        const modes = Object.keys(d.modes || {})
+          .map(g => `${g}: ${d.modes[g]}`)
+          .join(', ');
+        const cells = [d.name, d.platform || '', new Date(d.lastSync).toLocaleString(), modes];
+        return `<tr>${cells.map(c => `<td>${escapeHtml(c)}</td>`).join('')}</tr>`;
+      })
+      .join('');
+    const pending = sync.pendingSource();
+    const head = ['Device', 'Platform', 'Last sync', 'On the device'].map(h => `<th align="left">${h}</th>`).join('');
+    return (
+      `<p>${Object.keys(counts)
+        .map(c => `${escapeHtml(c)}: ${counts[c]}`)
+        .join(' · ')}</p>` +
+      (pending ? `<p>Reset: waiting for "${escapeHtml(pending)}" to sync.</p>` : '') +
+      (rows
+        ? `<table style="border-collapse:collapse" cellpadding="4"><tr>${head}</tr>${rows}</table>`
+        : '<p>No device has synced yet.</p>')
+    );
   }
 
   /**
@@ -169,7 +329,14 @@ class MovieSwipe extends utils.Adapter {
     const stateName = idParts[idParts.length - 1];
 
     try {
-      if (stateName === 'start' && state.val === true) {
+      if (stateName === 'syncReset') {
+        try {
+          this.log.info(this.resetLampaSync(state.val));
+        } catch (error) {
+          this.log.warn(`Lampa sync reset: ${error.message}`);
+        }
+        await this.setStateAsync('lampa.syncReset', '', true);
+      } else if (stateName === 'start' && state.val === true) {
         if (!this.syncManager) {
           this.log.error('Sync manager not initialized');
           await this.setStateAsync('sync.status', 'error', true);
@@ -239,13 +406,15 @@ class MovieSwipe extends utils.Adapter {
       const ip = this.resolveBindAddress(bind);
       const url = `http://${ip}:${port}`;
       if (obj.callback) this.sendTo(obj.from, obj.command, { url, ip, port }, obj.callback);
+    } else if (LAMPA_SYNC_COMMANDS.includes(obj.command)) {
+      this.onLampaSyncCommand(obj);
     } else if (AGENT_COMMANDS.includes(obj.command)) {
       this.onAgentCommand(obj);
     }
   }
 
   /**
-   * A command of an AI agent (help, suggest, search, getMovie, markMovie, history, genres, openInLampa, lampaDevices), see lib/agent-commands.js
+   * A command of an AI agent (help, suggest, search, getMovie, markMovie, history, genres, openInLampa, lampaDevices, addBookmark, removeBookmark, bookmarks, markWatched), see lib/agent-commands.js
    *
    * @param {ioBroker.Message} obj message
    */
@@ -259,6 +428,7 @@ class MovieSwipe extends utils.Adapter {
         search: this.movieSearch,
         history: this.history,
         lampa: this.lampa,
+        lampaSync: this.lampaSync,
       });
       this.log.debug(`Agent command ${obj.command}: ${JSON.stringify(answer).slice(0, 200)}`);
     } catch (error) {
@@ -285,6 +455,16 @@ class MovieSwipe extends utils.Adapter {
 
       if (this.lampa) {
         this.lampa.stop();
+      }
+
+      if (this.lampaStatesTimer) {
+        this.clearTimeout(this.lampaStatesTimer);
+        this.lampaStatesTimer = null;
+      }
+
+      if (this.lampaSync) {
+        await this.lampaSync.flush();
+        this.lampaSync = null;
       }
 
       if (this.webServer) {

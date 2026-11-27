@@ -48,5 +48,22 @@
   "Help": "Hilfe",
   "For more information, visit the <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>GitHub repository</a>.": "Weitere Informationen finden Sie im <a href='https://github.com/sadam6752-tech/ioBroker.movieswipe' target='_blank'>GitHub-Repository</a>.",
   "label_dbToken": "Backup-Zugriffstoken",
-  "help_dbToken": "Token für Datenbank-Download/-Upload (/backup.html). Leer = ungeschützt."
+  "help_dbToken": "Token für Datenbank-Download/-Upload (/backup.html). Leer = ungeschützt.",
+  "Lampa sync": "Lampa-Synchronisation",
+  "lampa_sync_intro": "Hält Wiedergabefortschritt, Lesezeichen, Gesehen-Listen und Suchverlauf auf allen Geräten mit Lampa und dem MovieSwipe-Plugin gleich. Plugin als http://<ioBroker>:<Port>/lampa.js?key=<Sync-Schlüssel> hinzufügen oder den Schlüssel auf dem Gerät unter Einstellungen → MovieSwipe eingeben.",
+  "Sync Lampa between devices": "Lampa zwischen Geräten synchronisieren",
+  "Sync key": "Sync-Schlüssel",
+  "help_lampaSyncKey": "Ein Schlüssel für alle Geräte. Ohne ihn kann ein Gerät die synchronisierten Daten weder lesen noch ändern.",
+  "What is synced": "Was synchronisiert wird",
+  "Watch progress (time codes)": "Wiedergabefortschritt (Zeitmarken)",
+  "Bookmarks and history": "Lesezeichen und Verlauf",
+  "Watched online and torrents": "Gesehen (online und Torrents)",
+  "Search history": "Suchverlauf",
+  "Devices": "Geräte",
+  "Reset from": "Zurücksetzen von",
+  "help_lampaResetDevice": "Ein Gerät: seine Daten ersetzen die Kopie und danach die Daten der anderen Geräte. Alle Geräte: die Kopie wird aus den Daten aller Geräte neu zusammengeführt.",
+  "Reset sync copy": "Sync-Kopie zurücksetzen",
+  "confirm_lampaReset": "Die synchronisierte Kopie in ioBroker wird geleert und beim Synchronisieren der Geräte neu aufgebaut. Fortfahren?",
+  "Reset": "Zurücksetzen",
+  "Cancel": "Abbrechen"
 }

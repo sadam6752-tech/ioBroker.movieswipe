@@ -231,6 +231,147 @@
         }
       }
     },
+    "lampa": {
+      "type": "panel",
+      "label": "Lampa sync",
+      "items": {
+        "_lampaHeader": {
+          "type": "header",
+          "text": "Lampa sync",
+          "size": 3
+        },
+        "_lampaText": {
+          "type": "staticText",
+          "text": "lampa_sync_intro",
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "lampaSync": {
+          "type": "checkbox",
+          "label": "Sync Lampa between devices",
+          "default": false,
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "lampaSyncKey": {
+          "type": "password",
+          "label": "Sync key",
+          "help": "help_lampaSyncKey",
+          "hidden": "!data.lampaSync",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4
+        },
+        "_lampaGroups": {
+          "type": "header",
+          "text": "What is synced",
+          "size": 4,
+          "hidden": "!data.lampaSync"
+        },
+        "lampaSyncTimeline": {
+          "type": "checkbox",
+          "label": "Watch progress (time codes)",
+          "default": true,
+          "hidden": "!data.lampaSync",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 3,
+          "xl": 3
+        },
+        "lampaSyncFavorite": {
+          "type": "checkbox",
+          "label": "Bookmarks and history",
+          "default": true,
+          "hidden": "!data.lampaSync",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 3,
+          "xl": 3
+        },
+        "lampaSyncViewed": {
+          "type": "checkbox",
+          "label": "Watched online and torrents",
+          "default": true,
+          "hidden": "!data.lampaSync",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 3,
+          "xl": 3
+        },
+        "lampaSyncSearch": {
+          "type": "checkbox",
+          "label": "Search history",
+          "default": true,
+          "hidden": "!data.lampaSync",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 3,
+          "xl": 3
+        },
+        "_lampaDevicesHeader": {
+          "type": "header",
+          "text": "Devices",
+          "size": 4,
+          "hidden": "!data.lampaSync"
+        },
+        "_lampaDevices": {
+          "type": "textSendTo",
+          "container": "html",
+          "command": "lampaSyncInfo",
+          "hidden": "!data.lampaSync",
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "_lampaResetDevice": {
+          "type": "selectSendTo",
+          "command": "lampaSyncDevices",
+          "label": "Reset from",
+          "help": "help_lampaResetDevice",
+          "hidden": "!data.lampaSync",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4
+        },
+        "_lampaReset": {
+          "type": "sendTo",
+          "command": "lampaSyncReset",
+          "jsonData": "{\"device\":\"${data._lampaResetDevice}\"}",
+          "label": "Reset sync copy",
+          "variant": "outlined",
+          "showProcess": true,
+          "hidden": "!data.lampaSync",
+          "disabled": "!data._lampaResetDevice",
+          "confirm": {
+            "title": "Reset sync copy",
+            "text": "confirm_lampaReset",
+            "ok": "Reset",
+            "cancel": "Cancel"
+          },
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4
+        }
+      }
+    },
     "status": {
       "type": "panel",
       "label": "Status",
@@ -245,13 +386,25 @@
           "href": "http://localhost:${data.port}",
           "text": "http://localhost:${data.port}",
           "label": "Application URL",
-          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         },
         "_serverNote": {
           "type": "staticText",
           "text": "Replace 'localhost' with your server IP if accessing remotely. Actual URL with IP: Objects → movieswipe.0 → server → url",
-          "style": { "fontSize": "12px", "fontStyle": "italic", "color": "#888" },
-          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
+          "style": {
+            "fontSize": "12px",
+            "fontStyle": "italic",
+            "color": "#888"
+          },
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         },
         "_dbHeader": {
           "type": "header",
@@ -263,13 +416,25 @@
           "href": "http://localhost:${data.port}/backup.html",
           "text": "http://localhost:${data.port}/backup.html",
           "label": "Backup Manager",
-          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         },
         "_dbNote": {
           "type": "staticText",
           "text": "Replace 'localhost' with your server IP if accessing remotely.",
-          "style": { "fontSize": "12px", "fontStyle": "italic", "color": "#888" },
-          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
+          "style": {
+            "fontSize": "12px",
+            "fontStyle": "italic",
+            "color": "#888"
+          },
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         },
         "_syncStatus": {
           "type": "header",
